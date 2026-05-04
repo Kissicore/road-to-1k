@@ -72,6 +72,23 @@ export function PopLink({
 }
 
 /** Tile grande con número y label. */
+export type StatAccent =
+  | 'primary' | 'secondary' | 'accent' | 'success'
+  | 'cyan' | 'gold' | 'pink' | 'lime' | 'purple'
+
+const statAccentRing: Record<StatAccent, string> = {
+  primary:   'from-[#FF1F8B] to-[#FF4FA1]',
+  secondary: 'from-[#7B2CBF] to-[#9D4EDD]',
+  accent:    'from-[#00E5FF] to-[#00B4D8]',
+  success:   'from-[#C7F464] to-[#DEFB7E]',
+  // alias amigables para v0
+  cyan:      'from-[#00E5FF] to-[#00B4D8]',
+  gold:      'from-[#FFD23F] to-[#FFB800]',
+  pink:      'from-[#FF1F8B] to-[#FF4FA1]',
+  lime:      'from-[#C7F464] to-[#DEFB7E]',
+  purple:    'from-[#7B2CBF] to-[#9D4EDD]',
+}
+
 export function StatTile({
   label,
   value,
@@ -80,15 +97,10 @@ export function StatTile({
 }: {
   label: string
   value: ReactNode
-  accent?: 'primary' | 'secondary' | 'accent' | 'success'
+  accent?: StatAccent
   hint?: string
 }) {
-  const ringClass = {
-    primary: 'from-[#FF1F8B] to-[#FF4FA1]',
-    secondary: 'from-[#7B2CBF] to-[#9D4EDD]',
-    accent: 'from-[#00E5FF] to-[#00B4D8]',
-    success: 'from-[#C7F464] to-[#DEFB7E]',
-  }[accent]
+  const ringClass = statAccentRing[accent]
   return (
     <div className="card-pop p-5 space-y-1">
       <p className={cn('text-xs font-bold uppercase tracking-widest bg-gradient-to-r bg-clip-text text-transparent', ringClass)}>
@@ -143,13 +155,15 @@ export function PageHeader({
   eyebrow,
   title,
   subtitle,
+  centered = false,
 }: {
   eyebrow?: string
   title: ReactNode
   subtitle?: ReactNode
+  centered?: boolean
 }) {
   return (
-    <header className="space-y-2">
+    <header className={cn('space-y-2', centered && 'text-center')}>
       {eyebrow && (
         <p className="text-xs font-black uppercase tracking-[0.2em] text-[var(--color-primary)]">
           {eyebrow}
@@ -158,7 +172,7 @@ export function PageHeader({
       <h1 className="font-display font-black text-3xl text-[var(--color-ink)] leading-tight">
         {title}
       </h1>
-      {subtitle && <p className="text-sm text-[var(--color-ink-3)] leading-relaxed">{subtitle}</p>}
+      {subtitle && <p className={cn('text-sm text-[var(--color-ink-3)] leading-relaxed', centered && 'mx-auto max-w-2xl')}>{subtitle}</p>}
     </header>
   )
 }
@@ -186,50 +200,103 @@ export function GradientCard({
   )
 }
 
-/** Pill estado de submission. */
-export function StatusPill({
-  state,
-  label,
-}: {
-  state: 'success' | 'warn' | 'danger' | 'info' | 'muted'
-  label: string
-}) {
-  const styles = {
-    success: 'bg-[var(--color-success)]/20 text-[var(--color-success)] border-[var(--color-success)]/40',
-    warn: 'bg-[var(--color-warning)]/20 text-[var(--color-warning)] border-[var(--color-warning)]/40',
-    danger: 'bg-[var(--color-danger)]/20 text-[var(--color-danger)] border-[var(--color-danger)]/40',
-    info: 'bg-[var(--color-accent)]/20 text-[var(--color-accent)] border-[var(--color-accent)]/40',
-    muted: 'bg-white/5 text-[var(--color-ink-3)] border-white/10',
-  }[state]
+/** Pill estado de submission. Acepta prop `state`+`label` (control fino) o
+ *  `status` (string conocido que se mapea automáticamente). */
+type PillTone = 'success' | 'warn' | 'danger' | 'info' | 'muted'
+
+const statusMap: Record<string, { tone: PillTone; label: string }> = {
+  // Participant states
+  pending:  { tone: 'warn',    label: 'Pendiente' },
+  approved: { tone: 'success', label: 'Aprobada' },
+  rejected: { tone: 'danger',  label: 'Rechazada' },
+  // Submission states
+  valid:        { tone: 'success', label: 'Válido' },
+  invalid:      { tone: 'danger',  label: 'Inválido' },
+  duplicate:    { tone: 'warn',    label: 'Duplicado' },
+  pending_review: { tone: 'warn',  label: 'Por revisar' },
+  // Analysis states
+  idle:    { tone: 'muted',   label: 'Sin análisis' },
+  queued:  { tone: 'info',    label: 'En cola' },
+  running: { tone: 'info',    label: 'Analizando…' },
+  done:    { tone: 'success', label: 'Listo' },
+  error:   { tone: 'danger',  label: 'Error' },
+  // Generic
+  validated:   { tone: 'success', label: 'Validada' },
+  unvalidated: { tone: 'warn',    label: 'Pendiente' },
+}
+
+const pillStyles: Record<PillTone, string> = {
+  success: 'bg-[var(--color-success)]/20 text-[var(--color-success)] border-[var(--color-success)]/40',
+  warn:    'bg-[var(--color-warning)]/20 text-[var(--color-warning)] border-[var(--color-warning)]/40',
+  danger:  'bg-[var(--color-danger)]/20 text-[var(--color-danger)] border-[var(--color-danger)]/40',
+  info:    'bg-[var(--color-accent)]/20 text-[var(--color-accent)] border-[var(--color-accent)]/40',
+  muted:   'bg-white/5 text-[var(--color-ink-3)] border-white/10',
+}
+
+export function StatusPill(props:
+  | { state: PillTone; label: string; status?: never }
+  | { status: string; state?: never; label?: string }
+) {
+  let tone: PillTone
+  let text: string
+  if ('status' in props && props.status !== undefined) {
+    const mapped = statusMap[props.status] ?? { tone: 'muted', label: props.status }
+    tone = mapped.tone
+    text = props.label ?? mapped.label
+  } else {
+    tone = props.state!
+    text = props.label!
+  }
   return (
     <span
       className={cn(
         'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold border',
-        styles
+        pillStyles[tone]
       )}
     >
-      {label}
+      {text}
     </span>
   )
 }
 
-/** Decoraciones flotantes opcionales (emojis con animación). */
-export function FloatingDecor({ emojis }: { emojis: string[] }) {
+/** Decoraciones flotantes. Dos modos:
+ *  - emojis: lista de emojis que flotan en posiciones pseudo-aleatorias
+ *  - blob:   un blur radial de color (color + size en px)
+ */
+export function FloatingDecor(
+  props:
+    | { emojis: string[]; color?: never; size?: never; className?: string }
+    | { color: string; size?: number; emojis?: never; className?: string }
+) {
+  if ('emojis' in props && props.emojis) {
+    return (
+      <div aria-hidden className={cn('pointer-events-none select-none absolute inset-0 overflow-hidden', props.className)}>
+        {props.emojis.map((e, i) => (
+          <span
+            key={i}
+            className="absolute text-3xl float opacity-20"
+            style={{
+              left: `${10 + (i * 27) % 80}%`,
+              top: `${5 + (i * 31) % 85}%`,
+              animationDelay: `${i * 0.8}s`,
+            }}
+          >
+            {e}
+          </span>
+        ))}
+      </div>
+    )
+  }
+  const size = props.size ?? 320
   return (
-    <div aria-hidden className="pointer-events-none select-none absolute inset-0 overflow-hidden">
-      {emojis.map((e, i) => (
-        <span
-          key={i}
-          className="absolute text-3xl float opacity-20"
-          style={{
-            left: `${10 + (i * 27) % 80}%`,
-            top: `${5 + (i * 31) % 85}%`,
-            animationDelay: `${i * 0.8}s`,
-          }}
-        >
-          {e}
-        </span>
-      ))}
-    </div>
+    <div
+      aria-hidden
+      className={cn('pointer-events-none absolute rounded-full blur-3xl opacity-30', props.className)}
+      style={{
+        width: size,
+        height: size,
+        background: `radial-gradient(circle, ${props.color} 0%, transparent 70%)`,
+      }}
+    />
   )
 }
