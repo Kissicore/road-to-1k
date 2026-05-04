@@ -25,11 +25,7 @@ export function VentaForm() {
       evidence_url: evidenceUrl.trim(),
       description: description.trim() || null,
     })
-    if (error) {
-      setErrorMsg(error.message)
-      setStatus('error')
-      return
-    }
+    if (error) { setErrorMsg(error.message); setStatus('error'); return }
     setStatus('done')
     setAmount('')
     setEvidenceUrl('')
@@ -38,50 +34,51 @@ export function VentaForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="rounded-lg border border-white/10 p-5 space-y-3">
+    <form onSubmit={onSubmit} className="card-glow space-y-4">
       <div className="grid sm:grid-cols-2 gap-3">
-        <label className="block space-y-1">
-          <span className="text-xs text-neutral-400">Monto USD</span>
+        <label className="block space-y-1.5">
+          <span className="text-xs font-semibold uppercase tracking-wide text-muted">Monto USD</span>
           <input
             type="number"
             step="0.01"
             required
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-sm"
+            className="input"
           />
         </label>
-        <label className="block space-y-1">
-          <span className="text-xs text-neutral-400">
-            Link a evidencia (Drive, Skool, captura)
-          </span>
+        <label className="block space-y-1.5">
+          <span className="text-xs font-semibold uppercase tracking-wide text-muted">Link a evidencia</span>
           <input
             type="url"
             required
             value={evidenceUrl}
             onChange={(e) => setEvidenceUrl(e.target.value)}
-            className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-sm"
+            placeholder="https://drive.google.com/..."
+            className="input"
           />
         </label>
       </div>
-      <label className="block space-y-1">
-        <span className="text-xs text-neutral-400">Descripción (opcional)</span>
+      <label className="block space-y-1.5">
+        <span className="text-xs font-semibold uppercase tracking-wide text-muted">Descripción (opcional)</span>
         <textarea
           rows={2}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-sm"
+          className="input"
         />
       </label>
-      <button
-        type="submit"
-        disabled={status === 'saving'}
-        className="px-4 py-2 rounded-full bg-white text-black text-sm font-medium hover:bg-neutral-200 disabled:opacity-50"
-      >
-        {status === 'saving' ? 'Guardando…' : 'Registrar venta'}
-      </button>
-      {status === 'done' && <p className="text-xs text-emerald-400">Listo.</p>}
-      {status === 'error' && <p className="text-xs text-red-400">Error: {errorMsg}</p>}
+      <div className="flex items-center gap-3">
+        <button
+          type="submit"
+          disabled={status === 'saving'}
+          className="btn-primary px-6 py-2 text-sm"
+        >
+          {status === 'saving' ? 'Guardando…' : 'Registrar venta'}
+        </button>
+        {status === 'done' && <span className="text-xs text-lime font-semibold">Venta registrada.</span>}
+        {status === 'error' && <span className="text-xs text-red-400">Error: {errorMsg}</span>}
+      </div>
     </form>
   )
 }

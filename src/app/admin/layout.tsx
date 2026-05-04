@@ -19,21 +19,26 @@ export default async function AdminLayout({
 
   return (
     <div className="flex-1 flex flex-col">
-      <nav className="border-b border-amber-500/20 bg-amber-500/5 px-6 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-6">
-          <Link href="/admin" className="font-semibold tracking-tight text-amber-200">
-            Admin · Road to 1K
-          </Link>
-          <Link href="/admin/participants" className="text-sm text-neutral-300 hover:text-white">
-            Participantes
-          </Link>
-          <Link href="/admin/submissions" className="text-sm text-neutral-300 hover:text-white">
-            Submissions
+      <nav className="sticky top-0 z-50 border-b border-gold/20 bg-background/90 backdrop-blur-md">
+        <div className="max-w-6xl mx-auto px-6 h-13 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-6">
+            <Link
+              href="/admin"
+              className="font-sans font-black text-base tracking-tight text-gold hover:text-gold/80 transition-colors"
+            >
+              Admin · Road to 1K
+            </Link>
+            <Link href="/admin/participants" className="btn-ghost text-sm">
+              Participantes
+            </Link>
+            <Link href="/admin/submissions" className="btn-ghost text-sm">
+              Submissions
+            </Link>
+          </div>
+          <Link href="/dashboard" className="btn-ghost text-sm text-muted">
+            Salir admin
           </Link>
         </div>
-        <Link href="/dashboard" className="text-sm text-neutral-400 hover:text-white">
-          Salir admin
-        </Link>
       </nav>
       {children}
     </div>

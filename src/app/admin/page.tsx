@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
+import { PageHeader, StatTile } from '@/components/ui'
 
 export default async function AdminHome() {
   const supabase = await createClient()
@@ -13,23 +14,15 @@ export default async function AdminHome() {
 
   return (
     <main className="flex-1 px-6 py-10 max-w-5xl mx-auto w-full space-y-8">
-      <header>
-        <h1 className="text-2xl font-semibold">Resumen del reto</h1>
-      </header>
+      <PageHeader
+        eyebrow="Panel de control"
+        title="Resumen del reto"
+      />
       <section className="grid sm:grid-cols-3 gap-4">
-        <Card label="Inscritas totales" value={total ?? 0} />
-        <Card label="Pendientes de aprobación" value={pending ?? 0} />
-        <Card label="Submissions hoy" value={subsToday ?? 0} />
+        <StatTile label="Inscritas totales"          value={total ?? 0} accent="cyan" />
+        <StatTile label="Pendientes de aprobación"   value={pending ?? 0} accent="gold" />
+        <StatTile label="Submissions hoy"            value={subsToday ?? 0} accent="pink" />
       </section>
     </main>
-  )
-}
-
-function Card({ label, value }: { label: string; value: number }) {
-  return (
-    <div className="rounded-lg border border-white/10 px-5 py-4">
-      <p className="text-xs uppercase tracking-wide text-neutral-400">{label}</p>
-      <p className="text-3xl font-semibold mt-1">{value}</p>
-    </div>
   )
 }

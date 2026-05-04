@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { ParticipantsTable } from './participants-table'
+import { PageHeader } from '@/components/ui'
 
 export const dynamic = 'force-dynamic'
 
@@ -12,12 +13,11 @@ export default async function AdminParticipants() {
 
   return (
     <main className="flex-1 px-6 py-10 max-w-6xl mx-auto w-full space-y-6">
-      <header>
-        <h1 className="text-2xl font-semibold">Participantes</h1>
-        <p className="text-neutral-400 text-sm">
-          Aprueba / rechaza inscripciones y edita seguidores finales para el cierre.
-        </p>
-      </header>
+      <PageHeader
+        eyebrow="Admin"
+        title="Participantes"
+        subtitle="Aprueba o rechaza inscripciones y edita seguidores finales para el cierre."
+      />
       <ParticipantsTable initial={rows ?? []} />
     </main>
   )

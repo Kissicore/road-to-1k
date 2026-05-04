@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
+import { PageHeader, StatusPill } from '@/components/ui'
 
 export const dynamic = 'force-dynamic'
 
@@ -15,50 +16,52 @@ export default async function AdminSubmissions() {
 
   return (
     <main className="flex-1 px-6 py-10 max-w-6xl mx-auto w-full space-y-6">
-      <header>
-        <h1 className="text-2xl font-semibold">Submissions diarias</h1>
-        <p className="text-neutral-400 text-sm">
-          Últimas 200. Marca como inválido o duplicado si aplica.
-        </p>
-      </header>
+      <PageHeader
+        eyebrow="Admin"
+        title="Submissions diarias"
+        subtitle="Últimas 200. Marca como inválido o duplicado si aplica."
+      />
 
-      <div className="rounded-lg border border-white/10 overflow-x-auto">
+      <div className="card p-0 overflow-x-auto">
         <table className="w-full text-sm">
-          <thead className="bg-white/5 text-neutral-400 uppercase text-xs">
+          <thead className="border-b border-border">
             <tr>
-              <th className="px-3 py-2 text-left">Fecha</th>
-              <th className="px-3 py-2 text-left">Participante</th>
-              <th className="px-3 py-2 text-right">Día</th>
-              <th className="px-3 py-2 text-left">Reel</th>
-              <th className="px-3 py-2 text-left">Estado</th>
-              <th className="px-3 py-2 text-left">Análisis</th>
+              {['Fecha', 'Participante', 'Día', 'Reel', 'Estado', 'Análisis'].map((h) => (
+                <th key={h} className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider text-muted whitespace-nowrap">
+                  {h}
+                </th>
+              ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-white/10">
+          <tbody className="divide-y divide-border">
             {(rows ?? []).map((r) => {
               const p = (r.participant as unknown) as { full_name: string; instagram_handle: string }
               return (
-                <tr key={r.id} className="hover:bg-white/5">
-                  <td className="px-3 py-2 text-neutral-400 text-xs">
+                <tr key={r.id} className="hover:bg-surface-2 transition-colors">
+                  <td className="px-4 py-3 text-muted text-xs whitespace-nowrap">
                     {new Date(r.created_at).toLocaleString('es')}
                   </td>
-                  <td className="px-3 py-2">
-                    <div>{p?.full_name}</div>
-                    <div className="text-xs text-neutral-500">@{p?.instagram_handle}</div>
+                  <td className="px-4 py-3">
+                    <div className="font-semibold text-foreground">{p?.full_name}</div>
+                    <div className="text-xs text-muted">@{p?.instagram_handle}</div>
                   </td>
-                  <td className="px-3 py-2 text-right">{r.day_number}</td>
-                  <td className="px-3 py-2">
+                  <td className="px-4 py-3 font-sans font-bold text-foreground">{r.day_number}</td>
+                  <td className="px-4 py-3 max-w-xs">
                     <a
                       href={r.reel_url}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-blue-400 hover:underline truncate max-w-xs inline-block align-middle"
+                      className="text-accent hover:underline truncate block"
                     >
                       {r.reel_url}
                     </a>
                   </td>
-                  <td className="px-3 py-2">{r.status}</td>
-                  <td className="px-3 py-2">{r.analysis_status}</td>
+                  <td className="px-4 py-3">
+                    <StatusPill status={r.status} />
+                  </td>
+                  <td className="px-4 py-3">
+                    <StatusPill status={r.analysis_status} />
+                  </td>
                 </tr>
               )
             })}
