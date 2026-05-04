@@ -32,58 +32,51 @@ export function VentaForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="card-pop p-6 space-y-4">
+    <form onSubmit={onSubmit} className="card-glow space-y-4">
       <div className="grid sm:grid-cols-2 gap-3">
         <label className="block space-y-1.5">
-          <span className="text-xs font-bold text-[var(--color-ink-2)] uppercase tracking-wide">
-            💵 Monto USD
-          </span>
+          <span className="text-xs font-semibold uppercase tracking-wide text-muted">Monto USD</span>
           <input
             type="number"
             step="0.01"
             required
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            placeholder="50.00"
-            className="input-pop"
+            className="input"
           />
         </label>
         <label className="block space-y-1.5">
-          <span className="text-xs font-bold text-[var(--color-ink-2)] uppercase tracking-wide">
-            📎 Link a evidencia
-          </span>
+          <span className="text-xs font-semibold uppercase tracking-wide text-muted">Link a evidencia</span>
           <input
             type="url"
             required
             value={evidenceUrl}
             onChange={(e) => setEvidenceUrl(e.target.value)}
             placeholder="https://drive.google.com/..."
-            className="input-pop"
+            className="input"
           />
         </label>
       </div>
       <label className="block space-y-1.5">
-        <span className="text-xs font-bold text-[var(--color-ink-2)] uppercase tracking-wide">
-          📝 Descripción (opcional)
-        </span>
+        <span className="text-xs font-semibold uppercase tracking-wide text-muted">Descripción (opcional)</span>
         <textarea
           rows={2}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="Reel del día 12 me trajo esta venta…"
-          className="input-pop resize-none"
+          className="input"
         />
       </label>
-      <PopButton
-        type="submit"
-        variant="success"
-        size="md"
-        disabled={status === 'saving'}
-      >
-        {status === 'saving' ? 'Guardando...' : '💰 Registrar venta'}
-      </PopButton>
-      {status === 'done' && <p className="text-sm text-[var(--color-success)] font-bold">✓ Listo, registrada.</p>}
-      {status === 'error' && <p className="text-sm text-[var(--color-danger)]">❌ {errorMsg}</p>}
+      <div className="flex items-center gap-3">
+        <button
+          type="submit"
+          disabled={status === 'saving'}
+          className="btn-primary px-6 py-2 text-sm"
+        >
+          {status === 'saving' ? 'Guardando…' : 'Registrar venta'}
+        </button>
+        {status === 'done' && <span className="text-xs text-lime font-semibold">Venta registrada.</span>}
+        {status === 'error' && <span className="text-xs text-red-400">Error: {errorMsg}</span>}
+      </div>
     </form>
   )
 }

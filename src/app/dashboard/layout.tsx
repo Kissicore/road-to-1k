@@ -16,50 +16,50 @@ export default async function DashboardLayout({
     .maybeSingle()
 
   return (
-    <div className="flex-1 flex flex-col">
-      <nav className="sticky top-0 z-40 backdrop-blur-md bg-[var(--color-bg)]/80 border-b border-[var(--color-border)]">
-        <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
-          <Link href="/dashboard" className="flex items-center gap-2 font-display font-black text-lg">
-            <span className="text-2xl">🎯</span>
-            Road to 1K
+    <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-ink)] flex flex-col">
+      {/* ── Top nav ── */}
+      <nav className="sticky top-0 z-50 bg-[var(--color-bg-2)]/90 backdrop-blur-md border-b-2 border-[var(--color-border)]">
+        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
+          <Link href="/dashboard" className="font-display font-black text-lg text-[var(--color-primary)]">
+            🎯 Road to 1K
           </Link>
-          <div className="hidden md:flex items-center gap-1 text-sm">
-            <NavLink href="/dashboard" label="Inicio" />
-            <NavLink href="/dashboard/subir" label="Subir Reel" emoji="🎬" />
-            <NavLink href="/dashboard/checkpoint" label="Checkpoints" emoji="📊" />
-            <NavLink href="/dashboard/venta" label="Ventas" emoji="💰" />
-            <NavLink href="/ranking" label="Ranking" emoji="🏆" />
+
+          {/* Desktop nav */}
+          <div className="hidden sm:flex items-center gap-1">
+            <NavLink href="/dashboard/subir" emoji="🎬" label="Subir Reel" />
+            <NavLink href="/dashboard/checkpoint" emoji="📊" label="Checkpoints" />
+            <NavLink href="/dashboard/venta" emoji="💰" label="Ventas" />
+            <NavLink href="/ranking" emoji="🏆" label="Ranking" />
             {me?.role === 'admin' && (
-              <NavLink href="/admin" label="Admin" emoji="⚡" highlight />
+              <NavLink href="/admin" emoji="⚡" label="Admin" highlight />
             )}
           </div>
-          <div className="flex items-center gap-3">
-            <span className="hidden sm:inline text-xs text-[var(--color-ink-3)] font-medium">
-              @{me?.instagram_handle}
-            </span>
-          </div>
+
+          <span className="hidden sm:block text-xs font-mono text-[var(--color-ink-4)]">
+            @{me?.instagram_handle}
+          </span>
         </div>
       </nav>
 
+      {/* ── Pending banner ── */}
       {me?.state === 'pending' && (
-        <div className="bg-gradient-to-r from-[var(--color-warning)]/15 to-[var(--color-primary)]/15 border-b-2 border-[var(--color-warning)]/40">
-          <div className="max-w-6xl mx-auto px-6 py-3 text-center text-sm text-[var(--color-warning)] font-bold">
-            ⏳ Tu inscripción está pendiente de aprobación. Te activamos antes del 10 de mayo.
-          </div>
+        <div className="bg-[var(--color-warning)]/10 border-b-2 border-[var(--color-warning)]/30 text-[var(--color-warning)] text-xs font-bold px-6 py-2 text-center">
+          ⏳ Tu inscripción está pendiente de aprobación. Te activamos antes del 10 de mayo.
         </div>
       )}
 
       {children}
 
-      <footer className="md:hidden sticky bottom-0 bg-[var(--color-bg)]/95 backdrop-blur-md border-t border-[var(--color-border)] z-40">
-        <div className="grid grid-cols-5 gap-1 px-2 py-2">
-          <MobileNav href="/dashboard" emoji="🎯" label="Hoy" />
-          <MobileNav href="/dashboard/subir" emoji="🎬" label="Reel" />
+      {/* ── Mobile bottom nav ── */}
+      <nav className="sm:hidden fixed bottom-0 left-0 right-0 z-50 border-t-2 border-[var(--color-border)] bg-[var(--color-surface)]/95 backdrop-blur-md">
+        <div className="flex items-center justify-around px-2 py-2">
+          <MobileNav href="/dashboard" emoji="🏠" label="Inicio" />
+          <MobileNav href="/dashboard/subir" emoji="🎬" label="Subir" />
           <MobileNav href="/dashboard/checkpoint" emoji="📊" label="CP" />
-          <MobileNav href="/dashboard/venta" emoji="💰" label="Venta" />
-          <MobileNav href="/ranking" emoji="🏆" label="Top" />
+          <MobileNav href="/dashboard/venta" emoji="💰" label="Ventas" />
+          <MobileNav href="/ranking" emoji="🏆" label="Ranking" />
         </div>
-      </footer>
+      </nav>
     </div>
   )
 }
@@ -70,13 +70,9 @@ function NavLink({
   return (
     <Link
       href={href}
-      className={`px-3 py-2 rounded-full font-display font-bold text-sm transition hover:bg-white/10 ${
-        highlight
-          ? 'text-[var(--color-warning)] hover:bg-[var(--color-warning)]/15'
-          : 'text-[var(--color-ink-2)] hover:text-white'
-      }`}
+      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-bold transition-colors hover:bg-[var(--color-surface-2)] ${highlight ? 'text-[var(--color-warning)]' : 'text-[var(--color-ink-3)] hover:text-[var(--color-ink)]'}`}
     >
-      {emoji && <span className="mr-1">{emoji}</span>}
+      {emoji && <span aria-hidden>{emoji}</span>}
       {label}
     </Link>
   )
@@ -86,10 +82,10 @@ function MobileNav({ href, emoji, label }: { href: string; emoji: string; label:
   return (
     <Link
       href={href}
-      className="flex flex-col items-center gap-0.5 py-2 rounded-xl hover:bg-white/5"
+      className="flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg text-[var(--color-ink-4)] hover:text-[var(--color-ink)] transition-colors"
     >
-      <span className="text-xl">{emoji}</span>
-      <span className="text-[10px] font-bold uppercase tracking-wide text-[var(--color-ink-3)]">{label}</span>
+      <span className="text-lg" aria-hidden>{emoji}</span>
+      <span className="text-[10px] font-bold">{label}</span>
     </Link>
   )
 }

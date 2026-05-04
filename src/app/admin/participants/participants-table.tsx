@@ -21,11 +21,15 @@ export function ParticipantsTable({ initial }: { initial: Row[] }) {
   const [rows, setRows] = useState<Row[]>(initial)
   const [savingId, setSavingId] = useState<string | null>(null)
 
-  async function patch(id: string, patch: Partial<Row>) {
+  async function patch(id: string, update: Partial<Row>) {
     setSavingId(id)
     const supabase = createClient()
     const { data, error } = await supabase
-      .from('participants').update(patch).eq('id', id).select().single()
+      .from('participants')
+      .update(update)
+      .eq('id', id)
+      .select()
+      .single()
     setSavingId(null)
     if (!error && data) {
       setRows((rs) => rs.map((r) => (r.id === id ? { ...r, ...data } as Row : r)))
@@ -33,29 +37,25 @@ export function ParticipantsTable({ initial }: { initial: Row[] }) {
   }
 
   return (
-    <div className="card-pop overflow-x-auto">
+    <div className="card p-0 overflow-x-auto">
       <table className="w-full text-sm">
-        <thead className="bg-white/5 text-[var(--color-ink-3)] uppercase text-xs tracking-wider">
+        <thead className="border-b border-border">
           <tr>
-            <th className="px-3 py-3 text-left font-bold">Nombre</th>
-            <th className="px-3 py-3 text-left font-bold">@IG</th>
-            <th className="px-3 py-3 text-left font-bold hidden sm:table-cell">Email</th>
-            <th className="px-3 py-3 text-left font-bold hidden md:table-cell">Rubro</th>
-            <th className="px-3 py-3 text-right font-bold">Inicio</th>
-            <th className="px-3 py-3 text-right font-bold">Final</th>
-            <th className="px-3 py-3 text-left font-bold">Estado</th>
-            <th className="px-3 py-3 text-left font-bold hidden md:table-cell">Rol</th>
-            <th className="px-3 py-3"></th>
+            {['Nombre', '@IG', 'Email', 'Rubro', 'Inicio', 'Final', 'Estado', 'Rol', ''].map((h) => (
+              <th key={h} className="px-3 py-3 text-left text-xs font-bold uppercase tracking-wider text-muted whitespace-nowrap">
+                {h}
+              </th>
+            ))}
           </tr>
         </thead>
-        <tbody className="divide-y divide-[var(--color-border)]">
+        <tbody className="divide-y divide-border">
           {rows.map((r) => (
-            <tr key={r.id} className="hover:bg-white/5">
-              <td className="px-3 py-3 font-medium">{r.full_name}</td>
-              <td className="px-3 py-3 text-[var(--color-ink-3)]">@{r.instagram_handle}</td>
-              <td className="px-3 py-3 text-[var(--color-ink-3)] text-xs hidden sm:table-cell">{r.email}</td>
-              <td className="px-3 py-3 hidden md:table-cell">{r.rubro ?? '—'}</td>
-              <td className="px-3 py-3 text-right">
+            <tr key={r.id} className="hover:bg-surface-2 transition-colors">
+              <td className="px-3 py-2 font-semibold text-foreground whitespace-nowrap">{r.full_name}</td>
+              <td className="px-3 py-2 text-muted">@{r.instagram_handle}</td>
+              <td className="px-3 py-2 text-muted text-xs">{r.email}</td>
+              <td className="px-3 py-2 text-muted">{r.rubro ?? '—'}</td>
+              <td className="px-3 py-2 text-right">
                 <NumberCell
                   value={r.followers_initial}
                   onSave={(v) => patch(r.id, { followers_initial: v ?? 0 })}
@@ -71,7 +71,7 @@ export function ParticipantsTable({ initial }: { initial: Row[] }) {
                 <select
                   value={r.state}
                   onChange={(e) => patch(r.id, { state: e.target.value as Row['state'] })}
-                  className="bg-[var(--color-bg-2)] border-2 border-[var(--color-border)] rounded-full px-3 py-1 text-xs font-bold focus:outline-none focus:border-[var(--color-accent)]"
+                  className="bg-surface border border-border rounded-lg px-2 py-1 text-xs text-foreground focus:border-primary outline-none"
                 >
                   <option value="pending">⏳ Pendiente</option>
                   <option value="approved">✓ Aprobada</option>
@@ -82,14 +82,18 @@ export function ParticipantsTable({ initial }: { initial: Row[] }) {
                 <select
                   value={r.role}
                   onChange={(e) => patch(r.id, { role: e.target.value as Row['role'] })}
-                  className="bg-[var(--color-bg-2)] border-2 border-[var(--color-border)] rounded-full px-3 py-1 text-xs font-bold focus:outline-none focus:border-[var(--color-accent)]"
+                  className="bg-surface border border-border rounded-lg px-2 py-1 text-xs text-foreground focus:border-primary outline-none"
                 >
                   <option value="participant">Participante</option>
                   <option value="admin">Admin</option>
                 </select>
               </td>
-              <td className="px-3 py-3 text-right text-xs text-[var(--color-ink-4)]">
-                {savingId === r.id && <StatusPill state="info" label="guardando" />}
+              <td className="px-3 py-2 text-right text-xs text-muted">
+                {savingId === r.id ? (
+                  <span className="text-primary-soft animate-pulse">guardando…</span>
+                ) : (
+                  <StatusPill status={r.state} />
+                )}
               </td>
             </tr>
           ))}
@@ -112,7 +116,7 @@ function NumberCell({
         const n = v.trim() === '' ? null : parseInt(v, 10) || 0
         if (n !== value) onSave(n)
       }}
-      className="w-24 bg-[var(--color-bg-2)] border-2 border-[var(--color-border)] rounded-lg px-2 py-1 text-right text-sm focus:outline-none focus:border-[var(--color-accent)]"
+      className="w-20 bg-surface-2 border border-border rounded-lg px-2 py-1 text-right text-sm text-foreground focus:border-primary outline-none"
     />
   )
 }

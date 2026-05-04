@@ -15,64 +15,52 @@ export default async function AdminSubmissions() {
     .limit(200)
 
   return (
-    <main className="flex-1 px-4 sm:px-6 py-10 max-w-6xl mx-auto w-full space-y-6">
+    <main className="flex-1 px-6 py-10 max-w-6xl mx-auto w-full space-y-6">
       <PageHeader
-        eyebrow="⚡ Admin · Submissions"
-        title="Reels diarios"
-        subtitle="Últimas 200 submissions. Marca como inválido o duplicado si aplica."
+        eyebrow="Admin"
+        title="Submissions diarias"
+        subtitle="Últimas 200. Marca como inválido o duplicado si aplica."
       />
 
-      <div className="card-pop overflow-x-auto">
+      <div className="card p-0 overflow-x-auto">
         <table className="w-full text-sm">
-          <thead className="bg-white/5 text-[var(--color-ink-3)] uppercase text-xs tracking-wider">
+          <thead className="border-b border-border">
             <tr>
-              <th className="px-3 py-3 text-left font-bold">Fecha</th>
-              <th className="px-3 py-3 text-left font-bold">Participante</th>
-              <th className="px-3 py-3 text-right font-bold">Día</th>
-              <th className="px-3 py-3 text-left font-bold">Reel</th>
-              <th className="px-3 py-3 text-left font-bold">Estado</th>
-              <th className="px-3 py-3 text-left font-bold">Análisis</th>
+              {['Fecha', 'Participante', 'Día', 'Reel', 'Estado', 'Análisis'].map((h) => (
+                <th key={h} className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider text-muted whitespace-nowrap">
+                  {h}
+                </th>
+              ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-[var(--color-border)]">
+          <tbody className="divide-y divide-border">
             {(rows ?? []).map((r) => {
               const p = (r.participant as unknown) as { full_name: string; instagram_handle: string }
               return (
-                <tr key={r.id} className="hover:bg-white/5">
-                  <td className="px-3 py-3 text-[var(--color-ink-3)] text-xs">
+                <tr key={r.id} className="hover:bg-surface-2 transition-colors">
+                  <td className="px-4 py-3 text-muted text-xs whitespace-nowrap">
                     {new Date(r.created_at).toLocaleString('es')}
                   </td>
-                  <td className="px-3 py-3">
-                    <div className="font-medium">{p?.full_name}</div>
-                    <div className="text-xs text-[var(--color-ink-3)]">@{p?.instagram_handle}</div>
+                  <td className="px-4 py-3">
+                    <div className="font-semibold text-foreground">{p?.full_name}</div>
+                    <div className="text-xs text-muted">@{p?.instagram_handle}</div>
                   </td>
-                  <td className="px-3 py-3 text-right font-display font-bold">{r.day_number}</td>
-                  <td className="px-3 py-3">
+                  <td className="px-4 py-3 font-sans font-bold text-foreground">{r.day_number}</td>
+                  <td className="px-4 py-3 max-w-xs">
                     <a
                       href={r.reel_url}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-[var(--color-accent)] hover:underline truncate max-w-xs inline-block align-middle text-xs"
+                      className="text-accent hover:underline truncate block"
                     >
                       {r.reel_url}
                     </a>
                   </td>
-                  <td className="px-3 py-3">
-                    <StatusPill
-                      state={r.status === 'valid' ? 'success' : r.status === 'invalid' ? 'danger' : 'warn'}
-                      label={r.status}
-                    />
+                  <td className="px-4 py-3">
+                    <StatusPill status={r.status} />
                   </td>
-                  <td className="px-3 py-3">
-                    <StatusPill
-                      state={
-                        r.analysis_status === 'done' ? 'success'
-                        : r.analysis_status === 'error' ? 'danger'
-                        : r.analysis_status === 'idle' ? 'muted'
-                        : 'info'
-                      }
-                      label={r.analysis_status}
-                    />
+                  <td className="px-4 py-3">
+                    <StatusPill status={r.analysis_status} />
                   </td>
                 </tr>
               )

@@ -52,79 +52,70 @@ export default function SignupPage() {
   }
 
   return (
-    <main className="flex-1 flex items-center justify-center px-6 py-16">
+    <main className="min-h-screen bg-[var(--color-bg)] flex items-center justify-center px-6 py-16">
       <div className="w-full max-w-lg">
-        <Link href="/" className="block text-sm text-[var(--color-ink-3)] hover:text-white mb-6">
+        <Link href="/" className="inline-block text-sm text-[var(--color-ink-3)] hover:text-[var(--color-ink)] mb-8 transition-colors">
           ← Volver
         </Link>
-        <div className="card-pop p-8 space-y-6 relative overflow-hidden">
-          <div className="absolute -top-20 -right-20 w-48 h-48 rounded-full bg-[var(--color-accent)]/15 blur-3xl" />
-          <div className="relative space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--color-primary)]/15 border-2 border-[var(--color-primary)]/40">
-              <span>🎬</span>
-              <span className="text-xs font-display font-bold uppercase tracking-wide text-[var(--color-primary-2)]">
-                Inscripción · 11 de mayo
-              </span>
+
+        <div className="card-pop p-8 space-y-8">
+          <div className="space-y-2 text-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--color-surface-2)] border border-[var(--color-border)] text-xs font-bold text-[var(--color-primary-2)]">
+              🎬 <span>Inscripción · 11 de mayo</span>
             </div>
-            <h1 className="font-display text-3xl font-black">¡Bienvenida al reto!</h1>
-            <p className="text-[var(--color-ink-3)] text-sm">
+            <h1 className="font-display font-black text-2xl text-[var(--color-ink)]">¡Bienvenida al reto!</h1>
+            <p className="text-sm text-[var(--color-ink-3)] leading-relaxed">
               Cuenta solo para miembros activas de FÓRMULA 100K. Andrea aprueba tu inscripción antes de que empiece el reto.
             </p>
           </div>
 
-          <form onSubmit={onSubmit} className="space-y-3 relative">
-            <Field label="Email" type="email" required value={form.email} onChange={(v) => update('email', v)} />
-            <Field label="Nombre y apellido" required value={form.full_name} onChange={(v) => update('full_name', v)} />
-            <Field
-              label="Tu @ de Instagram"
-              placeholder="andreavega.coach"
-              required
-              value={form.instagram_handle}
-              onChange={(v) => update('instagram_handle', v)}
-            />
-            <Field
-              label="Rubro / nicho"
-              placeholder="Coach, agencia, e-commerce…"
-              value={form.rubro}
-              onChange={(v) => update('rubro', v)}
-            />
-            <Field
-              label="Seguidores actuales"
-              type="number"
-              required
-              value={form.followers_initial}
-              onChange={(v) => update('followers_initial', v)}
-              hint="Es tu punto de partida — mídete contra ti misma."
-            />
-
-            <PopButton
-              type="submit"
-              variant="primary"
-              size="lg"
-              disabled={status === 'sending'}
-              className="w-full mt-2"
-            >
-              {status === 'sending' ? 'Enviando...' : '🚀 Inscribirme'}
-            </PopButton>
-          </form>
-
-          {status === 'sent' && (
-            <div className="rounded-2xl bg-[var(--color-success)]/15 border-2 border-[var(--color-success)]/40 p-4 text-sm text-[var(--color-success)]">
-              📬 Listo. Revisa tu correo, abre el link mágico y queda registrada.
+          {status === 'sent' ? (
+            <div className="text-center space-y-3 py-6">
+              <p className="text-5xl" aria-hidden>📬</p>
+              <p className="font-display font-black text-xl text-[var(--color-ink)]">Inscripción recibida</p>
+              <p className="text-sm text-[var(--color-ink-3)] leading-relaxed">
+                Revisa tu correo y abre el link mágico para quedar registrada.
+              </p>
             </div>
+          ) : (
+            <form onSubmit={onSubmit} className="space-y-4">
+              <Field label="Email" type="email" required value={form.email} onChange={(v) => update('email', v)} />
+              <Field label="Nombre completo" required value={form.full_name} onChange={(v) => update('full_name', v)} />
+              <Field
+                label="Usuario de Instagram (sin @)"
+                placeholder="andreavega.coach"
+                required
+                value={form.instagram_handle}
+                onChange={(v) => update('instagram_handle', v)}
+                hint="Es tu identificador en el reto."
+              />
+              <Field label="Rubro / nicho" value={form.rubro} onChange={(v) => update('rubro', v)} />
+              <Field
+                label="Seguidores actuales"
+                type="number"
+                required
+                value={form.followers_initial}
+                onChange={(v) => update('followers_initial', v)}
+                hint="Es tu punto de partida — mídete contra ti misma."
+              />
+
+              <PopButton type="submit" disabled={status === 'sending'} className="w-full">
+                {status === 'sending' ? 'Enviando...' : '🚀 Inscribirme'}
+              </PopButton>
+
+              {status === 'error' && (
+                <p className="text-sm text-[var(--color-danger)] text-center">❌ {errorMsg}</p>
+              )}
+            </form>
           )}
-          {status === 'error' && (
-            <div className="rounded-2xl bg-[var(--color-danger)]/15 border-2 border-[var(--color-danger)]/40 p-4 text-sm text-[var(--color-danger)]">
-              ❌ {errorMsg}
-            </div>
-          )}
+
+          <p className="text-center text-sm text-[var(--color-ink-4)]">
+            ¿Ya estás inscrita?{' '}
+            <Link href="/login" className="text-[var(--color-primary-2)] hover:underline font-bold">
+              Inicia sesión
+            </Link>
+          </p>
         </div>
-        <p className="text-center text-sm text-[var(--color-ink-3)] mt-6">
-          ¿Ya estás inscrita?{' '}
-          <Link href="/login" className="text-[var(--color-accent)] font-bold hover:underline">
-            Inicia sesión
-          </Link>
-        </p>
       </div>
     </main>
   )
@@ -142,8 +133,8 @@ function Field({
   hint?: string
 }) {
   return (
-    <label className="block space-y-1.5">
-      <span className="text-sm font-bold text-[var(--color-ink-2)]">{label}</span>
+    <div className="space-y-1.5">
+      <label className="text-xs font-bold uppercase tracking-widest text-[var(--color-ink-3)]">{label}</label>
       <input
         type={type}
         value={value}
@@ -152,7 +143,7 @@ function Field({
         required={required}
         className="input-pop"
       />
-      {hint && <span className="block text-xs text-[var(--color-ink-4)]">{hint}</span>}
-    </label>
+      {hint && <p className="text-xs text-[var(--color-ink-4)]">{hint}</p>}
+    </div>
   )
 }

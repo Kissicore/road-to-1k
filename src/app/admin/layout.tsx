@@ -19,21 +19,24 @@ export default async function AdminLayout({
 
   return (
     <div className="flex-1 flex flex-col">
-      <nav className="sticky top-0 z-40 backdrop-blur-md bg-[var(--color-bg)]/90 border-b-2 border-[var(--color-warning)]/40">
-        <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+      <nav className="sticky top-0 z-50 border-b border-gold/20 bg-background/90 backdrop-blur-md">
+        <div className="max-w-6xl mx-auto px-6 h-13 flex items-center justify-between gap-4">
           <div className="flex items-center gap-6">
-            <Link href="/admin" className="flex items-center gap-2 font-display font-black">
-              <span className="text-xl">⚡</span>
-              <span className="text-[var(--color-warning)]">Admin · Road to 1K</span>
+            <Link
+              href="/admin"
+              className="font-sans font-black text-base tracking-tight text-gold hover:text-gold/80 transition-colors"
+            >
+              Admin · Road to 1K
             </Link>
-            <div className="hidden md:flex items-center gap-1 text-sm">
-              <AdminLink href="/admin" label="Resumen" />
-              <AdminLink href="/admin/participants" label="Participantes" />
-              <AdminLink href="/admin/submissions" label="Submissions" />
-            </div>
+            <Link href="/admin/participants" className="btn-ghost text-sm">
+              Participantes
+            </Link>
+            <Link href="/admin/submissions" className="btn-ghost text-sm">
+              Submissions
+            </Link>
           </div>
-          <Link href="/dashboard" className="text-sm text-[var(--color-ink-3)] hover:text-white">
-            ← Salir
+          <Link href="/dashboard" className="btn-ghost text-sm text-muted">
+            Salir admin
           </Link>
         </div>
       </nav>

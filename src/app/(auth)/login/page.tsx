@@ -24,59 +24,54 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="flex-1 flex items-center justify-center px-6 py-16">
+    <main className="min-h-screen bg-[var(--color-bg)] flex items-center justify-center px-6 py-16">
       <div className="w-full max-w-md">
-        <Link href="/" className="block text-sm text-[var(--color-ink-3)] hover:text-white mb-6">
+        <Link href="/" className="inline-block text-sm text-[var(--color-ink-3)] hover:text-[var(--color-ink)] mb-8 transition-colors">
           ← Volver
         </Link>
-        <div className="card-pop p-8 space-y-6 relative overflow-hidden">
-          <div className="absolute -top-16 -right-16 w-40 h-40 rounded-full bg-[var(--color-primary)]/15 blur-3xl" />
-          <div className="relative">
-            <div className="text-5xl mb-3">🔑</div>
-            <h1 className="font-display text-3xl font-black">Entrar al reto</h1>
-            <p className="text-[var(--color-ink-3)] text-sm mt-1">
-              Te mandamos un link mágico al correo. Sin contraseñas.
-            </p>
+
+        <div className="card-pop p-8 space-y-8">
+          <div className="space-y-2 text-center">
+            <span className="text-4xl" aria-hidden>🔑</span>
+            <h1 className="font-display font-black text-2xl text-[var(--color-ink)]">Entrar al reto</h1>
+            <p className="text-sm text-[var(--color-ink-3)]">Te mandamos un link mágico al correo. Sin contraseñas.</p>
           </div>
-          <form onSubmit={onSubmit} className="space-y-4 relative">
-            <label className="block space-y-2">
-              <span className="text-sm font-bold text-[var(--color-ink-2)]">Email</span>
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="tu@email.com"
-                className="input-pop"
-              />
-            </label>
-            <PopButton
-              type="submit"
-              variant="primary"
-              size="lg"
-              disabled={status === 'sending'}
-              className="w-full"
-            >
-              {status === 'sending' ? 'Enviando...' : '✨ Recibir link mágico'}
-            </PopButton>
-          </form>
-          {status === 'sent' && (
-            <div className="rounded-2xl bg-[var(--color-success)]/15 border-2 border-[var(--color-success)]/40 p-4 text-sm text-[var(--color-success)]">
-              📬 Listo. Revisa tu correo y abre el link.
+
+          {status !== 'sent' ? (
+            <form onSubmit={onSubmit} className="space-y-4">
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold uppercase tracking-widest text-[var(--color-ink-3)]">Email</label>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="tu@email.com"
+                  className="input-pop"
+                />
+              </div>
+              <PopButton type="submit" disabled={status === 'sending'} className="w-full">
+                {status === 'sending' ? 'Enviando...' : '✨ Recibir link mágico'}
+              </PopButton>
+            </form>
+          ) : (
+            <div className="text-center space-y-3 py-4">
+              <p className="text-4xl" aria-hidden>📬</p>
+              <p className="text-sm font-semibold text-[var(--color-success)]">Listo. Revisa tu correo y abre el link.</p>
             </div>
           )}
+
           {status === 'error' && (
-            <div className="rounded-2xl bg-[var(--color-danger)]/15 border-2 border-[var(--color-danger)]/40 p-4 text-sm text-[var(--color-danger)]">
-              ❌ {errorMsg}
-            </div>
+            <p className="text-sm text-[var(--color-danger)] text-center">❌ {errorMsg}</p>
           )}
+
+          <p className="text-center text-sm text-[var(--color-ink-4)]">
+            ¿Aún no estás inscrita?{' '}
+            <Link href="/signup" className="text-[var(--color-primary-2)] hover:underline font-bold">
+              Inscríbete acá
+            </Link>
+          </p>
         </div>
-        <p className="text-center text-sm text-[var(--color-ink-3)] mt-6">
-          ¿Aún no estás inscrita?{' '}
-          <Link href="/signup" className="text-[var(--color-accent)] font-bold hover:underline">
-            Inscríbete acá
-          </Link>
-        </p>
       </div>
     </main>
   )

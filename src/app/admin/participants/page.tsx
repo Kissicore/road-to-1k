@@ -12,11 +12,11 @@ export default async function AdminParticipants() {
     .order('created_at', { ascending: false })
 
   return (
-    <main className="flex-1 px-4 sm:px-6 py-10 max-w-6xl mx-auto w-full space-y-6">
+    <main className="flex-1 px-6 py-10 max-w-6xl mx-auto w-full space-y-6">
       <PageHeader
-        eyebrow="⚡ Admin · Participantes"
-        title="Gestiona inscripciones"
-        subtitle="Aprueba / rechaza inscripciones y edita seguidores finales para el cierre del reto."
+        eyebrow="Admin"
+        title="Participantes"
+        subtitle="Aprueba o rechaza inscripciones y edita seguidores finales para el cierre."
       />
       <ParticipantsTable initial={rows ?? []} />
     </main>
