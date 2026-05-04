@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { getChallenge } from '@/lib/utils/challenge'
 import { redirect } from 'next/navigation'
 import { CheckpointForm } from './checkpoint-form'
+import { PageHeader } from '@/components/ui'
 
 export default async function CheckpointPage() {
   const supabase = await createClient()
@@ -16,15 +17,14 @@ export default async function CheckpointPage() {
     .order('cp_number')
 
   return (
-    <main className="flex-1 px-6 py-10 max-w-3xl mx-auto w-full space-y-8">
-      <header className="space-y-1">
-        <h1 className="text-2xl font-semibold">Checkpoints de Insights</h1>
-        <p className="text-neutral-400 text-sm">
-          Cada 14 días sube tu alcance, interacciones y el link de Drive con las capturas.
-        </p>
-      </header>
+    <main className="flex-1 px-4 sm:px-6 py-10 max-w-3xl mx-auto w-full space-y-8">
+      <PageHeader
+        eyebrow="📊 Checkpoints de Insights"
+        title="Cada 14 días, sube tus métricas"
+        subtitle="Alcance e interacciones de los últimos 14 días + el link de Drive con las capturas. Cada uno suma puntos al ranking."
+      />
 
-      <div className="space-y-6">
+      <div className="space-y-5">
         {[1, 2, 3].map((n) => {
           const date = n === 1 ? challenge.checkpoint_1
                      : n === 2 ? challenge.checkpoint_2

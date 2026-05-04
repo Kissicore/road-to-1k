@@ -19,23 +19,36 @@ export default async function AdminLayout({
 
   return (
     <div className="flex-1 flex flex-col">
-      <nav className="border-b border-amber-500/20 bg-amber-500/5 px-6 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-6">
-          <Link href="/admin" className="font-semibold tracking-tight text-amber-200">
-            Admin · Road to 1K
-          </Link>
-          <Link href="/admin/participants" className="text-sm text-neutral-300 hover:text-white">
-            Participantes
-          </Link>
-          <Link href="/admin/submissions" className="text-sm text-neutral-300 hover:text-white">
-            Submissions
+      <nav className="sticky top-0 z-40 backdrop-blur-md bg-[var(--color-bg)]/90 border-b-2 border-[var(--color-warning)]/40">
+        <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <Link href="/admin" className="flex items-center gap-2 font-display font-black">
+              <span className="text-xl">⚡</span>
+              <span className="text-[var(--color-warning)]">Admin · Road to 1K</span>
+            </Link>
+            <div className="hidden md:flex items-center gap-1 text-sm">
+              <AdminLink href="/admin" label="Resumen" />
+              <AdminLink href="/admin/participants" label="Participantes" />
+              <AdminLink href="/admin/submissions" label="Submissions" />
+            </div>
+          </div>
+          <Link href="/dashboard" className="text-sm text-[var(--color-ink-3)] hover:text-white">
+            ← Salir
           </Link>
         </div>
-        <Link href="/dashboard" className="text-sm text-neutral-400 hover:text-white">
-          Salir admin
-        </Link>
       </nav>
       {children}
     </div>
+  )
+}
+
+function AdminLink({ href, label }: { href: string; label: string }) {
+  return (
+    <Link
+      href={href}
+      className="px-3 py-1.5 rounded-full font-display font-bold text-sm text-[var(--color-ink-2)] hover:bg-white/10 hover:text-white transition"
+    >
+      {label}
+    </Link>
   )
 }

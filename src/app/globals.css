@@ -1,26 +1,163 @@
 @import "tailwindcss";
 
+/* Paleta Road to 1K — energía gamer, premium, audiencia femenina 24-40.
+   Inspiración: Kahoot pero más sofisticada. Dark purple base + pink/cyan/lime accents. */
+@theme {
+  --color-bg: #0E0B1F;
+  --color-bg-2: #15102A;
+  --color-surface: #1F1838;
+  --color-surface-2: #2A1F4D;
+  --color-border: #3A2A5F;
+
+  --color-primary: #FF1F8B;       /* hot pink */
+  --color-primary-2: #FF4FA1;
+  --color-secondary: #7B2CBF;     /* electric purple */
+  --color-secondary-2: #9D4EDD;
+  --color-accent: #00E5FF;        /* cyan */
+  --color-accent-2: #00B4D8;
+  --color-success: #C7F464;       /* lime */
+  --color-warning: #FFD23F;       /* yellow */
+  --color-danger: #FF5252;
+
+  --color-ink: #FFFFFF;
+  --color-ink-2: #E8DEFF;
+  --color-ink-3: #A78BFA;
+  --color-ink-4: #6D5A9C;
+
+  --font-display: var(--font-outfit);
+  --font-body:    var(--font-inter);
+
+  --shadow-pop:  6px 6px 0 0 rgba(0, 0, 0, 0.35);
+  --shadow-pop-sm: 4px 4px 0 0 rgba(0, 0, 0, 0.35);
+  --shadow-glow: 0 0 40px rgba(255, 31, 139, 0.35);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body), system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-image:
+    radial-gradient(ellipse at top left,    rgba(123, 44, 191, 0.18), transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(255, 31, 139, 0.16), transparent 55%),
+    radial-gradient(ellipse at center,       rgba(0, 229, 255, 0.06),  transparent 60%);
+  background-attachment: fixed;
 }
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Botones chunky con shadow offset estilo Kahoot/Notion */
+.btn-pop {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  border-radius: 9999px;
+  border: 2px solid rgba(0, 0, 0, 0.45);
+  box-shadow: var(--shadow-pop);
+  transition: transform 100ms ease, box-shadow 100ms ease, background-color 150ms;
+  cursor: pointer;
+  user-select: none;
+}
+.btn-pop:hover  { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 0 rgba(0,0,0,0.4); }
+.btn-pop:active { transform: translate(2px, 2px);   box-shadow: 2px 2px 0 0 rgba(0,0,0,0.4); }
+.btn-pop:disabled {
+  opacity: 0.5; cursor: not-allowed;
+  transform: none !important; box-shadow: var(--shadow-pop-sm) !important;
+}
+.btn-pop-sm { padding: 0.55rem 1.25rem; font-size: 0.9rem; }
+.btn-pop-md { padding: 0.85rem 1.6rem;  font-size: 1rem; }
+.btn-pop-lg { padding: 1.1rem 2.2rem;   font-size: 1.15rem; }
+
+.btn-primary {
+  background: linear-gradient(180deg, #FF4FA1 0%, #FF1F8B 100%);
+  color: #fff;
+}
+.btn-secondary {
+  background: linear-gradient(180deg, #9D4EDD 0%, #7B2CBF 100%);
+  color: #fff;
+}
+.btn-accent {
+  background: linear-gradient(180deg, #00E5FF 0%, #00B4D8 100%);
+  color: #0E0B1F;
+}
+.btn-success {
+  background: linear-gradient(180deg, #DEFB7E 0%, #C7F464 100%);
+  color: #0E0B1F;
+}
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: var(--shadow-pop-sm);
+}
+
+/* Cards */
+.card-pop {
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow-pop);
+  transition: transform 150ms ease;
+}
+.card-pop:hover { transform: translateY(-2px); }
+
+/* Inputs */
+.input-pop {
+  width: 100%;
+  background: var(--color-bg-2);
+  border: 2px solid var(--color-border);
+  border-radius: 1rem;
+  padding: 0.85rem 1rem;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color 120ms;
+}
+.input-pop:focus { border-color: var(--color-accent); }
+.input-pop::placeholder { color: var(--color-ink-4); }
+
+/* Confeti decorativo (CSS puro) */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-12px) rotate(8deg); }
+}
+.float { animation: float-slow 6s ease-in-out infinite; }
+
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 31, 139, 0.6); }
+  70%  { box-shadow: 0 0 0 18px rgba(255, 31, 139, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 31, 139, 0); }
+}
+.pulse-ring { animation: pulse-ring 2.4s infinite; }
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer-text {
+  background: linear-gradient(90deg, #FF1F8B 0%, #00E5FF 25%, #C7F464 50%, #FFD23F 75%, #FF1F8B 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+/* Scrollbar discreto en dark */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-surface-2); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-secondary); }
