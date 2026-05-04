@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Road to 1K · FÓRMULA 100K
 
-## Getting Started
+App del reto de 42 días para alumnas de FÓRMULA 100K. Reemplaza el flujo
+anterior de Excel + Google Forms con:
 
-First, run the development server:
+- Inscripción y dashboard para participantes
+- Subida diaria de Reel + captura del primer segundo
+- Análisis automático con Gemini usando los frameworks de FÓRMULA 100K
+  (corrector de guiones + evaluador de ganchos)
+- Ranking en tiempo real (Supabase Realtime)
+- Zona admin para Andrea (aprobación de inscripciones, validación de evidencias,
+  edición de seguidores finales)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Next.js 16 (App Router) · TypeScript · Tailwind v4
+- Supabase (Postgres + Auth + Storage + Realtime)
+- Gemini 2.5 Flash (multimodal)
+- Vercel para deploy
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Copia `.env.local.example` a `.env.local` y completa con tus claves.
+2. Crea el proyecto en Supabase y aplica las migraciones:
+   ```sh
+   # en el dashboard de Supabase → SQL editor, en orden:
+   supabase/migrations/0001_init.sql
+   supabase/migrations/0002_rls.sql
+   supabase/migrations/0003_storage.sql
+   ```
+3. Habilita Email auth con magic link en Supabase → Authentication → Providers.
+4. En Authentication → URL Configuration: Site URL = tu dominio Vercel; añade
+   `http://localhost:3000` a Redirect URLs.
+5. Crea tu fila admin manualmente: en `participants`, inserta tu UID con
+   `role='admin'` y `state='approved'`.
+6. `npm run dev` y abre `http://localhost:3000`.
 
-## Learn More
+## Despliegue
 
-To learn more about Next.js, take a look at the following resources:
+Push al repo → conecta en vercel.com → set env vars → deploy.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Análisis IA
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Andrea conecta su `GEMINI_API_KEY` y la app llama a `gemini-2.5-flash` con el
+prompt unificado de `src/lib/ai/prompts.ts`. El procesamiento ocurre en
+background por una Edge Function de Supabase (pendiente de implementar como
+siguiente iteración).
