@@ -132,7 +132,7 @@ export function SubirForm({
           : status === 'saving' ? 'Guardando…'
           : existing ? 'Actualizar día'
           : 'Registrar día'}
-      </button>
+      </PopButton>
 
       {status === 'done' && (
         <p className="text-sm text-lime text-center font-semibold">
