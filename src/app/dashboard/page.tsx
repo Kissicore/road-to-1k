@@ -1,7 +1,8 @@
-import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { getChallenge, dayNumberFor } from '@/lib/utils/challenge'
-import { StatTile, DayBadge, StreakFlame, PageHeader, StatusPill } from '@/components/ui'
+import {
+  PageHeader, PopLink, StatTile, DayBadge, StreakFlame, GradientCard, StatusPill,
+} from '@/components/ui'
 
 export default async function DashboardHome() {
   const supabase = await createClient()
@@ -12,11 +13,11 @@ export default async function DashboardHome() {
   const today = new Date()
   const todayDay = dayNumberFor(today, challenge.start_date, challenge.total_days)
 
-  const [{ data: participant }, { data: subs }, { data: lb }] = await Promise.all([
-    supabase.from('participants').select('full_name, instagram_handle').eq('id', user.id).maybeSingle(),
+  const [{ data: me }, { data: subs }, { data: lb }] = await Promise.all([
+    supabase.from('participants').select('full_name').eq('id', user.id).maybeSingle(),
     supabase
       .from('daily_submissions')
-      .select('day_number, status, analysis_status, analysis_result')
+      .select('day_number, status, analysis_status, score:analysis_result->score_total')
       .eq('participant_id', user.id)
       .order('day_number'),
     supabase
@@ -26,19 +27,12 @@ export default async function DashboardHome() {
       .maybeSingle(),
   ])
 
-  const subsMap = new Map((subs ?? []).map((s) => [s.day_number, s]))
-  const validDays = (subs ?? []).filter((s) => s.status === 'valid').length
-
-  // Calculate current streak
-  let streak = 0
-  if (todayDay) {
-    for (let d = todayDay; d >= 1; d--) {
-      if (subsMap.get(d)?.status === 'valid') streak++
-      else break
-    }
-  }
-
-  const firstName = participant?.full_name?.split(' ')[0] ?? ''
+  const validSubs = (subs ?? []).filter((s) => s.status === 'valid')
+  const validDays = validSubs.length
+  const validSet = new Set(validSubs.map((s) => s.day_number))
+  const streak = computeStreak(validSet, todayDay)
+  const todayDone = todayDay ? validSet.has(todayDay) : false
+  const firstName = (me?.full_name ?? '').split(' ')[0]
 
   return (
     <main className="flex-1 px-6 py-10 max-w-5xl mx-auto w-full space-y-10 pb-24 sm:pb-10">
@@ -46,54 +40,74 @@ export default async function DashboardHome() {
       <header className="space-y-3">
         <PageHeader
           eyebrow={`Reto · ${challenge.edition_label}`}
-          title={`Hola, ${firstName} 👋`}
+          title={
+            <>¡Hola, <span className="shimmer-text">{firstName || 'creadora'}</span>!</>
+          }
           subtitle={
             todayDay
-              ? `Hoy es el día ${todayDay} de ${challenge.total_days}. ¡A publicar!`
-              : `El reto inicia el ${challenge.start_date}.`
+              ? `Hoy es el día ${todayDay} de ${challenge.total_days}.`
+              : `El reto inicia el ${formatDate(challenge.start_date)}.`
           }
         />
         {streak > 0 && <StreakFlame count={streak} />}
       </header>
 
+      {/* Today CTA */}
+      {todayDay && !todayDone && (
+        <GradientCard glow>
+          <div className="flex items-center justify-between gap-4 flex-wrap">
+            <div className="flex items-center gap-3">
+              <span className="text-3xl" aria-hidden>🎬</span>
+              <div>
+                <p className="font-display font-black text-lg text-[var(--color-ink)]">Tu turno</p>
+                <p className="text-sm text-[var(--color-ink-3)]">Sube tu Reel del día {todayDay}</p>
+              </div>
+            </div>
+            <PopLink href="/dashboard/subir" variant="primary" size="sm">
+              🚀 Subir Reel
+            </PopLink>
+          </div>
+        </GradientCard>
+      )}
+
+      {todayDay && todayDone && (
+        <div className="card-pop p-5 flex items-center gap-3 border-[var(--color-success)]/40">
+          <span className="text-3xl" aria-hidden>✅</span>
+          <div>
+            <p className="font-display font-black text-[var(--color-success)]">¡Día {todayDay} cumplido!</p>
+            <p className="text-sm text-[var(--color-ink-3)]">Tu Reel ya está registrado. Vuelve mañana.</p>
+          </div>
+        </div>
+      )}
+
       {/* Stats */}
       <section className="grid sm:grid-cols-3 gap-4">
-        <StatTile
-          label="Días registrados"
-          value={`${validDays}/${challenge.total_days}`}
-          accent="pink"
-        />
-        <StatTile
-          label="Posición ranking"
-          value={lb?.position ? `#${lb.position}` : '—'}
-          accent="cyan"
-        />
-        <StatTile
-          label="Seguidores ganados"
-          value={lb?.followers_gained?.toString() ?? '—'}
-          accent="lime"
-        />
+        <StatTile label="Días registrados" value={`${validDays}/${challenge.total_days}`} accent="primary" />
+        <StatTile label="Posición ranking" value={lb?.position ? `#${lb.position}` : '—'} accent="accent" />
+        <StatTile label="Seguidores ganados" value={lb?.followers_gained?.toString() ?? '—'} accent="success" />
       </section>
 
-      {/* 42-day calendar */}
+      {/* Calendar */}
       <section className="space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="font-sans font-bold text-lg text-foreground">Calendario 42 días</h2>
+          <h2 className="font-display font-bold text-lg text-[var(--color-ink)]">Tu calendario · 42 días</h2>
           {todayDay && (
-            <Link href="/dashboard/subir" className="btn-primary px-4 py-2 text-sm">
-              + Día {todayDay}
-            </Link>
+            <span className="text-xs font-bold text-[var(--color-ink-3)]">Hoy: día {todayDay}</span>
           )}
         </div>
-        <div className="card">
+        <div className="card-pop p-5">
           <div className="flex flex-wrap gap-2">
-            {Array.from({ length: challenge.total_days }, (_, i) => {
-              const d = i + 1
-              const sub = subsMap.get(d)
-              const st = sub
-                ? (sub.status as 'valid' | 'pending_review' | 'invalid' | 'duplicate')
-                : 'empty'
-              return <DayBadge key={d} day={d} status={st} />
+            {Array.from({ length: challenge.total_days }, (_, i) => i + 1).map((d) => {
+              const state = !todayDay
+                ? 'upcoming'
+                : validSet.has(d)
+                ? 'done'
+                : d === todayDay
+                ? 'today'
+                : d < todayDay
+                ? 'missed'
+                : 'upcoming'
+              return <DayBadge key={d} day={d} state={state} />
             })}
           </div>
         </div>
@@ -101,41 +115,45 @@ export default async function DashboardHome() {
 
       {/* Recent submissions */}
       <section className="space-y-4">
-        <h2 className="font-sans font-bold text-lg text-foreground">Últimos análisis</h2>
-        <div className="card divide-y divide-border">
-          {(subs ?? []).length === 0 && (
-            <p className="py-6 text-muted text-sm text-center">
-              Aún no has registrado ningún Reel. Empieza el día 1.
-            </p>
-          )}
-          {(subs ?? [])
-            .slice()
-            .reverse()
-            .slice(0, 7)
-            .map((s) => {
-              const score =
-                s.analysis_result &&
-                typeof (s.analysis_result as Record<string, unknown>)['score_total'] === 'number'
-                  ? (s.analysis_result as Record<string, unknown>)['score_total']
-                  : null
-              return (
-                <div
-                  key={s.day_number}
-                  className="flex items-center justify-between py-3 text-sm"
-                >
-                  <span className="font-sans font-bold text-foreground">Día {s.day_number}</span>
-                  <div className="flex items-center gap-3">
-                    <StatusPill status={s.status} />
-                    <StatusPill status={s.analysis_status} />
-                    {typeof score === 'number' && (
-                      <span className="text-gold font-bold font-sans">{score as number}/100</span>
-                    )}
-                  </div>
+        <h2 className="font-display font-bold text-lg text-[var(--color-ink)]">Últimos análisis</h2>
+        <div className="card-pop divide-y divide-[var(--color-border)]">
+          {(subs ?? []).length === 0 ? (
+            <div className="p-8 text-center space-y-2">
+              <p className="text-3xl" aria-hidden>🎬</p>
+              <p className="font-display font-bold text-[var(--color-ink)]">Aún no has subido nada</p>
+              <p className="text-sm text-[var(--color-ink-3)]">Empieza el día 1. Cada Reel suma puntos al ranking.</p>
+            </div>
+          ) : (
+            (subs ?? []).slice(-7).reverse().map((s) => (
+              <div key={s.day_number} className="flex items-center justify-between py-3 px-5 text-sm">
+                <span className="font-display font-black text-[var(--color-ink)]">Día {s.day_number}</span>
+                <div className="flex items-center gap-2">
+                  <StatusPill state={s.status === 'valid' ? 'success' : s.status === 'pending_review' ? 'warn' : 'danger'} label={s.status} />
+                  <StatusPill state={s.analysis_status === 'done' ? 'success' : s.analysis_status === 'running' ? 'info' : 'muted'} label={s.analysis_status} />
+                  {typeof s.score === 'number' && (
+                    <span className="font-display font-black text-[var(--color-warning)]">{s.score}/100</span>
+                  )}
                 </div>
-              )
-            })}
+              </div>
+            ))
+          )}
         </div>
       </section>
     </main>
   )
+}
+
+function computeStreak(done: Set<number>, today: number | null): number {
+  if (!today) return 0
+  let n = 0
+  for (let d = today; d >= 1; d--) {
+    if (done.has(d)) n++
+    else if (d !== today) break
+  }
+  return n
+}
+
+function formatDate(iso: string) {
+  const d = new Date(iso + 'T00:00:00')
+  return d.toLocaleDateString('es', { day: '2-digit', month: 'long' })
 }

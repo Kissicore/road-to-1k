@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
-import { FloatingDecor } from '@/components/ui'
+import { PopButton } from '@/components/ui'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -17,78 +17,58 @@ export default function LoginPage() {
     const supabase = createClient()
     const { error } = await supabase.auth.signInWithOtp({
       email,
-      options: {
-        emailRedirectTo:
-          process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL ??
-          `${window.location.origin}/auth/callback`,
-      },
+      options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
     })
-    if (error) {
-      setStatus('error')
-      setErrorMsg(error.message)
-    } else {
-      setStatus('sent')
-    }
+    if (error) { setStatus('error'); setErrorMsg(error.message) }
+    else { setStatus('sent') }
   }
 
   return (
-    <main className="flex-1 flex items-center justify-center px-6 py-16 relative overflow-hidden">
-      <FloatingDecor color="#e91e8c" size={400} className="-top-20 -left-20" />
-      <FloatingDecor color="#00e5ff" size={300} className="-bottom-10 -right-10" />
+    <main className="min-h-screen bg-[var(--color-bg)] flex items-center justify-center px-6 py-16">
+      <div className="w-full max-w-md">
+        <Link href="/" className="inline-block text-sm text-[var(--color-ink-3)] hover:text-[var(--color-ink)] mb-8 transition-colors">
+          ← Volver
+        </Link>
 
-      <div className="relative z-10 w-full max-w-md animate-fade-in">
-        <div className="card-glow space-y-8 p-8">
+        <div className="card-pop p-8 space-y-8">
           <div className="space-y-2 text-center">
-            <p className="eyebrow">Road to 1K</p>
-            <h1 className="font-sans font-black text-3xl text-foreground">Entrar al reto</h1>
-            <p className="text-muted text-sm leading-relaxed">
-              Te enviamos un link mágico al correo con el que te inscribiste.
-            </p>
+            <span className="text-4xl" aria-hidden>🔑</span>
+            <h1 className="font-display font-black text-2xl text-[var(--color-ink)]">Entrar al reto</h1>
+            <p className="text-sm text-[var(--color-ink-3)]">Te mandamos un link mágico al correo. Sin contraseñas.</p>
           </div>
 
-          {status === 'sent' ? (
-            <div className="text-center space-y-3 py-4">
-              <p className="text-4xl" aria-hidden>📬</p>
-              <p className="text-sm text-lime font-semibold">Revisa tu correo y abre el link.</p>
-              <button
-                onClick={() => setStatus('idle')}
-                className="btn-ghost text-sm"
-              >
-                Volver a intentar
-              </button>
-            </div>
-          ) : (
+          {status !== 'sent' ? (
             <form onSubmit={onSubmit} className="space-y-4">
-              <label className="block space-y-1.5">
-                <span className="text-xs font-semibold uppercase tracking-wide text-muted">Email</span>
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold uppercase tracking-widest text-[var(--color-ink-3)]">Email</label>
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="tu@email.com"
-                  className="input"
+                  className="input-pop"
                 />
-              </label>
-
-              <button
-                type="submit"
-                disabled={status === 'sending'}
-                className="btn-primary w-full"
-              >
-                {status === 'sending' ? 'Enviando…' : 'Recibir link mágico'}
-              </button>
-
-              {status === 'error' && (
-                <p className="text-sm text-red-400 text-center">Error: {errorMsg}</p>
-              )}
+              </div>
+              <PopButton type="submit" disabled={status === 'sending'} className="w-full">
+                {status === 'sending' ? 'Enviando...' : '✨ Recibir link mágico'}
+              </PopButton>
             </form>
+          ) : (
+            <div className="text-center space-y-3 py-4">
+              <p className="text-4xl" aria-hidden>📬</p>
+              <p className="text-sm font-semibold text-[var(--color-success)]">Listo. Revisa tu correo y abre el link.</p>
+            </div>
           )}
 
-          <p className="text-center text-sm text-muted">
-            ¿No tienes cuenta?{' '}
-            <Link href="/signup" className="text-primary-soft hover:underline font-semibold">
-              Inscríbete aquí
+          {status === 'error' && (
+            <p className="text-sm text-[var(--color-danger)] text-center">❌ {errorMsg}</p>
+          )}
+
+          <p className="text-center text-sm text-[var(--color-ink-4)]">
+            ¿Aún no estás inscrita?{' '}
+            <Link href="/signup" className="text-[var(--color-primary-2)] hover:underline font-bold">
+              Inscríbete acá
             </Link>
           </p>
         </div>

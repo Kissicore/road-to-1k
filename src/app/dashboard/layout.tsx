@@ -2,13 +2,6 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 
-const navLinks = [
-  { href: '/dashboard/subir',      label: 'Subir Reel' },
-  { href: '/dashboard/checkpoint', label: 'Checkpoints' },
-  { href: '/dashboard/venta',      label: 'Ventas' },
-  { href: '/ranking',              label: 'Ranking' },
-]
-
 export default async function DashboardLayout({
   children,
 }: { children: React.ReactNode }) {
@@ -23,36 +16,26 @@ export default async function DashboardLayout({
     .maybeSingle()
 
   return (
-    <div className="flex-1 flex flex-col">
+    <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-ink)] flex flex-col">
       {/* ── Top nav ── */}
-      <nav className="sticky top-0 z-50 backdrop-blur-md border-b border-border bg-background/80">
+      <nav className="sticky top-0 z-50 bg-[var(--color-bg-2)]/90 backdrop-blur-md border-b-2 border-[var(--color-border)]">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
-          <Link
-            href="/dashboard"
-            className="font-sans font-black text-lg tracking-tight text-primary hover:text-primary-soft transition-colors"
-          >
-            Road to 1K
+          <Link href="/dashboard" className="font-display font-black text-lg text-[var(--color-primary)]">
+            🎯 Road to 1K
           </Link>
 
           {/* Desktop nav */}
           <div className="hidden sm:flex items-center gap-1">
-            {navLinks.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="btn-ghost text-sm px-3 py-2"
-              >
-                {l.label}
-              </Link>
-            ))}
+            <NavLink href="/dashboard/subir" emoji="🎬" label="Subir Reel" />
+            <NavLink href="/dashboard/checkpoint" emoji="📊" label="Checkpoints" />
+            <NavLink href="/dashboard/venta" emoji="💰" label="Ventas" />
+            <NavLink href="/ranking" emoji="🏆" label="Ranking" />
             {me?.role === 'admin' && (
-              <Link href="/admin" className="btn-ghost text-sm px-3 py-2 text-gold hover:text-gold/80">
-                Admin
-              </Link>
+              <NavLink href="/admin" emoji="⚡" label="Admin" highlight />
             )}
           </div>
 
-          <span className="hidden sm:block text-xs text-muted font-mono">
+          <span className="hidden sm:block text-xs font-mono text-[var(--color-ink-4)]">
             @{me?.instagram_handle}
           </span>
         </div>
@@ -60,36 +43,49 @@ export default async function DashboardLayout({
 
       {/* ── Pending banner ── */}
       {me?.state === 'pending' && (
-        <div className="bg-amber-500/10 border-b border-amber-500/20 text-amber-200 text-xs font-medium px-6 py-2 text-center">
-          Tu inscripción esta pendiente de aprobación. Andrea te activa antes del 10 de mayo.
+        <div className="bg-[var(--color-warning)]/10 border-b-2 border-[var(--color-warning)]/30 text-[var(--color-warning)] text-xs font-bold px-6 py-2 text-center">
+          ⏳ Tu inscripción está pendiente de aprobación. Te activamos antes del 10 de mayo.
         </div>
       )}
 
-      <div className="flex-1">
-        {children}
-      </div>
+      {children}
 
       {/* ── Mobile bottom nav ── */}
-      <nav className="sm:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-surface/95 backdrop-blur-md">
+      <nav className="sm:hidden fixed bottom-0 left-0 right-0 z-50 border-t-2 border-[var(--color-border)] bg-[var(--color-surface)]/95 backdrop-blur-md">
         <div className="flex items-center justify-around px-2 py-2">
-          {[
-            { href: '/dashboard',              label: 'Inicio',    icon: '🏠' },
-            { href: '/dashboard/subir',        label: 'Subir',     icon: '🎬' },
-            { href: '/dashboard/checkpoint',   label: 'CP',        icon: '📊' },
-            { href: '/dashboard/venta',        label: 'Ventas',    icon: '💰' },
-            { href: '/ranking',                label: 'Ranking',   icon: '🏆' },
-          ].map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg text-muted hover:text-foreground transition-colors"
-            >
-              <span className="text-lg" aria-hidden>{l.icon}</span>
-              <span className="text-[10px]">{l.label}</span>
-            </Link>
-          ))}
+          <MobileNav href="/dashboard" emoji="🏠" label="Inicio" />
+          <MobileNav href="/dashboard/subir" emoji="🎬" label="Subir" />
+          <MobileNav href="/dashboard/checkpoint" emoji="📊" label="CP" />
+          <MobileNav href="/dashboard/venta" emoji="💰" label="Ventas" />
+          <MobileNav href="/ranking" emoji="🏆" label="Ranking" />
         </div>
       </nav>
     </div>
+  )
+}
+
+function NavLink({
+  href, label, emoji, highlight,
+}: { href: string; label: string; emoji?: string; highlight?: boolean }) {
+  return (
+    <Link
+      href={href}
+      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-bold transition-colors hover:bg-[var(--color-surface-2)] ${highlight ? 'text-[var(--color-warning)]' : 'text-[var(--color-ink-3)] hover:text-[var(--color-ink)]'}`}
+    >
+      {emoji && <span aria-hidden>{emoji}</span>}
+      {label}
+    </Link>
+  )
+}
+
+function MobileNav({ href, emoji, label }: { href: string; emoji: string; label: string }) {
+  return (
+    <Link
+      href={href}
+      className="flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg text-[var(--color-ink-4)] hover:text-[var(--color-ink)] transition-colors"
+    >
+      <span className="text-lg" aria-hidden>{emoji}</span>
+      <span className="text-[10px] font-bold">{label}</span>
+    </Link>
   )
 }

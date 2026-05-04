@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
-import { FloatingDecor } from '@/components/ui'
+import { PopButton } from '@/components/ui'
 
 type FormState = {
   email: string
@@ -35,13 +35,10 @@ export default function SignupPage() {
     const supabase = createClient()
     const cleanedHandle = form.instagram_handle.trim().replace(/^@/, '').toLowerCase()
     const followers = parseInt(form.followers_initial, 10) || 0
-
     const { error } = await supabase.auth.signInWithOtp({
       email: form.email,
       options: {
-        emailRedirectTo:
-          (process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL ??
-            `${window.location.origin}/auth/callback`) + '?signup=1',
+        emailRedirectTo: `${window.location.origin}/auth/callback?signup=1`,
         data: {
           full_name: form.full_name,
           instagram_handle: cleanedHandle,
@@ -50,89 +47,72 @@ export default function SignupPage() {
         },
       },
     })
-    if (error) {
-      setStatus('error')
-      setErrorMsg(error.message)
-    } else {
-      setStatus('sent')
-    }
-  }
-
-  if (status === 'sent') {
-    return (
-      <main className="flex-1 flex items-center justify-center px-6 py-16 relative overflow-hidden">
-        <FloatingDecor color="#a3e635" size={400} className="-top-20 -right-20" />
-        <div className="relative z-10 card-glow max-w-md w-full p-10 text-center space-y-4 animate-fade-in">
-          <p className="text-5xl" aria-hidden>🎉</p>
-          <h2 className="font-sans font-black text-2xl text-foreground">Inscripción recibida</h2>
-          <p className="text-muted text-sm leading-relaxed">
-            Revisa tu correo y abre el link mágico para quedar registrada.
-            Andrea revisa la inscripción antes del <strong className="text-foreground">10 de mayo</strong>.
-          </p>
-          <Link href="/login" className="btn-outline inline-flex mt-2">Ya tengo link</Link>
-        </div>
-      </main>
-    )
+    if (error) { setStatus('error'); setErrorMsg(error.message) }
+    else { setStatus('sent') }
   }
 
   return (
-    <main className="flex-1 flex items-center justify-center px-6 py-16 relative overflow-hidden">
-      <FloatingDecor color="#e91e8c" size={500} className="-top-32 -left-32" />
-      <FloatingDecor color="#00e5ff" size={350} className="-bottom-20 -right-20" />
+    <main className="min-h-screen bg-[var(--color-bg)] flex items-center justify-center px-6 py-16">
+      <div className="w-full max-w-lg">
+        <Link href="/" className="inline-block text-sm text-[var(--color-ink-3)] hover:text-[var(--color-ink)] mb-8 transition-colors">
+          ← Volver
+        </Link>
 
-      <div className="relative z-10 w-full max-w-lg animate-fade-in">
-        <div className="card-glow space-y-7 p-8">
+        <div className="card-pop p-8 space-y-8">
           <div className="space-y-2 text-center">
-            <p className="eyebrow">Inscripción · Edición 11 de mayo</p>
-            <h1 className="font-sans font-black text-3xl text-foreground">Únete al reto</h1>
-            <p className="text-muted text-sm leading-relaxed text-pretty">
-              Solo para miembros activas de FÓRMULA 100K. Andrea aprueba tu cuenta antes del comienzo.
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--color-surface-2)] border border-[var(--color-border)] text-xs font-bold text-[var(--color-primary-2)]">
+              🎬 <span>Inscripción · 11 de mayo</span>
+            </div>
+            <h1 className="font-display font-black text-2xl text-[var(--color-ink)]">¡Bienvenida al reto!</h1>
+            <p className="text-sm text-[var(--color-ink-3)] leading-relaxed">
+              Cuenta solo para miembros activas de FÓRMULA 100K. Andrea aprueba tu inscripción antes de que empiece el reto.
             </p>
           </div>
 
-          <form onSubmit={onSubmit} className="space-y-4">
-            <Field label="Email" type="email" required value={form.email} onChange={(v) => update('email', v)} />
-            <Field label="Nombre y apellido" required value={form.full_name} onChange={(v) => update('full_name', v)} />
-            <Field
-              label="Usuario de Instagram"
-              placeholder="andreavega.coach"
-              required
-              value={form.instagram_handle}
-              onChange={(v) => update('instagram_handle', v)}
-            />
-            <div className="grid sm:grid-cols-2 gap-4">
+          {status === 'sent' ? (
+            <div className="text-center space-y-3 py-6">
+              <p className="text-5xl" aria-hidden>📬</p>
+              <p className="font-display font-black text-xl text-[var(--color-ink)]">Inscripción recibida</p>
+              <p className="text-sm text-[var(--color-ink-3)] leading-relaxed">
+                Revisa tu correo y abre el link mágico para quedar registrada.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={onSubmit} className="space-y-4">
+              <Field label="Email" type="email" required value={form.email} onChange={(v) => update('email', v)} />
+              <Field label="Nombre completo" required value={form.full_name} onChange={(v) => update('full_name', v)} />
               <Field
-                label="Rubro / nicho"
-                placeholder="Coach, agencia…"
-                value={form.rubro}
-                onChange={(v) => update('rubro', v)}
+                label="Usuario de Instagram (sin @)"
+                placeholder="andreavega.coach"
+                required
+                value={form.instagram_handle}
+                onChange={(v) => update('instagram_handle', v)}
+                hint="Es tu identificador en el reto."
               />
+              <Field label="Rubro / nicho" value={form.rubro} onChange={(v) => update('rubro', v)} />
               <Field
                 label="Seguidores actuales"
                 type="number"
                 required
                 value={form.followers_initial}
                 onChange={(v) => update('followers_initial', v)}
+                hint="Es tu punto de partida — mídete contra ti misma."
               />
-            </div>
 
-            <button
-              type="submit"
-              disabled={status === 'sending'}
-              className="btn-primary w-full text-base py-4"
-            >
-              {status === 'sending' ? 'Enviando…' : 'Inscribirme al reto'}
-            </button>
+              <PopButton type="submit" disabled={status === 'sending'} className="w-full">
+                {status === 'sending' ? 'Enviando...' : '🚀 Inscribirme'}
+              </PopButton>
 
-            {status === 'error' && (
-              <p className="text-sm text-red-400 text-center">Error: {errorMsg}</p>
-            )}
-          </form>
+              {status === 'error' && (
+                <p className="text-sm text-[var(--color-danger)] text-center">❌ {errorMsg}</p>
+              )}
+            </form>
+          )}
 
-          <p className="text-center text-sm text-muted">
-            ¿Ya tienes cuenta?{' '}
-            <Link href="/login" className="text-primary-soft hover:underline font-semibold">
-              Entrar
+          <p className="text-center text-sm text-[var(--color-ink-4)]">
+            ¿Ya estás inscrita?{' '}
+            <Link href="/login" className="text-[var(--color-primary-2)] hover:underline font-bold">
+              Inicia sesión
             </Link>
           </p>
         </div>
@@ -142,12 +122,7 @@ export default function SignupPage() {
 }
 
 function Field({
-  label,
-  value,
-  onChange,
-  type = 'text',
-  placeholder,
-  required,
+  label, value, onChange, type = 'text', placeholder, required, hint,
 }: {
   label: string
   value: string
@@ -155,18 +130,20 @@ function Field({
   type?: string
   placeholder?: string
   required?: boolean
+  hint?: string
 }) {
   return (
-    <label className="block space-y-1.5">
-      <span className="text-xs font-semibold uppercase tracking-wide text-muted">{label}</span>
+    <div className="space-y-1.5">
+      <label className="text-xs font-bold uppercase tracking-widest text-[var(--color-ink-3)]">{label}</label>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         required={required}
-        className="input"
+        className="input-pop"
       />
-    </label>
+      {hint && <p className="text-xs text-[var(--color-ink-4)]">{hint}</p>}
+    </div>
   )
 }

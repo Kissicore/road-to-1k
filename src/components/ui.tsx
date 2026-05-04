@@ -1,206 +1,235 @@
-'use client'
+/* Componentes base del Road to 1K — estilo Kahoot premium. */
+import Link from 'next/link'
+import type { ReactNode } from 'react'
+import { cn } from '@/lib/utils/cn'
 
-import React from 'react'
+type Variant = 'primary' | 'secondary' | 'accent' | 'success' | 'ghost'
+type Size = 'sm' | 'md' | 'lg'
 
-// ─── PopButton ────────────────────────────────────────────────────────────────
-// Primary CTA with optional size variant.
+const variantClass: Record<Variant, string> = {
+  primary: 'btn-primary',
+  secondary: 'btn-secondary',
+  accent: 'btn-accent',
+  success: 'btn-success',
+  ghost: 'btn-ghost',
+}
+const sizeClass: Record<Size, string> = {
+  sm: 'btn-pop-sm',
+  md: 'btn-pop-md',
+  lg: 'btn-pop-lg',
+}
+
 export function PopButton({
   children,
   variant = 'primary',
   size = 'md',
-  disabled,
+  className,
   type = 'button',
+  disabled,
   onClick,
-  className = '',
 }: {
-  children: React.ReactNode
-  variant?: 'primary' | 'outline' | 'ghost'
-  size?: 'sm' | 'md' | 'lg'
-  disabled?: boolean
-  type?: 'button' | 'submit' | 'reset'
-  onClick?: () => void
+  children: ReactNode
+  variant?: Variant
+  size?: Size
   className?: string
+  type?: 'button' | 'submit' | 'reset'
+  disabled?: boolean
+  onClick?: () => void
 }) {
-  const sizeMap = {
-    sm: 'px-4 py-2 text-sm',
-    md: 'px-6 py-3 text-sm',
-    lg: 'px-8 py-4 text-base',
-  }
-  const variantMap = {
-    primary: 'btn-primary',
-    outline: 'btn-outline',
-    ghost: 'btn-ghost',
-  }
   return (
     <button
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={`${variantMap[variant]} ${sizeMap[size]} ${className}`}
+      className={cn('btn-pop', variantClass[variant], sizeClass[size], className)}
     >
       {children}
     </button>
   )
 }
 
-// ─── StatTile ─────────────────────────────────────────────────────────────────
+export function PopLink({
+  href,
+  children,
+  variant = 'primary',
+  size = 'md',
+  className,
+}: {
+  href: string
+  children: ReactNode
+  variant?: Variant
+  size?: Size
+  className?: string
+}) {
+  return (
+    <Link
+      href={href}
+      className={cn('btn-pop', variantClass[variant], sizeClass[size], className)}
+    >
+      {children}
+    </Link>
+  )
+}
+
+/** Tile grande con número y label. */
 export function StatTile({
   label,
   value,
-  accent,
+  accent = 'primary',
+  hint,
 }: {
   label: string
-  value: string | number
-  accent?: 'pink' | 'cyan' | 'lime' | 'gold'
+  value: ReactNode
+  accent?: 'primary' | 'secondary' | 'accent' | 'success'
+  hint?: string
 }) {
-  const accentColor = {
-    pink: '#e91e8c',
-    cyan: '#00e5ff',
-    lime: '#a3e635',
-    gold: '#fbbf24',
-  }[accent ?? 'pink']
-
+  const ringClass = {
+    primary: 'from-[#FF1F8B] to-[#FF4FA1]',
+    secondary: 'from-[#7B2CBF] to-[#9D4EDD]',
+    accent: 'from-[#00E5FF] to-[#00B4D8]',
+    success: 'from-[#C7F464] to-[#DEFB7E]',
+  }[accent]
   return (
-    <div
-      className="card flex flex-col gap-1"
-      style={{ borderColor: `${accentColor}33` }}
-    >
-      <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: accentColor }}>
+    <div className="card-pop p-5 space-y-1">
+      <p className={cn('text-xs font-bold uppercase tracking-widest bg-gradient-to-r bg-clip-text text-transparent', ringClass)}>
         {label}
       </p>
-      <p className="text-3xl font-sans font-bold text-foreground">{value}</p>
+      <p className="text-3xl font-display font-black text-[var(--color-ink)]">{value}</p>
+      {hint && <p className="text-xs text-[var(--color-ink-4)]">{hint}</p>}
     </div>
   )
 }
 
-// ─── DayBadge ─────────────────────────────────────────────────────────────────
+/** Badge circular con número de día. */
 export function DayBadge({
   day,
-  status,
+  state = 'upcoming',
 }: {
   day: number
-  status: 'valid' | 'pending_review' | 'invalid' | 'duplicate' | 'empty'
+  state?: 'done' | 'today' | 'upcoming' | 'missed'
 }) {
-  const styles = {
-    valid: 'bg-lime/20 text-lime border-lime/30',
-    pending_review: 'bg-amber-400/20 text-amber-300 border-amber-400/30',
-    invalid: 'bg-red-500/20 text-red-300 border-red-500/30',
-    duplicate: 'bg-pink-500/20 text-pink-300 border-pink-500/30',
-    empty: 'bg-white/5 text-muted border-white/10',
-  }
+  const styles: Record<string, string> = {
+    done: 'bg-[var(--color-success)] text-[var(--color-bg)] border-[#9bc83a]',
+    today: 'bg-[var(--color-primary)] text-white border-[#c01670] pulse-ring',
+    upcoming: 'bg-[var(--color-surface)] text-[var(--color-ink-3)] border-[var(--color-border)]',
+    missed: 'bg-[var(--color-danger)] text-white border-[#cc3636] opacity-80',
+  } as const
   return (
     <div
-      className={`
-        w-9 h-9 rounded-lg border flex items-center justify-center
-        text-xs font-bold font-sans transition-all
-        ${styles[status]}
-      `}
-      title={`Día ${day} · ${status}`}
+      className={cn(
+        'w-9 h-9 rounded-lg border-2 flex items-center justify-center text-xs font-black font-display transition-all',
+        styles[state]
+      )}
+      title={`Día ${day}`}
     >
       {day}
     </div>
   )
 }
 
-// ─── StreakFlame ──────────────────────────────────────────────────────────────
+/** Llama de racha (streak). */
 export function StreakFlame({ count }: { count: number }) {
   return (
-    <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 animate-pulse-ring w-fit">
-      <span className="text-xl select-none" aria-hidden>🔥</span>
-      <span className="font-sans font-bold text-primary-soft text-lg leading-none">{count}</span>
-      <span className="text-xs text-muted font-body">días seguidos</span>
+    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--color-primary)]/10 border-2 border-[var(--color-primary)]/30 pulse-ring w-fit">
+      <span className="text-xl" aria-hidden>🔥</span>
+      <span className="font-display font-black text-[var(--color-primary-2)] text-lg leading-none">{count}</span>
+      <span className="text-xs text-[var(--color-ink-4)]">racha</span>
     </div>
   )
 }
 
-// ─── PageHeader ───────────────────────────────────────────────────────────────
+/** Header de página con gradiente. */
 export function PageHeader({
   eyebrow,
   title,
   subtitle,
-  centered = false,
 }: {
   eyebrow?: string
-  title: string
-  subtitle?: string
-  centered?: boolean
+  title: ReactNode
+  subtitle?: ReactNode
 }) {
   return (
-    <header className={`space-y-2 ${centered ? 'text-center' : ''}`}>
-      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-      <h1 className="font-sans font-bold text-3xl text-balance text-foreground">{title}</h1>
-      {subtitle && <p className="text-muted text-sm leading-relaxed text-pretty">{subtitle}</p>}
+    <header className="space-y-2">
+      {eyebrow && (
+        <p className="text-xs font-black uppercase tracking-[0.2em] text-[var(--color-primary)]">
+          {eyebrow}
+        </p>
+      )}
+      <h1 className="font-display font-black text-3xl text-[var(--color-ink)] leading-tight">
+        {title}
+      </h1>
+      {subtitle && <p className="text-sm text-[var(--color-ink-3)] leading-relaxed">{subtitle}</p>}
     </header>
   )
 }
 
-// ─── GradientCard ─────────────────────────────────────────────────────────────
+/** Card con gradient border. */
 export function GradientCard({
   children,
-  from,
-  to,
-  className = '',
+  className,
+  glow = false,
 }: {
-  children: React.ReactNode
-  from?: string
-  to?: string
+  children: ReactNode
   className?: string
+  glow?: boolean
 }) {
   return (
     <div
-      className={`rounded-xl p-px ${className}`}
-      style={{
-        background: `linear-gradient(135deg, ${from ?? '#e91e8c'}, ${to ?? '#00e5ff'})`,
-      }}
+      className={cn(
+        'card-pop p-5',
+        glow && 'shadow-[var(--shadow-glow)]',
+        className
+      )}
     >
-      <div className="rounded-xl bg-surface p-5 h-full">{children}</div>
+      {children}
     </div>
   )
 }
 
-// ─── StatusPill ───────────────────────────────────────────────────────────────
+/** Pill estado de submission. */
 export function StatusPill({
-  status,
+  state,
+  label,
 }: {
-  status: string
+  state: 'success' | 'warn' | 'danger' | 'info' | 'muted'
+  label: string
 }) {
-  const map: Record<string, string> = {
-    valid: 'pill pill-green',
-    approved: 'pill pill-green',
-    done: 'pill pill-green',
-    pending_review: 'pill pill-amber',
-    pending: 'pill pill-amber',
-    queued: 'pill pill-cyan',
-    running: 'pill pill-cyan',
-    invalid: 'pill pill-pink',
-    rejected: 'pill pill-pink',
-    error: 'pill pill-pink',
-    duplicate: 'pill pill-muted',
-    idle: 'pill pill-muted',
-  }
-  return <span className={map[status] ?? 'pill pill-muted'}>{status}</span>
+  const styles = {
+    success: 'bg-[var(--color-success)]/20 text-[var(--color-success)] border-[var(--color-success)]/40',
+    warn: 'bg-[var(--color-warning)]/20 text-[var(--color-warning)] border-[var(--color-warning)]/40',
+    danger: 'bg-[var(--color-danger)]/20 text-[var(--color-danger)] border-[var(--color-danger)]/40',
+    info: 'bg-[var(--color-accent)]/20 text-[var(--color-accent)] border-[var(--color-accent)]/40',
+    muted: 'bg-white/5 text-[var(--color-ink-3)] border-white/10',
+  }[state]
+  return (
+    <span
+      className={cn(
+        'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold border',
+        styles
+      )}
+    >
+      {label}
+    </span>
+  )
 }
 
-// ─── FloatingDecor ────────────────────────────────────────────────────────────
-// Decorative blurred circle used as ambient background light.
-export function FloatingDecor({
-  color = '#e91e8c',
-  size = 400,
-  className = '',
-}: {
-  color?: string
-  size?: number
-  className?: string
-}) {
+/** Decoraciones flotantes opcionales (emojis con animación). */
+export function FloatingDecor({ emojis }: { emojis: string[] }) {
   return (
-    <div
-      aria-hidden
-      className={`pointer-events-none absolute rounded-full opacity-20 blur-3xl animate-float ${className}`}
-      style={{
-        width: size,
-        height: size,
-        background: color,
-      }}
-    />
+    <div aria-hidden className="pointer-events-none select-none absolute inset-0 overflow-hidden">
+      {emojis.map((e, i) => (
+        <span
+          key={i}
+          className="absolute text-3xl float opacity-20"
+          style={{
+            left: `${10 + (i * 27) % 80}%`,
+            top: `${5 + (i * 31) % 85}%`,
+            animationDelay: `${i * 0.8}s`,
+          }}
+        >
+          {e}
+        </span>
+      ))}
+    </div>
   )
 }
