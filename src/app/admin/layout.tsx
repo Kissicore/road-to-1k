@@ -18,29 +18,32 @@ export default async function AdminLayout({
   if (me?.role !== 'admin') redirect('/dashboard')
 
   return (
-    <div className="flex-1 flex flex-col">
-      <nav className="sticky top-0 z-50 border-b border-gold/20 bg-background/90 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-6 h-13 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-6">
+    <div className="min-h-screen flex flex-col">
+      <nav className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-bg)]/90 backdrop-blur-md">
+        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
             <Link
               href="/admin"
-              className="font-sans font-black text-base tracking-tight text-gold hover:text-gold/80 transition-colors"
+              className="font-display font-black text-base tracking-tight text-[var(--color-warning)] hover:text-[var(--color-warning)]/80 transition-colors flex items-center gap-1.5"
             >
+              <span aria-hidden>⚡</span>
               Admin · Road to 1K
             </Link>
-            <Link href="/admin/participants" className="btn-ghost text-sm">
-              Participantes
-            </Link>
-            <Link href="/admin/submissions" className="btn-ghost text-sm">
-              Submissions
-            </Link>
+            <span className="text-[var(--color-border)]">|</span>
+            <AdminLink href="/admin/participants" label="Participantes" />
+            <AdminLink href="/admin/submissions" label="Submissions" />
           </div>
-          <Link href="/dashboard" className="btn-ghost text-sm text-muted">
-            Salir admin
+          <Link
+            href="/"
+            className="text-xs text-[var(--color-ink-4)] hover:text-[var(--color-ink-3)] transition-colors flex items-center gap-1"
+          >
+            &larr; Salir
           </Link>
         </div>
       </nav>
-      {children}
+      <div className="flex-1">
+        {children}
+      </div>
     </div>
   )
 }
