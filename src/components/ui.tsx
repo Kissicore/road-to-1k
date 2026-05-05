@@ -77,16 +77,16 @@ export type StatAccent =
   | 'cyan' | 'gold' | 'pink' | 'lime' | 'purple'
 
 const statAccentRing: Record<StatAccent, string> = {
-  primary:   'from-[#FF1F8B] to-[#FF4FA1]',
-  secondary: 'from-[#7B2CBF] to-[#9D4EDD]',
+  primary:   'from-[#1F8BFF] to-[#4FA1FF]',
+  secondary: 'from-[#2C5BBF] to-[#4E7DDD]',
   accent:    'from-[#00E5FF] to-[#00B4D8]',
-  success:   'from-[#C7F464] to-[#DEFB7E]',
+  success:   'from-[#7EE8FF] to-[#A6F0FF]',
   // alias amigables para v0
   cyan:      'from-[#00E5FF] to-[#00B4D8]',
   gold:      'from-[#FFD23F] to-[#FFB800]',
-  pink:      'from-[#FF1F8B] to-[#FF4FA1]',
-  lime:      'from-[#C7F464] to-[#DEFB7E]',
-  purple:    'from-[#7B2CBF] to-[#9D4EDD]',
+  pink:      'from-[#1F8BFF] to-[#4FA1FF]',
+  lime:      'from-[#7EE8FF] to-[#A6F0FF]',
+  purple:    'from-[#2C5BBF] to-[#4E7DDD]',
 }
 
 export function StatTile({

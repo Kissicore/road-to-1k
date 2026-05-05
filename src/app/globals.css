@@ -1,35 +1,35 @@
 @import "tailwindcss";
 
 /* Paleta Road to 1K — energía gamer, premium, audiencia femenina 24-40.
- Inspiración: Kahoot pero más sofisticada. Dark purple base + pink/cyan/lime accents. */
+ Inspiración: Kahoot pero más sofisticada. Dark navy base + electric blue/cyan/sky accents. */
 @theme {
-  --color-bg: #0E0B1F;
-  --color-bg-2: #15102A;
-  --color-surface: #1F1838;
-  --color-surface-2: #2A1F4D;
-  --color-border: #3A2A5F;
+  --color-bg: #0A0F1F;
+  --color-bg-2: #0F1830;
+  --color-surface: #172447;
+  --color-surface-2: #1F2F5A;
+  --color-border: #2A4170;
 
-  --color-primary: #FF1F8B; /* hot pink */
-  --color-primary-2: #FF4FA1;
-  --color-secondary: #7B2CBF; /* electric purple */
-  --color-secondary-2: #9D4EDD;
+  --color-primary: #1F8BFF; /* hot pink */
+  --color-primary-2: #4FA1FF;
+  --color-secondary: #2C5BBF; /* electric purple */
+  --color-secondary-2: #4E7DDD;
   --color-accent: #00E5FF; /* cyan */
   --color-accent-2: #00B4D8;
-  --color-success: #C7F464; /* lime */
+  --color-success: #7EE8FF; /* lime */
   --color-warning: #FFD23F; /* yellow */
   --color-danger: #FF5252;
 
   --color-ink: #FFFFFF;
-  --color-ink-2: #E8DEFF;
-  --color-ink-3: #A78BFA;
-  --color-ink-4: #6D5A9C;
+  --color-ink-2: #DEEBFF;
+  --color-ink-3: #8BB4FA;
+  --color-ink-4: #5A7BAC;
 
   --font-display: var(--font-outfit);
   --font-body: var(--font-inter);
 
   --shadow-pop: 6px 6px 0 0 rgba(0, 0, 0, 0.35);
   --shadow-pop-sm: 4px 4px 0 0 rgba(0, 0, 0, 0.35);
-  --shadow-glow: 0 0 40px rgba(255, 31, 139, 0.35);
+  --shadow-glow: 0 0 40px rgba(31, 139, 255, 0.35);
 }
 
 :root {
@@ -44,9 +44,9 @@ html, body {
 
 body {
   background-image:
-    radial-gradient(ellipse at top left, rgba(123, 44, 191, 0.18), transparent 50%),
-    radial-gradient(ellipse at bottom right, rgba(255, 31, 139, 0.16), transparent 55%),
-    radial-gradient(ellipse at center, rgba(0, 229, 255, 0.06), transparent 60%);
+    radial-gradient(ellipse at top left, rgba(44, 91, 191, 0.20), transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(31, 139, 255, 0.18), transparent 55%),
+    radial-gradient(ellipse at center, rgba(0, 229, 255, 0.07), transparent 60%);
   background-attachment: fixed;
 }
 
@@ -82,20 +82,20 @@ h1, h2, h3, .font-display {
 .btn-pop-lg { padding: 1.1rem 2.2rem; font-size: 1.15rem; }
 
 .btn-primary {
-  background: linear-gradient(180deg, #FF4FA1 0%, #FF1F8B 100%);
+  background: linear-gradient(180deg, #4FA1FF 0%, #1F8BFF 100%);
   color: #fff;
 }
 .btn-secondary {
-  background: linear-gradient(180deg, #9D4EDD 0%, #7B2CBF 100%);
+  background: linear-gradient(180deg, #4E7DDD 0%, #2C5BBF 100%);
   color: #fff;
 }
 .btn-accent {
   background: linear-gradient(180deg, #00E5FF 0%, #00B4D8 100%);
-  color: #0E0B1F;
+  color: #0A0F1F;
 }
 .btn-success {
-  background: linear-gradient(180deg, #DEFB7E 0%, #C7F464 100%);
-  color: #0E0B1F;
+  background: linear-gradient(180deg, #A6F0FF 0%, #7EE8FF 100%);
+  color: #0A0F1F;
 }
 .btn-ghost {
   background: rgba(255, 255, 255, 0.06);
@@ -137,9 +137,9 @@ h1, h2, h3, .font-display {
 .float { animation: float-slow 6s ease-in-out infinite; }
 
 @keyframes pulse-ring {
-  0% { box-shadow: 0 0 0 0 rgba(255, 31, 139, 0.6); }
-  70% { box-shadow: 0 0 0 18px rgba(255, 31, 139, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(255, 31, 139, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(31, 139, 255, 0.6); }
+  70% { box-shadow: 0 0 0 18px rgba(31, 139, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(31, 139, 255, 0); }
 }
 .pulse-ring { animation: pulse-ring 2.4s infinite; }
 
@@ -148,7 +148,7 @@ h1, h2, h3, .font-display {
   100% { background-position: 200% 0; }
 }
 .shimmer-text {
-  background: linear-gradient(90deg, #FF1F8B 0%, #00E5FF 25%, #C7F464 50%, #FFD23F 75%, #FF1F8B 100%);
+  background: linear-gradient(90deg, #1F8BFF 0%, #00E5FF 25%, #7EE8FF 50%, #FFD23F 75%, #1F8BFF 100%);
   background-size: 200% auto;
   background-clip: text;
   -webkit-background-clip: text;

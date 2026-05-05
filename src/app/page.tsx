@@ -259,7 +259,7 @@ export default async function Home() {
 
       {/* ── CTA final ── */}
       <section className="relative px-6 py-28 text-center overflow-hidden">
-        <FloatingDecor color="#FF1F8B" size={520} className="left-1/2 -translate-x-1/2 top-10" />
+        <FloatingDecor color="#1F8BFF" size={520} className="left-1/2 -translate-x-1/2 top-10" />
         <div className="relative z-10 max-w-2xl mx-auto space-y-6">
           <h2 className="font-display font-black text-4xl sm:text-5xl text-[var(--color-ink)] leading-tight">
             ¿Estás lista para los <span className="shimmer-text">{total} días</span>?
@@ -353,9 +353,9 @@ function Pillar({
   color: 'primary' | 'accent' | 'success'
 }) {
   const ring = {
-    primary: 'from-[#FF1F8B]/25 to-transparent',
+    primary: 'from-[#1F8BFF]/25 to-transparent',
     accent: 'from-[#00E5FF]/25 to-transparent',
-    success: 'from-[#C7F464]/25 to-transparent',
+    success: 'from-[#7EE8FF]/25 to-transparent',
   }[color]
   const numberColor = {
     primary: 'text-[var(--color-primary-2)]',
@@ -426,10 +426,10 @@ function ScoreBar({
   isBonus?: boolean
 }) {
   const fill = {
-    primary: 'from-[#FF1F8B] to-[#FF4FA1]',
+    primary: 'from-[#1F8BFF] to-[#4FA1FF]',
     accent: 'from-[#00E5FF] to-[#00B4D8]',
-    secondary: 'from-[#9D4EDD] to-[#7B2CBF]',
-    success: 'from-[#C7F464] to-[#DEFB7E]',
+    secondary: 'from-[#4E7DDD] to-[#2C5BBF]',
+    success: 'from-[#7EE8FF] to-[#A6F0FF]',
   }[color]
   const text = {
     primary: 'text-[var(--color-primary-2)]',
