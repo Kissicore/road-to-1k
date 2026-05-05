@@ -24,7 +24,7 @@ export default function GestorPage() {
     setErrorMsg(null)
 
     const supabase = createClient()
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
+    const { data: signInData, error } = await supabase.auth.signInWithPassword({ email, password })
 
     if (error) {
       setStatus('error')
@@ -36,17 +36,20 @@ export default function GestorPage() {
       return
     }
 
-    // Verificar que sea admin
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) { setStatus('error'); setErrorMsg('No se pudo obtener el usuario.'); return }
+    const userId = signInData.user?.id
+    if (!userId) {
+      setStatus('error')
+      setErrorMsg('No se pudo obtener el usuario.')
+      return
+    }
 
-    const { data: participant } = await supabase
-      .from('participants')
-      .select('role')
-      .eq('id', user.id)
-      .maybeSingle()
+    // Usar el service role no está disponible en el cliente, así que
+    // usamos la función SQL is_admin() que corre con security definer
+    // y puede leer participants sin depender del RLS client timing.
+    const { data: isAdmin, error: rpcError } = await supabase
+      .rpc('is_admin')
 
-    if (participant?.role !== 'admin') {
+    if (rpcError || !isAdmin) {
       await supabase.auth.signOut()
       setStatus('error')
       setErrorMsg('Esta entrada es solo para gestores de reto.')
