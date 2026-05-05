@@ -1,5 +1,5 @@
 import { getChallenge } from '@/lib/utils/challenge'
-import { PopLink, FloatingDecor, GradientCard } from '@/components/ui'
+import { PopLink, FloatingDecor } from '@/components/ui'
 
 export default async function Home() {
   const challenge = await getChallenge().catch(() => null)
@@ -12,7 +12,7 @@ export default async function Home() {
         <div className="relative z-10 max-w-3xl mx-auto space-y-8">
           {/* Eyebrow badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--color-surface)] border-2 border-[var(--color-border)] text-xs font-black uppercase tracking-widest text-[var(--color-primary-2)]">
-            <span>🎬</span>
+            <span aria-hidden>🎬</span>
             <span>FÓRMULA 100K · Edición {challenge?.edition_label ?? '11 de mayo'}</span>
           </div>
 
@@ -30,13 +30,13 @@ export default async function Home() {
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <PopLink href="/signup" variant="primary" size="lg">
-              🚀 Inscribirme al reto
+              Inscribirme al reto
             </PopLink>
             <PopLink href="/login" variant="ghost" size="lg">
               Ya estoy inscrita
             </PopLink>
             <PopLink href="/ranking" variant="ghost" size="lg">
-              🏆 Ver ranking
+              Ver ranking
             </PopLink>
           </div>
 
@@ -53,31 +53,47 @@ export default async function Home() {
 
       {/* ── Pilares ── */}
       <section className="px-6 py-24 max-w-5xl mx-auto">
-        <p className="text-center text-xs font-black uppercase tracking-[0.25em] text-[var(--color-primary)] mb-12">Cómo funciona</p>
+        <p className="text-center text-xs font-black uppercase tracking-[0.25em] text-[var(--color-primary)] mb-12">
+          Cómo funciona
+        </p>
         <div className="grid sm:grid-cols-3 gap-6">
-          <Pillar emoji="🎯" title="Gancho visual" color="primary"
-            text="Análisis automático del primer segundo de cada Reel con los frameworks de FÓRMULA 100K." />
-          <Pillar emoji="📊" title="Ranking en vivo" color="accent"
-            text="Posición calculada con seguidores ganados, alcance, interacciones y ventas en tiempo real." />
-          <Pillar emoji="🔥" title="42 días de disciplina" color="success"
-            text="Un Reel diario. Sin excusas. El streak te mantiene en el juego y el leaderboard te desafía." />
+          <Pillar
+            emoji="🎯"
+            title="Gancho visual"
+            color="primary"
+            text="Análisis automático del primer segundo de cada Reel con los frameworks de FÓRMULA 100K."
+          />
+          <Pillar
+            emoji="📊"
+            title="Ranking en vivo"
+            color="accent"
+            text="Posición calculada con seguidores ganados, alcance, interacciones y ventas en tiempo real."
+          />
+          <Pillar
+            emoji="🔥"
+            title="42 días de disciplina"
+            color="success"
+            text="Un Reel diario. Sin excusas. El streak te mantiene en el juego y el leaderboard te desafía."
+          />
         </div>
       </section>
 
       {/* ── Premios ── */}
       <section className="px-6 py-24 max-w-5xl mx-auto">
-        <p className="text-center text-xs font-black uppercase tracking-[0.25em] text-[var(--color-primary)] mb-12">Premios</p>
+        <p className="text-center text-xs font-black uppercase tracking-[0.25em] text-[var(--color-primary)] mb-12">
+          Premios
+        </p>
         <div className="flex flex-col sm:flex-row justify-center gap-6">
-          <Trophy place="🥇 1er lugar" amount="Premio principal de Andrea" color="primary" />
-          <Trophy place="🥈 2do lugar" amount="Reconocimiento especial" color="secondary" />
-          <Trophy place="🥉 3er lugar" amount="Reconocimiento especial" color="accent" />
+          <Trophy place="1er lugar" amount="Premio principal" color="primary" />
+          <Trophy place="2do lugar" amount="Reconocimiento especial" color="secondary" />
+          <Trophy place="3er lugar" amount="Reconocimiento especial" color="accent" />
         </div>
       </section>
 
       {/* ── CTA final ── */}
       <section className="relative px-6 py-32 text-center overflow-hidden">
         <div className="relative z-10 max-w-lg mx-auto space-y-6">
-          <h2 className="font-display font-black text-4xl text-[var(--color-ink)] leading-tight">
+          <h2 className="font-display font-black text-4xl text-[var(--color-ink)] leading-tight text-balance">
             ¿Estás lista para los 42 días?
           </h2>
           <PopLink href="/signup" variant="primary" size="lg">
@@ -127,7 +143,15 @@ function Pillar({
   )
 }
 
-function Trophy({ place, amount, color }: { place: string; amount: string; color: 'primary' | 'secondary' | 'accent' | 'success' }) {
+function Trophy({
+  place,
+  amount,
+  color,
+}: {
+  place: string
+  amount: string
+  color: 'primary' | 'secondary' | 'accent' | 'success'
+}) {
   const bg = {
     primary: 'bg-[var(--color-primary)]/15 text-[var(--color-primary-2)] border-[var(--color-primary)]/40',
     secondary: 'bg-[var(--color-secondary)]/15 text-[var(--color-secondary-2)] border-[var(--color-secondary)]/40',
