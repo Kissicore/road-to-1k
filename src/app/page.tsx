@@ -85,6 +85,19 @@ export default async function Home() {
           </PopLink>
         </div>
       </section>
+
+      {/* ── Footer gestor ── */}
+      <footer className="border-t border-[var(--color-border)] py-8 px-6 flex items-center justify-center">
+        <a
+          href="/gestor"
+          className="text-xs text-[var(--color-ink-4)] hover:text-[var(--color-ink-3)] transition-colors flex items-center gap-1.5"
+        >
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 1.5l3.09 6.26L22.5 9l-5.25 5.12 1.24 7.23L12 18.27l-6.49 3.08 1.24-7.23L1.5 9l7.41-1.24L12 1.5z" />
+          </svg>
+          Gestor de reto
+        </a>
+      </footer>
     </main>
   )
 }
