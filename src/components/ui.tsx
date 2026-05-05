@@ -1,4 +1,4 @@
-/* Componentes base del Road to 1K — estilo Kahoot premium. */
+/* Componentes base del Road to 1K — estilo Kahoot premium. v2 */
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils/cn'
