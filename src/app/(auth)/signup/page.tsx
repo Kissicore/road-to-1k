@@ -38,7 +38,7 @@ export default function SignupPage() {
     const { error } = await supabase.auth.signInWithOtp({
       email: form.email,
       options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback?signup=1`,
+        emailRedirectTo: `${window.location.origin}/dashboard?signup=1`,
         data: {
           full_name: form.full_name,
           instagram_handle: cleanedHandle,

@@ -29,7 +29,7 @@ export default function GestorPage() {
       options: {
         emailRedirectTo:
           process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL ??
-          `${window.location.origin}/auth/callback?next=/admin`,
+          `${window.location.origin}/admin`,
         shouldCreateUser: false, // solo usuarios que ya existen pueden entrar
       },
     })
