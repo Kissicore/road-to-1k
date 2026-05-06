@@ -21,27 +21,9 @@ export async function GET(request: NextRequest) {
   const nextUrl = (() => {
     try { return new URL(nextParam, origin) } catch { return new URL('/dashboard', origin) }
   })()
-  const isSignup = nextUrl.searchParams.get('signup') === '1'
 
-  if (isSignup) {
-    const { data: { user } } = await supabase.auth.getUser()
-    if (user) {
-      const meta = user.user_metadata ?? {}
-      await supabase.from('participants').upsert(
-        {
-          id: user.id,
-          email: user.email!,
-          full_name: meta.full_name ?? user.email!.split('@')[0],
-          instagram_handle: (meta.instagram_handle ?? '').toString().toLowerCase(),
-          rubro: meta.rubro ?? null,
-          followers_initial: Number(meta.followers_initial ?? 0),
-          state: 'pending',
-          role: 'participant',
-        },
-        { onConflict: 'id', ignoreDuplicates: false }
-      )
-    }
-  }
+  // El trigger on_auth_user_created en Postgres crea la fila de participants
+  // al darse de alta el user en auth.users — no hace falta hacerlo acá.
 
   return NextResponse.redirect(nextUrl)
 }
