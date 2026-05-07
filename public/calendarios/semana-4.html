@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FÓRMULA 100K — Road to 1K · Semana 4</title>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @media print { .no-print { display: none !important; } body { background: white; } }
+    body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useMemo } = React;
+
+    const WEEK_NUMBER = 4;
+    const WEEK_TITLE = "Semana 4";
+    const WEEK_SUBTITLE = "7 ideas virales con análisis F100K, pauta de gancho y prompts de guion";
+
+    // ============= DATA: SEMANA 1 — 7 DÍAS =============
+    const DAYS = [
+      {
+            "n": 1,
+            "day": "LUNES",
+            "short": "LUN",
+            "format": "REEL",
+            "visualForm": "Hablando a cámara con objeto físico",
+            "ideaTitle": "¿Qué pasaría si X? — situación hipotética",
+            "summary": "Hook verbal con pregunta hipotética. Texto en grande y un objeto físico visible. Explicas una situación hipotética que da pie a información valiosa o al revelado de un patrón.",
+            "refUrl": "https://vt.tiktok.com/ZS9g16xpk/",
+            "refLabel": "TikTok",
+            "diag": {
+                  "formaVisual": "F3 + F4 — Frente a cámara con texto grande y objeto físico",
+                  "formaWhy": "Una pregunta hipotética abre el cerebro al modo simulación: la audiencia juega mentalmente el escenario y se queda para ver tu respuesta.",
+                  "enc": {
+                        "estimulo": "Pregunta hipotética sobreimpuesta + objeto físico visible en mano o cerca.",
+                        "carga": "BAJA — la pregunta es directa y el objeto da contexto inmediato.",
+                        "contexto": "El frame 'qué pasaría si' activa pensamiento causal y promete revelación."
+                  },
+                  "gatillo": "Curiosidad + Pensamiento causal — la audiencia se queda para validar/contradecir su propia simulación.",
+                  "porQue": "Las preguntas hipotéticas funcionan porque convierten al espectador en participante activo, no observador pasivo. Eso multiplica retención."
+            },
+            "hook": {
+                  "visual": "Plano cerrado contigo. Texto grande con la pregunta hipotética arriba. Objeto físico visible (símbolo de lo que se va a discutir). Iluminación clara.",
+                  "textual": "¿Qué pasaría si [escenario hipotético]?\n\nVariantes:\n• ¿Qué pasaría si dejas de hacer X durante 30 días?\n• ¿Qué pasaría si tu cliente comprara sin pensarlo?\n• ¿Qué pasaría si nadie usara redes sociales durante 1 año?",
+                  "verbal": "¿Qué pasaría si [escenario]? Te lo explico en 30 segundos. Y arrancas la explicación causal."
+            },
+            "adapt": [
+                  "¿Cuál es UNA pregunta hipotética interesante para tu audiencia?",
+                  "¿Cuál es la cadena causal que la responde? (paso 1, 2, 3, resultado)",
+                  "¿Qué objeto físico simboliza el tema?",
+                  "¿Cuál es el insight final? (la lección que se llevan más allá del ejercicio mental)"
+            ],
+            "prompt": "Eres mi guionista de FÓRMULA 100K. Voy a crear un Reel con estructura \"qué pasaría si X\" hipotética inspirado en este referente viral.\n\nMI NICHO: [describe tu nicho]\nMI AUDIENCIA: [cliente ideal]\nMI VEHÍCULO ÚNICO: [método/oferta principal]\n\nDÁME:\n1. La pregunta hipotética interesante para mi audiencia\n2. La cadena causal completa: paso 1 → 2 → 3 → resultado\n3. Objeto físico que simboliza el tema\n4. Hook textual sobreimpuesto\n5. Hook verbal de apertura\n6. Insight final que cierre el video\n7. CTA: invitación a aplicar la lección\n\nREGLAS:\n- La pregunta debe ser intrigante pero realista\n- La cadena causal debe ser técnicamente correcta\n- Español neutro, NO argentino"
+      },
+      {
+            "n": 2,
+            "day": "MARTES",
+            "short": "MAR",
+            "format": "REEL",
+            "visualForm": "Demostración física comparativa",
+            "ideaTitle": "Comparación: bien hecho vs mal hecho",
+            "summary": "Compararación de dos métodos/procesos/productos: uno mal hecho y otro bien hecho, donde el bien hecho simboliza tu diferencial. Demostración física directa.",
+            "refUrl": "https://www.instagram.com/p/DXPzvMwEfJd/",
+            "refLabel": "Instagram Reel",
+            "diag": {
+                  "formaVisual": "F3 — Demostración física con contraste",
+                  "formaWhy": "Mostrar físicamente cómo NO se hace algo y luego cómo SÍ se hace bien activa el cerebro educativo + el ego ('yo lo hago bien').",
+                  "enc": {
+                        "estimulo": "Dos versiones del mismo proceso ejecutándose de forma visiblemente distinta.",
+                        "carga": "BAJA — el contraste es visual y obvio.",
+                        "contexto": "La demostración física genera autoridad inmediata: 'esta persona sabe hacerlo bien'."
+                  },
+                  "gatillo": "Identificación + Diferenciación — la audiencia ve el método 'mal hecho' y puede que se reconozca, luego aspira al 'bien hecho'.",
+                  "porQue": "Los videos de demostración física comparativa son virales porque combinan educación, ego (de quien lo hace bien) y aspiración (del que quiere mejorar)."
+            },
+            "hook": {
+                  "visual": "Plano cerrado de tus manos o el proceso ejecutándose. Primero la versión mal hecha (rápida, exagerada). Luego la versión bien hecha (con detalle, con tu diferencial visible).",
+                  "textual": "MAL HECHO vs BIEN HECHO\n[Tu diferencial en acción]\n\nVariantes:\n• Cómo lo hace todo el mundo vs cómo lo hago yo\n• El error común vs la versión correcta\n• Por qué tu [acción] no funciona y cómo arreglarlo",
+                  "verbal": "Mira cómo lo hace la mayoría… (silencio, demostración del mal hecho)… ahora mira cómo se hace bien."
+            },
+            "adapt": [
+                  "¿Cuál es UN proceso/método/acción que comúnmente se hace mal en tu rubro?",
+                  "¿Cuál es la versión 'bien hecha' que TÚ aplicas? (debe simbolizar tu diferencial)",
+                  "¿Puedes mostrar ambas versiones físicamente o necesitas adaptar el formato?",
+                  "¿Cuál es el insight final? (no debe sonar arrogante)"
+            ],
+            "prompt": "Eres mi guionista de FÓRMULA 100K. Voy a crear un Reel con estructura \"demostración física: mal hecho vs bien hecho\" inspirado en este referente viral.\n\nMI NICHO: [describe tu nicho]\nMI AUDIENCIA: [cliente ideal, qué error comete habitualmente]\nMI VEHÍCULO ÚNICO: [método/oferta principal — debe ser visible en la versión 'bien hecha']\n\nDÁME:\n1. El proceso/método/acción que voy a comparar\n2. La versión 'mal hecha' (cómo la hace la mayoría — específico)\n3. La versión 'bien hecha' (cómo la hago yo — debe mostrar mi diferencial)\n4. Hook visual: descripción del plano\n5. Hook verbal de apertura\n6. Insight final (sin tono arrogante)\n7. CTA: invitación a aprender el método correcto\n\nREGLAS:\n- La diferencia debe ser visualmente obvia\n- Cero burla del 'mal hecho' — sin condescendencia\n- Español neutro, NO argentino"
+      },
+      {
+            "n": 3,
+            "day": "MIÉRCOLES",
+            "short": "MIÉ",
+            "format": "CARRUSEL",
+            "visualForm": "Hábitos automáticos + optimización",
+            "ideaTitle": "Hábitos cotidianos que tu audiencia hace en automático",
+            "summary": "Carrusel donde identificas hábitos cotidianos que tu audiencia realiza en automático y que pueden optimizarse con pequeños cambios. Comparaciones antes/ahora visualmente claras.",
+            "refUrl": "https://www.instagram.com/p/DWkCiIHiYkz/?igsh=MWNkc3R1OW02ZW9wZw%3D%3D&img_index=1",
+            "refLabel": "Instagram Carrusel",
+            "diag": {
+                  "formaVisual": "F2 — Infografía con comparaciones directas",
+                  "formaWhy": "Los hábitos automáticos son invisibles para quien los hace. Mostrarlos en formato comparativo es como darle a la audiencia un espejo.",
+                  "enc": {
+                        "estimulo": "Slide 1 con promesa de revelar hábitos automáticos invisibles.",
+                        "carga": "MEDIA — comparaciones por slide pero el formato visual ayuda.",
+                        "contexto": "El frame 'pequeños cambios' reduce la resistencia: la audiencia siente que puede optimizar sin gran esfuerzo."
+                  },
+                  "gatillo": "Curiosidad + Auto-mejora alcanzable — pequeños cambios accesibles vs grandes transformaciones.",
+                  "porQue": "Los carruseles de optimización suave son altamente compartibles porque ofrecen valor inmediato y aplicable. La gente quiere mejorar sin renunciar."
+            },
+            "hook": {
+                  "visual": "Slide 1 con afirmación gigante sobre hábitos automáticos. Slides siguientes: comparaciones lado a lado del hábito automático vs su versión optimizada. Estilo limpio, pastel, infantil-amigable.",
+                  "textual": "Slide 1: 'Hábitos que haces sin darte cuenta y que puedes mejorar HOY'\n\nVariantes:\n• 7 hábitos automáticos que sabotean tu [resultado]\n• Optimiza estos 5 hábitos en 1 minuto\n• Cosas que haces todos los días sin darte cuenta",
+                  "verbal": "Carrusel sin audio o con audio trending suave."
+            },
+            "adapt": [
+                  "¿Qué hábitos automáticos tiene tu audiencia que NO ven y que pueden mejorar?",
+                  "¿Cuál es la versión optimizada de cada hábito? (pequeño cambio, gran impacto)",
+                  "¿Cómo se ve la diferencia visualmente? (debe ser dibujable o fotografiable)",
+                  "¿Cuál es el hilo conductor? (todos los hábitos del mismo dominio)"
+            ],
+            "prompt": "Eres mi guionista de FÓRMULA 100K. Voy a crear un CARRUSEL con estructura \"hábitos automáticos optimizables\" inspirado en este referente viral.\n\nMI NICHO: [describe tu nicho]\nMI AUDIENCIA: [cliente ideal, qué hábitos invisibles podría tener]\nMI VEHÍCULO ÚNICO: [método/oferta principal]\n\nDÁME:\n1. Slide 1 (gancho): afirmación gigante sobre hábitos automáticos\n2. 5-7 slides centrales con un hábito por slide:\n   - Hábito automático (cómo lo hace ahora)\n   - Versión optimizada (pequeño cambio)\n3. Slide de cierre con invitación a guardar\n4. Caption con CTA\n5. Prompt visual para las imágenes\n\nREGLAS:\n- Los cambios deben ser pequeños y accesibles\n- Cero juicio sobre el hábito original\n- Español neutro, NO argentino"
+      },
+      {
+            "n": 4,
+            "day": "JUEVES",
+            "short": "JUE",
+            "format": "REEL",
+            "visualForm": "Yapping + capturas de investigación",
+            "ideaTitle": "Analicé X cantidad de [videos/acciones] y encontré esto",
+            "summary": "Hablas a cámara contando que hiciste una investigación con N elementos y encontraste un patrón. Apoyas con capturas de tu investigación que aparecen en pantalla. Posicionamiento de autoridad por análisis.",
+            "refUrl": "https://www.instagram.com/p/DW7DFWIjW34/",
+            "refLabel": "Instagram Reel",
+            "diag": {
+                  "formaVisual": "F3 — Frente a cámara con apoyo de capturas/material visual",
+                  "formaWhy": "Decir un número específico ('analicé 100 videos') activa autoridad inmediata. Las capturas de la investigación lo respaldan visualmente.",
+                  "enc": {
+                        "estimulo": "Número grande + tu cara + capturas de la investigación apareciendo.",
+                        "carga": "MEDIA — capturas y voz, pero la promesa de patrón concreto sostiene el interés.",
+                        "contexto": "El frame 'yo investigué para ti' posiciona como filtro experto que ahorra tiempo a la audiencia."
+                  },
+                  "gatillo": "Autoridad + Atajo cognitivo — 'esta persona ya hizo el trabajo, yo aprovecho'.",
+                  "porQue": "Los videos de 'analicé X y encontré esto' son virales porque ofrecen conclusiones procesadas. La audiencia no quiere investigar, quiere los resultados."
+            },
+            "hook": {
+                  "visual": "Plano cerrado contigo hablando. Capturas de tu investigación apareciendo a un costado o sobreimpuestas. Subtítulos grandes con datos clave.",
+                  "textual": "Analicé [número] [elementos] de [rubro] y encontré ESTO\n\nVariantes:\n• Vi 100 videos virales y todos tienen esto en común\n• Estudié 50 cuentas exitosas de mi rubro y descubrí un patrón\n• Revisé 30 páginas web de venta y noté algo común",
+                  "verbal": "Analicé [número] [elementos] del rubro y encontré algo que la mayoría no ve. Mira esto."
+            },
+            "adapt": [
+                  "¿Qué puedes investigar realmente en tu rubro? (videos virales, cuentas exitosas, anuncios, casos de cliente, productos)",
+                  "¿Cuál es el patrón que encontrarías o que ya tienes claro?",
+                  "¿Tienes el material visual para mostrar la investigación? (capturas, screenshots, gráficos)",
+                  "¿El número que dirás es real? (la audiencia se da cuenta si exageras)"
+            ],
+            "prompt": "Eres mi guionista de FÓRMULA 100K. Voy a crear un Reel con estructura \"analicé X y encontré esto\" frente a cámara inspirado en este referente viral.\n\nMI NICHO: [describe tu nicho]\nMI AUDIENCIA: [cliente ideal]\nMI VEHÍCULO ÚNICO: [método/oferta principal]\n\nDÁME:\n1. Qué puedo investigar de mi rubro (sugiere 3 opciones)\n2. El patrón principal que se encontraría / que ya conozco\n3. 2-3 sub-patrones secundarios para profundizar\n4. Hook textual: 'Analicé [número] [elementos] y encontré ESTO'\n5. Hook verbal de apertura\n6. Material visual sugerido (qué capturas mostrar)\n7. CTA: invitación a recibir un resumen del análisis\n\nREGLAS:\n- El número debe ser real (no inventes)\n- El patrón debe ser técnicamente válido\n- Español neutro, NO argentino"
+      },
+      {
+            "n": 5,
+            "day": "VIERNES",
+            "short": "VIE",
+            "format": "REEL",
+            "visualForm": "Lista de oro",
+            "ideaTitle": "10 ideas/acciones/productos que SIEMPRE funcionan en tu rubro",
+            "summary": "Lista numerada de 10 ítems que siempre funcionan en tu rubro. Formato dinámico (puede ser frente a cámara con texto, B-Roll, infografía animada). Recurso de alto valor para guardar.",
+            "refUrl": "https://www.instagram.com/p/DXMUKNtDv5N/",
+            "refLabel": "Instagram Reel",
+            "diag": {
+                  "formaVisual": "F2 + F3 — Lista visual con narración",
+                  "formaWhy": "El número '10' es el sweet spot: lo suficientemente alto para ser exhaustivo pero no abrumador. La promesa 'siempre funcionan' es absoluta y atractiva.",
+                  "enc": {
+                        "estimulo": "Número grande '10' + categoría específica.",
+                        "carga": "MEDIA — 10 ítems es bastante pero el formato lista lo hace digerible.",
+                        "contexto": "El frame 'siempre funcionan' es categórico y genera autoridad."
+                  },
+                  "gatillo": "Recompensa anticipada + Recurso valioso — la audiencia sabe que recibirá una lista útil para aplicar.",
+                  "porQue": "Los videos de listas absolutas ('siempre funcionan', 'nunca fallan') generan guardado masivo porque se perciben como recursos de referencia."
+            },
+            "hook": {
+                  "visual": "Subtítulo gigante con el número '10' y la categoría. Cada ítem aparece progresivamente con su número visible. Visuales de apoyo para cada ítem.",
+                  "textual": "10 [ideas/acciones/productos] que SIEMPRE funcionan en [tu rubro]\n\nVariantes:\n• 10 hooks que siempre viralizan\n• 10 platos que siempre venden en un restaurante\n• 10 tips que NUNCA fallan en marketing\n• 10 herramientas que todo [profesional] necesita",
+                  "verbal": "10 [ítems] que SIEMPRE funcionan en mi rubro. Toma nota. Y arrancas la lista sin más rodeos."
+            },
+            "adapt": [
+                  "¿Qué 10 ítems realmente SIEMPRE funcionan en tu rubro? (que tengas evidencia o experiencia clara)",
+                  "¿Tienes material visual para cada uno? (B-Roll o capturas)",
+                  "¿Cuál es el formato de presentación? (frente a cámara con texto, B-Roll narrado, infografía animada)",
+                  "¿Cuál es el ítem número 10? (idealmente el más fuerte como cierre)"
+            ],
+            "prompt": "Eres mi guionista de FÓRMULA 100K. Voy a crear un Reel con estructura \"10 [items] que siempre funcionan en mi rubro\" inspirado en este referente viral.\n\nMI NICHO: [describe tu nicho]\nMI AUDIENCIA: [cliente ideal]\nMI VEHÍCULO ÚNICO: [método/oferta principal]\n\nDÁME:\n1. La categoría específica de los 10 items\n2. Los 10 items en orden (del más débil al más fuerte como cierre)\n3. Para cada item: descripción ultra corta + sugerencia visual\n4. Hook textual: '10 [items] que SIEMPRE funcionan en [rubro]'\n5. Hook verbal de apertura\n6. CTA: 'Guarda esta lista para tenerla siempre a mano'\n\nREGLAS:\n- Los 10 items deben ser técnicamente válidos\n- El item 10 debe ser el más impactante\n- Español neutro, NO argentino"
+      },
+      {
+            "n": 6,
+            "day": "SÁBADO",
+            "short": "SÁB",
+            "format": "REEL",
+            "visualForm": "Combinación grabable",
+            "ideaTitle": "X + Y + Z — combinación ganadora en tu rubro",
+            "summary": "Presentas una combinación de 3 elementos (proceso, herramienta, app, idea) que juntos forman algo ganador en tu rubro. Estilo memorable, visual y con apoyo gráfico para que se grabe en la mente.",
+            "refUrl": "https://www.instagram.com/p/DXIJRykgOAT/",
+            "refLabel": "Instagram Reel",
+            "diag": {
+                  "formaVisual": "F2 + F3 — Fórmula visual con elementos combinables",
+                  "formaWhy": "Una fórmula con 3 elementos es memorable. El cerebro cierra el patrón después de procesar X+Y+Z y lo asocia con tu marca.",
+                  "enc": {
+                        "estimulo": "Tres elementos visualmente claros + signo + entre cada uno.",
+                        "carga": "BAJA — solo hay 3 elementos para procesar y la suma es universal.",
+                        "contexto": "El frame 'combinación ganadora' promete un resultado concreto."
+                  },
+                  "gatillo": "Curiosidad + Memorabilidad — la audiencia puede memorizar la fórmula y usarla.",
+                  "porQue": "Las combinaciones X+Y+Z son virales porque combinan claridad, memorabilidad y aplicabilidad. Se quedan en la mente y se pueden compartir como atajo."
+            },
+            "hook": {
+                  "visual": "3 elementos visibles desde el segundo 1, separados por signo +. Pueden ser objetos físicos, capturas de apps, ilustraciones. Etiquetas grandes encima de cada uno.",
+                  "textual": "[X] + [Y] + [Z]\n= [Resultado ganador]\n\nVariantes:\n• Notion + ChatGPT + Claude = productividad x10\n• Cardio + ayuno + sueño = transformación física\n• Aviar + Anuncios + Tag = ventas en automático",
+                  "verbal": "[X] más [Y] más [Z] igual [resultado ganador]. Y aquí te explico por qué esta combinación funciona."
+            },
+            "adapt": [
+                  "¿Cuál es la combinación de 3 elementos que SOLO juntos producen un resultado ganador en tu rubro?",
+                  "¿Por qué estos 3 específicamente? (justificación técnica)",
+                  "¿Tienes los elementos visuales para mostrar X, Y, Z y el resultado?",
+                  "¿La combinación es memorable? (debería poder repetirse en una frase)"
+            ],
+            "prompt": "Eres mi guionista de FÓRMULA 100K. Voy a crear un Reel con estructura \"X + Y + Z = combinación ganadora\" inspirado en este referente viral.\n\nMI NICHO: [describe tu nicho]\nMI AUDIENCIA: [cliente ideal]\nMI VEHÍCULO ÚNICO: [método/oferta principal]\n\nDÁME:\n1. Los 3 elementos (X, Y, Z) que forman la combinación ganadora\n2. El resultado concreto que produce la combinación\n3. Justificación técnica de por qué estos 3\n4. Hook textual: '[X] + [Y] + [Z] = [Resultado]'\n5. Hook verbal de apertura\n6. Sugerencia visual: cómo grabar cada elemento + el resultado\n7. CTA: invitación a probar la combinación o aprender más\n\nREGLAS:\n- Los 3 elementos deben funcionar SOLO juntos (no por separado)\n- La combinación debe ser memorable (cabida en una frase)\n- Español neutro, NO argentino"
+      },
+      {
+            "n": 7,
+            "day": "DOMINGO",
+            "short": "DOM",
+            "format": "REEL",
+            "visualForm": "Meme con escalada de miedos",
+            "ideaTitle": "¿Qué te da más miedo? — escalada hacia el miedo de tu rubro",
+            "summary": "Formato meme. Mencionas miedos graciosos (perder llaves, encontrarte un ex) y luego mencionas un miedo MUY profundo de tu rubro que sucede si no aplican tu metodología. Humor + verdad incómoda.",
+            "refUrl": "https://www.instagram.com/p/DWjxOOQiDHG/",
+            "refLabel": "Instagram Reel",
+            "diag": {
+                  "formaVisual": "F5 — Meme con escalada de tensión",
+                  "formaWhy": "Empezar con miedos graciosos baja la guardia del espectador. Cuando llega el miedo profundo del rubro, golpea más fuerte por contraste.",
+                  "enc": {
+                        "estimulo": "Texto/voz mencionando un miedo gracioso primero + cara reaccionando.",
+                        "carga": "BAJA — el formato meme es ligero y predecible.",
+                        "contexto": "El patrón meme genera anticipación: la audiencia ya sabe que el último elemento va a ser el más fuerte."
+                  },
+                  "gatillo": "Humor + Verdad incómoda — la combinación entretiene y educa.",
+                  "porQue": "Los memes con escalada hacia algo serio son virales porque entretienen primero, alertan después. La audiencia comparte el humor y se queda con el miedo serio."
+            },
+            "hook": {
+                  "visual": "Plano cerrado contigo. Cada miedo aparece en pantalla con cara reaccionando (puede ser meme, expresión exagerada). El último (miedo del rubro) viene con cambio de tono.",
+                  "textual": "¿Qué te da más miedo?\n• [Miedo gracioso 1]\n• [Miedo gracioso 2]\n• [Miedo PROFUNDO del rubro]\n\nVariantes según rubro:\n• Marketing: 'que tu negocio quiebre por no saber vender'\n• Salud: 'enfermarte por no haber prevenido a tiempo'\n• Educación: 'que tus hijos crezcan sin habilidades clave'",
+                  "verbal": "¿Qué te da más miedo? (Lista los miedos graciosos primero, todos seguidos). O esto otro… (cambio de tono, mención del miedo serio del rubro)."
+            },
+            "adapt": [
+                  "¿Cuál es el miedo PROFUNDO de tu audiencia que sucedería si no aplica tu metodología?",
+                  "¿Cuáles son 2-3 miedos graciosos que sirvan para abrir el video?",
+                  "¿Cómo cambias el tono del miedo gracioso al serio? (cambio de cara, música, ritmo)",
+                  "¿El miedo serio es REAL en tu rubro? (no exageres para vender)"
+            ],
+            "prompt": "Eres mi guionista de FÓRMULA 100K. Voy a crear un Reel con estructura \"miedos graciosos + miedo profundo del rubro\" estilo meme inspirado en este referente viral.\n\nMI NICHO: [describe tu nicho]\nMI AUDIENCIA: [cliente ideal]\nMI VEHÍCULO ÚNICO: [método/oferta principal]\n\nDÁME:\n1. 2-3 miedos graciosos universales para abrir el video\n2. El miedo PROFUNDO real de mi audiencia (lo que sucede si no aplican mi método)\n3. Hook visual: cómo se ve la transición de tono\n4. Hook verbal: cómo se enuncian los miedos graciosos primero y cómo cambia para el serio\n5. CTA: invitación a evitar ese miedo aprendiendo tu metodología\n\nREGLAS:\n- El miedo profundo debe ser REAL (no exageres para vender)\n- Los miedos graciosos deben ser universales (que cualquier persona conecte)\n- Cero alarmismo agresivo — verdad incómoda con humor previo\n- Español neutro, NO argentino"
+      }
+];
+
+    function App() {
+      const [view, setView] = useState("calendar");
+      const [selectedDay, setSelectedDay] = useState(null);
+      const [copiedKey, setCopiedKey] = useState(null);
+
+      const handleCopy = (text, key) => {
+        navigator.clipboard.writeText(text).then(() => {
+          setCopiedKey(key);
+          setTimeout(() => setCopiedKey(null), 2000);
+        });
+      };
+
+      const openDay = (n) => { setSelectedDay(n - 1); setView("day"); window.scrollTo({top: 0, behavior: "smooth"}); };
+      const nextDay = () => { if (selectedDay < 6) { setSelectedDay(selectedDay + 1); window.scrollTo({top: 0, behavior: "smooth"}); } };
+      const prevDay = () => { if (selectedDay > 0) { setSelectedDay(selectedDay - 1); window.scrollTo({top: 0, behavior: "smooth"}); } };
+
+      const markdown = useMemo(() => {
+        let md = `# ROAD TO 1K · ${WEEK_TITLE.toUpperCase()} · FÓRMULA 100K\n\n`;
+        md += `Calendario de 7 días con análisis viral y prompts de guion para cada día.\n\n`;
+        DAYS.forEach(d => {
+          md += `\n## DÍA ${d.n} — ${d.day} · ${d.format} · ${d.visualForm}\n\n`;
+          md += `**Idea:** ${d.ideaTitle}\n\n**Resumen:** ${d.summary}\n\n**Referente:** ${d.refUrl}\n\n`;
+          md += `### Diagnóstico viral\n- **Forma Visual:** ${d.diag.formaVisual}\n  - ${d.diag.formaWhy}\n`;
+          md += `- **Sistema E.N.C.:**\n  - Estímulo: ${d.diag.enc.estimulo}\n  - Carga: ${d.diag.enc.carga}\n  - Contextualización: ${d.diag.enc.contexto}\n`;
+          md += `- **Gatillo:** ${d.diag.gatillo}\n- **Por qué viraliza:** ${d.diag.porQue}\n\n`;
+          md += `### Pauta del gancho\n- **Visual:** ${d.hook.visual}\n- **Textual:** ${d.hook.textual}\n- **Verbal:** ${d.hook.verbal}\n\n`;
+          md += `### Adaptación\n`;
+          d.adapt.forEach((q, i) => { md += `${i + 1}. ${q}\n`; });
+          md += `\n### Prompt de guion\n\n\`\`\`\n${d.prompt}\n\`\`\`\n\n---\n`;
+        });
+        return md;
+      }, []);
+
+      const dayData = selectedDay !== null ? DAYS[selectedDay] : null;
+      const inDay = view === "day" && dayData;
+
+      // Background dinámico: vista detalle se diferencia visualmente
+      const bgClass = inDay
+        ? "bg-gradient-to-br from-slate-100 via-blue-50 to-slate-100 min-h-screen"
+        : "bg-gray-50 min-h-screen";
+
+      return (
+        <div className={bgClass}>
+          {/* HEADER — gradient azul */}
+          <header className="text-white shadow-lg no-print" style={{background: inDay
+              ? "linear-gradient(135deg,#0c4a6e,#0369a1,#0284c7)"
+              : "linear-gradient(135deg,#1e40af,#0ea5e9,#22d3ee)"}}>
+            <div className="max-w-5xl mx-auto px-4 py-5">
+              <div className="flex items-start justify-between gap-3 flex-wrap">
+                <div className="min-w-0">
+                  <p className="text-xs font-semibold tracking-widest opacity-80 uppercase">@AndreaEstratega · FÓRMULA 100K</p>
+                  <h1 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight">Road to 1K · {WEEK_TITLE}</h1>
+                  <p className="text-xs sm:text-sm opacity-90 mt-1">{WEEK_SUBTITLE}</p>
+                </div>
+                <div className="flex gap-2 flex-shrink-0">
+                  <button onClick={() => handleCopy(markdown, "header")} className="bg-white/20 hover:bg-white/30 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition">
+                    {copiedKey === "header" ? "✓ Copiado" : "🤖 Copiar para IA"}
+                  </button>
+                  <button onClick={() => window.print()} className="bg-white/20 hover:bg-white/30 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition">
+                    📄 PDF
+                  </button>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          {/* NAV */}
+          <nav className="bg-white border-b border-gray-200 sticky top-0 z-20 shadow-sm no-print">
+            <div className="max-w-5xl mx-auto px-4 flex overflow-x-auto">
+              {[
+                { id: "calendar", icon: "📅", label: "Calendario" },
+                { id: "guide", icon: "🧭", label: "Cómo usar" },
+                { id: "prompts", icon: "🤖", label: "Prompts maestros" }
+              ].map(t => (
+                <button key={t.id} onClick={() => { setView(t.id); setSelectedDay(null); }}
+                  className={`flex items-center gap-2 px-5 py-3 text-sm font-semibold border-b-2 transition whitespace-nowrap ${view === t.id || (view === "day" && t.id === "calendar") ? "border-blue-600 text-blue-700" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"}`}>
+                  {t.icon} {t.label}
+                </button>
+              ))}
+            </div>
+          </nav>
+
+          <main className="max-w-5xl mx-auto px-4 py-6">
+
+            {/* ============= VISTA CALENDARIO (TIPO AGENDA SEMANAL) ============= */}
+            {view === "calendar" && (
+              <div>
+                <div className="bg-gradient-to-r from-blue-50 to-sky-50 border border-blue-200 rounded-2xl p-5 mb-6">
+                  <h2 className="text-sm font-bold text-blue-800 uppercase tracking-wider mb-1">{WEEK_TITLE} — 7 ideas virales · Vista Calendario</h2>
+                  <p className="text-sm text-gray-700 leading-relaxed">Agenda semanal con tu calendario de contenido. Cada día tiene una ficha completa: diagnóstico viral del referente, pauta del gancho, adaptación a TU nicho y un prompt listo para generar tu guion. Toca un día para abrir su ficha.</p>
+                </div>
+
+                {/* Encabezado tipo calendario con días */}
+                <div className="bg-white rounded-t-2xl border border-blue-200 overflow-hidden">
+                  <div className="grid grid-cols-7 bg-gradient-to-r from-blue-700 to-sky-600 text-white">
+                    {DAYS.map(d => (
+                      <div key={d.n} className="px-2 py-2 text-center border-r border-white/20 last:border-r-0">
+                        <div className="text-[10px] sm:text-xs font-black tracking-wider">{d.short}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Grid de 7 columnas en lg, stack en mobile */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 divide-y lg:divide-y-0 lg:divide-x divide-blue-100">
+                    {DAYS.map(d => (
+                      <button key={d.n} onClick={() => openDay(d.n)}
+                        className="text-left bg-white hover:bg-blue-50 transition p-3 flex flex-col gap-2 min-h-[180px] group">
+                        <div className="flex items-center justify-between">
+                          <div className="flex flex-col">
+                            <span className="text-[10px] font-black text-blue-600 tracking-wider lg:hidden">{d.day}</span>
+                            <span className="text-3xl font-black text-blue-700 leading-none group-hover:text-blue-900">{d.n}</span>
+                          </div>
+                          <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full ${d.format === "CARRUSEL" ? "bg-amber-100 text-amber-700" : "bg-blue-100 text-blue-700"}`}>{d.format}</span>
+                        </div>
+                        <div className="flex-1">
+                          <div className="text-xs font-black text-gray-900 leading-tight mb-1.5">{d.ideaTitle}</div>
+                          <div className="text-[10px] text-gray-500 leading-snug">{d.visualForm}</div>
+                        </div>
+                        <div className="text-[10px] text-blue-600 font-bold opacity-0 group-hover:opacity-100 transition">Abrir ficha →</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Vista lista alternativa para mobile */}
+                <div className="mt-6 lg:hidden">
+                  <div className="text-xs font-black text-gray-500 uppercase tracking-wider mb-3">Vista lista (para móvil)</div>
+                  <div className="space-y-2">
+                    {DAYS.map(d => (
+                      <button key={d.n} onClick={() => openDay(d.n)}
+                        className="w-full text-left bg-white border border-gray-200 hover:border-blue-400 rounded-xl p-3 transition flex items-center gap-3">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-700 to-sky-500 rounded-xl flex flex-col items-center justify-center text-white flex-shrink-0">
+                          <div className="text-[8px] font-bold">{d.short}</div>
+                          <div className="text-lg font-black leading-none">{d.n}</div>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-0.5">
+                            <span className="text-xs font-black text-blue-700">{d.day}</span>
+                            <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full ${d.format === "CARRUSEL" ? "bg-amber-100 text-amber-700" : "bg-blue-100 text-blue-700"}`}>{d.format}</span>
+                          </div>
+                          <div className="text-sm font-bold text-gray-900 leading-tight truncate">{d.ideaTitle}</div>
+                        </div>
+                        <span className="text-blue-400 text-xl flex-shrink-0">›</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* ============= VISTA DÍA (FICHA COMPLETA) — DIFERENCIADA ============= */}
+            {view === "day" && dayData && (
+              <div>
+                {/* Breadcrumb / volver */}
+                <button onClick={() => { setView("calendar"); setSelectedDay(null); }} className="text-blue-700 hover:text-blue-900 text-sm font-semibold mb-4 flex items-center gap-1">
+                  ← Volver al calendario
+                </button>
+
+                {/* HERO del día — diferenciador visual fuerte */}
+                <div className="rounded-2xl overflow-hidden shadow-xl mb-6 border-2 border-blue-300">
+                  <div className="text-white p-5 sm:p-6" style={{background:"linear-gradient(135deg,#0c4a6e,#0369a1,#0284c7,#38bdf8)"}}>
+                    <div className="flex items-start justify-between gap-3 flex-wrap">
+                      <div className="flex items-center gap-4">
+                        <div className="bg-white/20 backdrop-blur rounded-2xl px-4 py-3 text-center min-w-[80px]">
+                          <div className="text-[10px] font-black tracking-widest opacity-90">DÍA</div>
+                          <div className="text-4xl font-black leading-none">{dayData.n}</div>
+                          <div className="text-[10px] font-bold opacity-90 mt-1">{dayData.short}</div>
+                        </div>
+                        <div className="min-w-0">
+                          <div className="text-xs font-black tracking-wider opacity-90 mb-1">{dayData.day}</div>
+                          <h2 className="text-xl sm:text-2xl font-black leading-tight">{dayData.ideaTitle}</h2>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-1 items-end flex-shrink-0">
+                        <span className={`text-[10px] font-bold px-2 py-1 rounded-full ${dayData.format === "CARRUSEL" ? "bg-amber-300 text-amber-900" : "bg-white/30 text-white"}`}>{dayData.format}</span>
+                        <span className="text-[10px] font-bold px-2 py-1 rounded-full bg-white/20 text-white">{dayData.visualForm}</span>
+                      </div>
+                    </div>
+                    <p className="text-sm leading-relaxed mt-4 opacity-95">{dayData.summary}</p>
+                  </div>
+                </div>
+
+                {/* SECCIÓN 1: Diagnóstico viral */}
+                <section className="mb-6">
+                  <h3 className="text-sm font-black text-blue-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <span className="w-7 h-7 bg-blue-700 text-white rounded-lg flex items-center justify-center text-xs">1</span>
+                    Diagnóstico viral del referente
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="bg-white border border-blue-200 rounded-2xl p-4 shadow-sm">
+                      <div className="text-xs font-black text-gray-500 uppercase tracking-wider mb-1">Forma Visual</div>
+                      <div className="text-sm font-bold text-gray-900 mb-1">{dayData.diag.formaVisual}</div>
+                      <p className="text-xs text-gray-600 leading-relaxed">{dayData.diag.formaWhy}</p>
+                    </div>
+                    <div className="bg-white border border-blue-200 rounded-2xl p-4 shadow-sm">
+                      <div className="text-xs font-black text-gray-500 uppercase tracking-wider mb-3">Sistema E.N.C.</div>
+                      <div className="grid sm:grid-cols-3 gap-3">
+                        <div className="bg-blue-50 border border-blue-200 rounded-xl p-3">
+                          <div className="text-[10px] font-black text-blue-700 uppercase mb-1">E · Estímulo Núcleo</div>
+                          <p className="text-xs text-gray-700 leading-snug">{dayData.diag.enc.estimulo}</p>
+                        </div>
+                        <div className="bg-sky-50 border border-sky-200 rounded-xl p-3">
+                          <div className="text-[10px] font-black text-sky-700 uppercase mb-1">N · Nivel de Carga</div>
+                          <p className="text-xs text-gray-700 leading-snug">{dayData.diag.enc.carga}</p>
+                        </div>
+                        <div className="bg-cyan-50 border border-cyan-200 rounded-xl p-3">
+                          <div className="text-[10px] font-black text-cyan-700 uppercase mb-1">C · Contextualización</div>
+                          <p className="text-xs text-gray-700 leading-snug">{dayData.diag.enc.contexto}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-white border border-blue-200 rounded-2xl p-4 shadow-sm">
+                      <div className="text-xs font-black text-gray-500 uppercase tracking-wider mb-1">Gatillo de Viralidad</div>
+                      <div className="text-sm font-bold text-gray-900">{dayData.diag.gatillo}</div>
+                    </div>
+                    <div className="bg-gradient-to-r from-blue-700 to-sky-500 text-white rounded-2xl p-4">
+                      <div className="text-xs font-black uppercase tracking-wider opacity-90 mb-1">Por qué viraliza</div>
+                      <p className="text-sm leading-relaxed">{dayData.diag.porQue}</p>
+                    </div>
+                    <a href={dayData.refUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-blue-700 hover:text-blue-900 text-sm font-semibold">
+                      🎬 Ver el {dayData.refLabel} original →
+                    </a>
+                  </div>
+                </section>
+
+                {/* SECCIÓN 2: Pauta del gancho */}
+                <section className="mb-6">
+                  <h3 className="text-sm font-black text-blue-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <span className="w-7 h-7 bg-blue-700 text-white rounded-lg flex items-center justify-center text-xs">2</span>
+                    Pauta del gancho
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="bg-white border border-blue-200 rounded-2xl p-4 shadow-sm">
+                      <div className="text-xs font-black text-blue-700 uppercase tracking-wider mb-2">🎥 Gancho Visual — qué grabar en el segundo 1</div>
+                      <p className="text-sm text-gray-700 leading-relaxed">{dayData.hook.visual}</p>
+                    </div>
+                    <div className="bg-white border border-blue-200 rounded-2xl p-4 shadow-sm">
+                      <div className="flex items-center justify-between mb-2 gap-2 flex-wrap">
+                        <div className="text-xs font-black text-blue-700 uppercase tracking-wider">📝 Gancho Textual — fórmula copy-paste</div>
+                        <button onClick={() => handleCopy(dayData.hook.textual, "textual-" + dayData.n)} className="text-[10px] font-bold bg-blue-100 hover:bg-blue-200 text-blue-700 px-2 py-1 rounded-md transition">
+                          {copiedKey === "textual-" + dayData.n ? "✓ Copiado" : "📋 Copiar"}
+                        </button>
+                      </div>
+                      <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">{dayData.hook.textual}</p>
+                    </div>
+                    <div className="bg-white border border-blue-200 rounded-2xl p-4 shadow-sm">
+                      <div className="text-xs font-black text-blue-700 uppercase tracking-wider mb-2">🎙️ Gancho Verbal — qué decir en voz alta</div>
+                      <p className="text-sm text-gray-700 leading-relaxed">{dayData.hook.verbal}</p>
+                    </div>
+                  </div>
+                </section>
+
+                {/* SECCIÓN 3: Adaptación */}
+                <section className="mb-6">
+                  <h3 className="text-sm font-black text-blue-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <span className="w-7 h-7 bg-blue-700 text-white rounded-lg flex items-center justify-center text-xs">3</span>
+                    Adaptación a tu nicho
+                  </h3>
+                  <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 mb-3">
+                    <div className="text-xs font-black text-amber-700 uppercase tracking-wider mb-1">⚠ Antes de grabar — responde estas preguntas</div>
+                    <p className="text-xs text-gray-700 leading-relaxed">No copies la idea tal cual. Tradúcela a tu negocio respondiendo cada pregunta con detalle. Si no tienes respuesta clara, ese día no lo grabas — primero piensas.</p>
+                  </div>
+                  <div className="space-y-2">
+                    {dayData.adapt.map((q, i) => (
+                      <div key={i} className="bg-white border border-blue-200 rounded-xl p-3 shadow-sm flex gap-3">
+                        <div className="w-7 h-7 bg-gradient-to-br from-blue-700 to-sky-500 rounded-lg flex items-center justify-center text-white font-black text-xs flex-shrink-0">{i + 1}</div>
+                        <p className="text-sm text-gray-700 leading-relaxed">{q}</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+
+                {/* SECCIÓN 4: Prompt */}
+                <section className="mb-6">
+                  <h3 className="text-sm font-black text-blue-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <span className="w-7 h-7 bg-blue-700 text-white rounded-lg flex items-center justify-center text-xs">4</span>
+                    Prompt de guion — pega esto en Claude o ChatGPT
+                  </h3>
+                  <div className="bg-slate-900 rounded-2xl p-4 relative">
+                    <button onClick={() => handleCopy(dayData.prompt, "prompt-" + dayData.n)} className="absolute top-3 right-3 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition">
+                      {copiedKey === "prompt-" + dayData.n ? "✓ Copiado" : "📋 Copiar prompt"}
+                    </button>
+                    <pre className="text-xs text-gray-100 leading-relaxed whitespace-pre-wrap font-mono pr-20">{dayData.prompt}</pre>
+                  </div>
+                  <div className="bg-blue-50 border border-blue-200 rounded-2xl p-3 mt-3">
+                    <div className="text-xs font-black text-blue-700 uppercase mb-1">💡 Cómo usar este prompt</div>
+                    <ol className="text-xs text-gray-700 space-y-0.5 list-decimal list-inside">
+                      <li>Copia el prompt</li>
+                      <li>Reemplaza los corchetes [...] con tu data real (nicho, audiencia, vehículo único)</li>
+                      <li>Pégalo en Claude o ChatGPT</li>
+                      <li>Cuando recibas el guion, ejecuta la skill <strong>guionizacion-humanizada</strong> para que suene como tú</li>
+                    </ol>
+                  </div>
+                </section>
+
+                {/* Navegación */}
+                <div className="flex items-center gap-3 mt-8">
+                  <button onClick={prevDay} disabled={selectedDay === 0}
+                    className={`flex-1 py-3 rounded-xl text-sm font-bold transition ${selectedDay === 0 ? "bg-gray-100 text-gray-300 cursor-not-allowed" : "bg-white border border-blue-200 hover:bg-blue-50 text-blue-700"}`}>
+                    ← Día anterior
+                  </button>
+                  <button onClick={() => { setView("calendar"); setSelectedDay(null); }} className="px-4 py-3 rounded-xl bg-white border border-blue-200 hover:bg-blue-50 text-blue-700 text-sm transition">
+                    📅
+                  </button>
+                  <button onClick={nextDay} disabled={selectedDay === 6}
+                    className={`flex-1 py-3 rounded-xl text-sm font-bold transition text-white ${selectedDay === 6 ? "bg-gray-300 cursor-not-allowed" : ""}`}
+                    style={selectedDay !== 6 ? {background:"linear-gradient(135deg,#1e40af,#0ea5e9)"} : {}}>
+                    Día siguiente →
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* ============= VISTA GUÍA ============= */}
+            {view === "guide" && (
+              <div>
+                <div className="bg-gradient-to-r from-blue-50 to-sky-50 border border-blue-200 rounded-2xl p-5 mb-6">
+                  <h2 className="text-sm font-bold text-blue-800 uppercase tracking-wider mb-1">Cómo usar este artifact</h2>
+                  <p className="text-sm text-gray-700 leading-relaxed">Esta no es una lista de ideas — es un sistema. Cada día tiene 4 secciones que te llevan de la inspiración al guion sin perder calidad. Aquí te explico cada parte.</p>
+                </div>
+
+                <div className="bg-white border border-gray-200 rounded-2xl p-5 mb-5">
+                  <h3 className="text-base font-black text-gray-900 mb-3">Las 4 secciones de cada día</h3>
+                  <div className="space-y-3">
+                    {[
+                      { n: 1, t: "Diagnóstico viral del referente", d: "Por qué el video original funcionó. Aplicamos la lente F100K: Forma Visual, Sistema E.N.C. y Gatillo de Viralidad. Esto te enseña a LEER videos virales, no solo a copiarlos." },
+                      { n: 2, t: "Pauta del gancho", d: "Qué grabar en el segundo 1 (visual), qué texto sobreponer (textual) y qué decir en voz alta (verbal). Las 3 capas del gancho según F100K." },
+                      { n: 3, t: "Adaptación a tu nicho", d: "3-4 preguntas para traducir la idea a tu negocio específico. Si no las respondes con claridad, no grabes ese día — primero piensa." },
+                      { n: 4, t: "Prompt de guion", d: "Un prompt parametrizado listo para Claude o ChatGPT. Reemplazas los corchetes con tu data y obtienes el guion. Después lo humanizas con tu voz." }
+                    ].map(s => (
+                      <div key={s.n} className="flex gap-3">
+                        <div className="w-8 h-8 bg-gradient-to-br from-blue-700 to-sky-500 rounded-lg flex items-center justify-center text-white font-black text-xs flex-shrink-0">{s.n}</div>
+                        <div>
+                          <div className="text-sm font-black text-gray-900">{s.t}</div>
+                          <p className="text-xs text-gray-600 leading-relaxed mt-0.5">{s.d}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="bg-white border border-gray-200 rounded-2xl p-5 mb-5">
+                  <h3 className="text-base font-black text-gray-900 mb-3">Glosario rápido — Sistema E.N.C.</h3>
+                  <div className="grid sm:grid-cols-3 gap-3">
+                    <div className="bg-blue-50 border border-blue-200 rounded-xl p-3">
+                      <div className="text-xs font-black text-blue-700 uppercase mb-1">E · Estímulo Núcleo</div>
+                      <p className="text-xs text-gray-700 leading-snug">El elemento visual o auditivo que rompe el scroll. Lo que el cerebro detecta en menos de 0.5 segundos.</p>
+                    </div>
+                    <div className="bg-sky-50 border border-sky-200 rounded-xl p-3">
+                      <div className="text-xs font-black text-sky-700 uppercase mb-1">N · Nivel de Carga</div>
+                      <p className="text-xs text-gray-700 leading-snug">Cuánto esfuerzo cognitivo cuesta procesar el primer segundo. Carga BAJA = retención alta. Carga ALTA = scroll.</p>
+                    </div>
+                    <div className="bg-cyan-50 border border-cyan-200 rounded-xl p-3">
+                      <div className="text-xs font-black text-cyan-700 uppercase mb-1">C · Contextualización</div>
+                      <p className="text-xs text-gray-700 leading-snug">Qué le dice al cerebro 'esto vale la pena verlo entero'. La promesa implícita o el patrón que se anticipa.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white border border-gray-200 rounded-2xl p-5 mb-5">
+                  <h3 className="text-base font-black text-gray-900 mb-3">Glosario rápido — Formas Visuales (F1-F5)</h3>
+                  <div className="space-y-2">
+                    {[
+                      { f: "F1", t: "División visual", d: "Pantalla dividida, versus, antes/después. El cerebro compara automáticamente." },
+                      { f: "F2", t: "Infografía / texto-imagen", d: "Carruseles, slides, posters. Educativo y guardable." },
+                      { f: "F3", t: "Frente a cámara con elementos", d: "Persona + objetos físicos demostrando algo. Estilo clase práctica." },
+                      { f: "F4", t: "Texto sobre superficie", d: "Pizarra, libreta, papelote. Texto gigante físico que rompe el patrón digital." },
+                      { f: "F5", t: "Reacción / Sketch", d: "Persona reaccionando, clones, personajes. Storytelling visual." }
+                    ].map(f => (
+                      <div key={f.f} className="flex gap-3 items-start">
+                        <span className="text-[10px] font-black bg-blue-100 text-blue-700 px-2 py-0.5 rounded-md flex-shrink-0">{f.f}</span>
+                        <div className="flex-1 min-w-0">
+                          <div className="text-sm font-bold text-gray-900">{f.t}</div>
+                          <p className="text-xs text-gray-600 leading-snug">{f.d}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 mb-5">
+                  <div className="text-xs font-black text-amber-700 uppercase tracking-wider mb-2">⚠ Reglas de oro</div>
+                  <ul className="text-sm text-gray-700 space-y-1.5">
+                    <li className="flex gap-2"><span className="text-amber-600 font-black">·</span>No copies la idea tal cual — adapta a tu nicho respondiendo las preguntas de adaptación primero.</li>
+                    <li className="flex gap-2"><span className="text-amber-600 font-black">·</span>Si no tienes claras las respuestas, no grabes — pierde un día de calendario antes de subir algo flojo.</li>
+                    <li className="flex gap-2"><span className="text-amber-600 font-black">·</span>El prompt de guion no es el guion final — humaniza con tu voz después (skill guionizacion-humanizada).</li>
+                    <li className="flex gap-2"><span className="text-amber-600 font-black">·</span>Mira el referente original ANTES de grabar — entender el ritmo del video que viralizó es lo que te ahorra horas.</li>
+                  </ul>
+                </div>
+              </div>
+            )}
+
+            {/* ============= VISTA PROMPTS MAESTROS ============= */}
+            {view === "prompts" && (
+              <div>
+                <div className="bg-gradient-to-r from-blue-50 to-sky-50 border border-blue-200 rounded-2xl p-5 mb-6">
+                  <h2 className="text-sm font-bold text-blue-800 uppercase tracking-wider mb-1">Prompts maestros — {WEEK_TITLE}</h2>
+                  <p className="text-sm text-gray-700 leading-relaxed">Los 7 prompts de guion juntos para acceso rápido. Reemplaza los corchetes con tu data y pégalos en Claude o ChatGPT.</p>
+                </div>
+
+                <div className="space-y-4">
+                  {DAYS.map(d => (
+                    <div key={d.n} className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+                      <div className="bg-gradient-to-r from-blue-700 to-sky-500 px-4 py-3 flex items-center justify-between flex-wrap gap-2">
+                        <div className="text-white">
+                          <div className="text-[10px] font-black opacity-90 tracking-wider">DÍA {d.n} · {d.day}</div>
+                          <div className="text-sm font-black">{d.ideaTitle}</div>
+                        </div>
+                        <button onClick={() => handleCopy(d.prompt, "master-" + d.n)} className="bg-white/20 hover:bg-white/30 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition">
+                          {copiedKey === "master-" + d.n ? "✓ Copiado" : "📋 Copiar"}
+                        </button>
+                      </div>
+                      <div className="bg-slate-900 p-4">
+                        <pre className="text-xs text-gray-100 leading-relaxed whitespace-pre-wrap font-mono">{d.prompt}</pre>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+          </main>
+
+          <footer className="border-t border-gray-200 bg-white mt-10 py-5 text-center text-xs text-gray-400 no-print">
+            Creado por <span className="font-bold text-blue-700">@AndreaEstratega</span>{" · "}
+            Comunidad <span className="font-semibold">FÓRMULA 100K</span>{" · "}
+            <span className="opacity-60">Reto Road to 1K · {WEEK_TITLE} de 6</span>
+          </footer>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>

@@ -56,6 +56,9 @@ export default async function Home() {
             <PopLink href="/ranking" variant="ghost" size="lg">
               🏆 Ver ranking
             </PopLink>
+            <PopLink href="/calendarios" variant="accent" size="lg">
+              📅 Ver calendarios
+            </PopLink>
           </div>
 
           {/* Fechas clave en formato chip */}
@@ -273,6 +276,9 @@ export default async function Home() {
             </PopLink>
             <PopLink href="/ranking" variant="ghost" size="lg">
               Ver ranking en vivo
+            </PopLink>
+            <PopLink href="/calendarios" variant="accent" size="lg">
+              📅 Ver calendarios
             </PopLink>
           </div>
         </div>
