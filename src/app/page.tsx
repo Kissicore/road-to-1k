@@ -1,5 +1,6 @@
 import { getChallenge, type Challenge } from '@/lib/utils/challenge'
 import { PopLink, FloatingDecor, GradientCard, StatTile, DayBadge } from '@/components/ui'
+import { TodayBanner } from '@/components/today-banner'
 
 // Datos oficiales del reto (BASES — 11 de mayo). Sirven como fallback si la
 // configuración en Supabase aún no está publicada.
@@ -24,6 +25,8 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-ink)] overflow-x-hidden">
+      <TodayBanner startDate={challenge.start_date} totalDays={total} />
+
       {/* ── Hero ── */}
       <section className="relative flex flex-col items-center justify-center px-6 pt-24 pb-20 text-center min-h-[88vh] overflow-hidden">
         <FloatingDecor emojis={['🎬', '🔥', '⚡', '🏆', '✨', '🚀', '💸', '📈']} />
