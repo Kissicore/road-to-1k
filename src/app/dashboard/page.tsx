@@ -17,7 +17,7 @@ export default async function DashboardHome() {
     supabase.from('participants').select('full_name').eq('id', user.id).maybeSingle(),
     supabase
       .from('daily_submissions')
-      .select('day_number, status, analysis_status, score:analysis_result->score_total')
+      .select('day_number, status')
       .eq('participant_id', user.id)
       .order('day_number'),
     supabase
@@ -115,7 +115,7 @@ export default async function DashboardHome() {
 
       {/* Recent submissions */}
       <section className="space-y-4">
-        <h2 className="font-display font-bold text-lg text-[var(--color-ink)]">Últimos análisis</h2>
+        <h2 className="font-display font-bold text-lg text-[var(--color-ink)]">Tus últimos Reels</h2>
         <div className="card-pop divide-y divide-[var(--color-border)]">
           {(subs ?? []).length === 0 ? (
             <div className="p-8 text-center space-y-2">
@@ -129,10 +129,6 @@ export default async function DashboardHome() {
                 <span className="font-display font-black text-[var(--color-ink)]">Día {s.day_number}</span>
                 <div className="flex items-center gap-2">
                   <StatusPill state={s.status === 'valid' ? 'success' : s.status === 'pending_review' ? 'warn' : 'danger'} label={s.status} />
-                  <StatusPill state={s.analysis_status === 'done' ? 'success' : s.analysis_status === 'running' ? 'info' : 'muted'} label={s.analysis_status} />
-                  {typeof s.score === 'number' && (
-                    <span className="font-display font-black text-[var(--color-warning)]">{s.score}/100</span>
-                  )}
                 </div>
               </div>
             ))
