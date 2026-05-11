@@ -15,7 +15,7 @@ export default async function SubirPage() {
   const { data: existing } = todayDay
     ? await supabase
         .from('daily_submissions')
-        .select('id, reel_url, hook_screenshot_path, observations')
+        .select('id, reel_url, observations')
         .eq('participant_id', user.id)
         .eq('day_number', todayDay)
         .maybeSingle()
@@ -28,7 +28,7 @@ export default async function SubirPage() {
         title={todayDay ? `Subir Reel · Día ${todayDay}` : 'El reto aún no inicia'}
         subtitle={
           todayDay
-            ? 'Pega el link del Reel y adjunta una captura del primer segundo. El análisis llega en segundos.'
+            ? 'Pega el link del Reel publicado para registrar tu día.'
             : `Vuelve el ${challenge.start_date}.`
         }
       />
