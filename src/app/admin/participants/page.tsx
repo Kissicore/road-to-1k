@@ -8,7 +8,7 @@ export default async function AdminParticipants() {
   const supabase = await createClient()
   const { data: rows } = await supabase
     .from('participants')
-    .select('id, full_name, email, instagram_handle, rubro, followers_initial, followers_final, role, state, created_at')
+    .select('id, full_name, email, instagram_handle, rubro, followers_initial, followers_final, role, state, created_at, notes')
     .order('created_at', { ascending: false })
 
   return (

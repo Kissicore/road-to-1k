@@ -15,14 +15,26 @@ type Row = {
   role: 'participant' | 'admin'
   state: 'pending' | 'approved' | 'rejected'
   created_at: string
+  notes: string | null
 }
 
+const REVIEW_TAG = '[REVISAR]'
+
 export function ParticipantsTable({ initial }: { initial: Row[] }) {
-  const [rows, setRows] = useState<Row[]>(initial)
+  const sorted = [...initial].sort((a, b) => {
+    const aReview = a.notes?.startsWith(REVIEW_TAG) ? 0 : 1
+    const bReview = b.notes?.startsWith(REVIEW_TAG) ? 0 : 1
+    if (aReview !== bReview) return aReview - bReview
+    return b.created_at.localeCompare(a.created_at)
+  })
+  const [rows, setRows] = useState<Row[]>(sorted)
   const [savingId, setSavingId] = useState<string | null>(null)
+  const [errorId, setErrorId] = useState<{ id: string; msg: string } | null>(null)
+  const reviewCount = rows.filter(r => r.notes?.startsWith(REVIEW_TAG)).length
 
   async function patch(id: string, update: Partial<Row>) {
     setSavingId(id)
+    setErrorId(null)
     const supabase = createClient()
     const { data, error } = await supabase
       .from('participants')
@@ -31,12 +43,24 @@ export function ParticipantsTable({ initial }: { initial: Row[] }) {
       .select()
       .single()
     setSavingId(null)
-    if (!error && data) {
-      setRows((rs) => rs.map((r) => (r.id === id ? { ...r, ...data } as Row : r)))
+    if (error || !data) {
+      console.error('[participants] update failed', { id, update, error })
+      const msg = error
+        ? `${error.code ?? '?'} ${error.message}${error.details ? ' — ' + error.details : ''}${error.hint ? ' (hint: ' + error.hint + ')' : ''}`
+        : 'sin filas devueltas (revisa RLS)'
+      setErrorId({ id, msg })
+      return
     }
+    setRows((rs) => rs.map((r) => (r.id === id ? { ...r, ...data } as Row : r)))
   }
 
   return (
+    <div className="space-y-3">
+      {reviewCount > 0 && (
+        <div className="rounded-2xl bg-[var(--color-danger)]/10 border-2 border-[var(--color-danger)]/30 text-[var(--color-danger)] text-sm font-semibold px-4 py-3">
+          ⚠️ {reviewCount} {reviewCount === 1 ? 'participante necesita' : 'participantes necesitan'} revisión: completá su nombre y @IG manualmente.
+        </div>
+      )}
     <div className="card p-0 overflow-x-auto">
       <table className="w-full text-sm">
         <thead className="border-b border-border">
@@ -49,9 +73,14 @@ export function ParticipantsTable({ initial }: { initial: Row[] }) {
           </tr>
         </thead>
         <tbody className="divide-y divide-border">
-          {rows.map((r) => (
-            <tr key={r.id} className="hover:bg-surface-2 transition-colors">
-              <td className="px-3 py-2 font-semibold text-foreground whitespace-nowrap">{r.full_name}</td>
+          {rows.map((r) => {
+            const isReview = r.notes?.startsWith(REVIEW_TAG)
+            return (
+            <tr key={r.id} className={`hover:bg-surface-2 transition-colors ${isReview ? 'bg-[var(--color-danger)]/5' : ''}`}>
+              <td className="px-3 py-2 font-semibold text-foreground whitespace-nowrap">
+                {isReview && <span title="Revisar — inscripción incompleta" className="mr-1">⚠️</span>}
+                {r.full_name}
+              </td>
               <td className="px-3 py-2 text-muted">@{r.instagram_handle}</td>
               <td className="px-3 py-2 text-muted text-xs">{r.email}</td>
               <td className="px-3 py-2 text-muted">{r.rubro ?? '—'}</td>
@@ -91,14 +120,18 @@ export function ParticipantsTable({ initial }: { initial: Row[] }) {
               <td className="px-3 py-2 text-right text-xs text-muted">
                 {savingId === r.id ? (
                   <span className="text-primary-soft animate-pulse">guardando…</span>
+                ) : errorId?.id === r.id ? (
+                  <span className="text-red-400" title={errorId.msg}>error: {errorId.msg}</span>
                 ) : (
                   <StatusPill status={r.state} />
                 )}
               </td>
             </tr>
-          ))}
+            )
+          })}
         </tbody>
       </table>
+    </div>
     </div>
   )
 }
