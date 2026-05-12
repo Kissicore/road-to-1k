@@ -33,6 +33,9 @@ export default async function DashboardHome() {
   const streak = computeStreak(validSet, todayDay)
   const todayDone = todayDay ? validSet.has(todayDay) : false
   const firstName = (me?.full_name ?? '').split(' ')[0]
+  const missedDays = todayDay
+    ? Array.from({ length: todayDay - 1 }, (_, i) => i + 1).filter((d) => !validSet.has(d))
+    : []
 
   return (
     <main className="flex-1 px-6 py-10 max-w-5xl mx-auto w-full space-y-10 pb-24 sm:pb-10">
@@ -80,6 +83,35 @@ export default async function DashboardHome() {
         </div>
       )}
 
+      {/* Días atrasados — subida tardía */}
+      {missedDays.length > 0 && (
+        <div className="card-pop p-5 border-[var(--color-warning)]/40 space-y-3">
+          <div className="flex items-center gap-3">
+            <span className="text-3xl" aria-hidden>⏰</span>
+            <div>
+              <p className="font-display font-black text-[var(--color-warning)]">
+                Tenés {missedDays.length} {missedDays.length === 1 ? 'día atrasado' : 'días atrasados'}
+              </p>
+              <p className="text-sm text-[var(--color-ink-3)]">
+                Si ya publicaste el Reel en su fecha, registralo ahora.
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {missedDays.slice(0, 14).map((d) => (
+              <PopLink
+                key={d}
+                href={`/dashboard/subir?day=${d}`}
+                variant="ghost"
+                size="sm"
+              >
+                Día {d}
+              </PopLink>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Stats */}
       <section className="grid sm:grid-cols-3 gap-4">
         <StatTile label="Días registrados" value={`${validDays}/${challenge.total_days}`} accent="primary" />
@@ -107,7 +139,9 @@ export default async function DashboardHome() {
                 : d < todayDay
                 ? 'missed'
                 : 'upcoming'
-              return <DayBadge key={d} day={d} state={state} />
+              // Días pasados sin reel quedan clickeables para subida tardía.
+              const href = state === 'missed' ? `/dashboard/subir?day=${d}` : undefined
+              return <DayBadge key={d} day={d} state={state} href={href} />
             })}
           </div>
         </div>

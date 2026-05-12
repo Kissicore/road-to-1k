@@ -116,9 +116,11 @@ export function StatTile({
 export function DayBadge({
   day,
   state = 'upcoming',
+  href,
 }: {
   day: number
   state?: 'done' | 'today' | 'upcoming' | 'missed'
+  href?: string
 }) {
   const styles: Record<string, string> = {
     done: 'bg-[var(--color-success)] text-[var(--color-bg)] border-[#9bc83a]',
@@ -126,14 +128,20 @@ export function DayBadge({
     upcoming: 'bg-[var(--color-surface)] text-[var(--color-ink-3)] border-[var(--color-border)]',
     missed: 'bg-[var(--color-danger)] text-white border-[#cc3636] opacity-80',
   } as const
+  const className = cn(
+    'w-9 h-9 rounded-lg border-2 flex items-center justify-center text-xs font-black font-display transition-all',
+    styles[state],
+    href && 'hover:scale-110 hover:opacity-100 cursor-pointer',
+  )
+  if (href) {
+    return (
+      <Link href={href} className={className} title={`Día ${day} — registrar`}>
+        {day}
+      </Link>
+    )
+  }
   return (
-    <div
-      className={cn(
-        'w-9 h-9 rounded-lg border-2 flex items-center justify-center text-xs font-black font-display transition-all',
-        styles[state]
-      )}
-      title={`Día ${day}`}
-    >
+    <div className={className} title={`Día ${day}`}>
       {day}
     </div>
   )

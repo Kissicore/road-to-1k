@@ -4,7 +4,11 @@ import { redirect } from 'next/navigation'
 import { SubirForm } from './subir-form'
 import { PageHeader } from '@/components/ui'
 
-export default async function SubirPage() {
+export default async function SubirPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ day?: string }>
+}) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
@@ -12,12 +16,24 @@ export default async function SubirPage() {
   const challenge = await getChallenge()
   const todayDay = dayNumberFor(new Date(), challenge.start_date, challenge.total_days)
 
-  const { data: existing } = todayDay
+  const { day: dayParam } = await searchParams
+  const requestedDay = dayParam ? Number.parseInt(dayParam, 10) : null
+  // Validamos: día en el rango del reto y no en el futuro (no se puede
+  // registrar antes de que llegue ese día).
+  const dayNumber =
+    todayDay && requestedDay && Number.isInteger(requestedDay)
+      && requestedDay >= 1 && requestedDay <= todayDay
+      ? requestedDay
+      : todayDay
+
+  const isLate = dayNumber != null && todayDay != null && dayNumber < todayDay
+
+  const { data: existing } = dayNumber
     ? await supabase
         .from('daily_submissions')
         .select('id, reel_url, observations')
         .eq('participant_id', user.id)
-        .eq('day_number', todayDay)
+        .eq('day_number', dayNumber)
         .maybeSingle()
     : { data: null }
 
@@ -25,15 +41,17 @@ export default async function SubirPage() {
     <main className="flex-1 px-6 py-10 max-w-2xl mx-auto w-full space-y-8 pb-24 sm:pb-10">
       <PageHeader
         eyebrow="Dashboard"
-        title={todayDay ? `Subir Reel · Día ${todayDay}` : 'El reto aún no inicia'}
+        title={dayNumber ? `Subir Reel · Día ${dayNumber}` : 'El reto aún no inicia'}
         subtitle={
-          todayDay
-            ? 'Pega el link del Reel publicado para registrar tu día.'
+          dayNumber
+            ? isLate
+              ? `Estás registrando un día atrasado. Pegá el link del Reel que publicaste el día ${dayNumber}.`
+              : 'Pega el link del Reel publicado para registrar tu día.'
             : `Vuelve el ${challenge.start_date}.`
         }
       />
-      {todayDay ? (
-        <SubirForm dayNumber={todayDay} existing={existing ?? null} />
+      {dayNumber ? (
+        <SubirForm dayNumber={dayNumber} existing={existing ?? null} isLate={isLate} />
       ) : (
         <p className="text-muted">Vuelve el {challenge.start_date}.</p>
       )}

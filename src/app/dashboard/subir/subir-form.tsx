@@ -12,8 +12,8 @@ type Existing = {
 } | null
 
 export function SubirForm({
-  dayNumber, existing,
-}: { dayNumber: number; existing: Existing }) {
+  dayNumber, existing, isLate = false,
+}: { dayNumber: number; existing: Existing; isLate?: boolean }) {
   const router = useRouter()
   const [reelUrl, setReelUrl] = useState(existing?.reel_url ?? '')
   const [observations, setObservations] = useState(existing?.observations ?? '')
@@ -47,6 +47,15 @@ export function SubirForm({
 
   return (
     <form onSubmit={onSubmit} className="space-y-5">
+      {isLate && (
+        <div className="rounded-2xl bg-[var(--color-warning)]/10 border-2 border-[var(--color-warning)]/40 p-4 text-sm text-[var(--color-warning)]">
+          <p className="font-bold mb-1">⏰ Día atrasado — Día {dayNumber}</p>
+          <p className="text-[var(--color-ink-2)]">
+            Asegurate que el Reel que pegues haya sido publicado el día {dayNumber} del reto. Andrea puede revisar la fecha del post desde admin.
+          </p>
+        </div>
+      )}
+
       {/* Reel URL */}
       <label className="block space-y-1.5">
         <span className="text-xs font-semibold uppercase tracking-wide text-muted">Link del Reel publicado</span>
