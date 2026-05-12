@@ -31,7 +31,7 @@ export default async function SubirPage({
   const { data: existing } = dayNumber
     ? await supabase
         .from('daily_submissions')
-        .select('id, reel_url, observations')
+        .select('id, reel_url, observations, correction_count')
         .eq('participant_id', user.id)
         .eq('day_number', dayNumber)
         .maybeSingle()

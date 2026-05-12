@@ -19,7 +19,7 @@ export default async function AdminSubmissionDetail({
     .select(`
       id, day_number, reel_url, hook_screenshot_path, observations,
       status, analysis_status, analysis_result, analysis_input_hash,
-      created_at, updated_at,
+      correction_count, created_at, updated_at,
       participant:participants!inner(id, full_name, instagram_handle, email)
     `)
     .eq('id', id)
@@ -63,6 +63,11 @@ export default async function AdminSubmissionDetail({
       <div className="flex flex-wrap items-center gap-2">
         <StatusPill status={row.status} />
         <StatusPill status={row.analysis_status} />
+        {typeof row.correction_count === 'number' && row.correction_count > 0 && (
+          <span className="px-3 py-1 rounded-full text-xs font-bold bg-[var(--color-warning)]/15 text-[var(--color-warning)] border border-[var(--color-warning)]/40">
+            ✏️ {row.correction_count}/2 correcciones usadas
+          </span>
+        )}
       </div>
 
       <SubmissionActions id={row.id} status={row.status} />
