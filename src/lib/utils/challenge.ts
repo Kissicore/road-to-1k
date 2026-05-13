@@ -23,9 +23,9 @@ export async function getChallenge(): Promise<Challenge> {
   return data as Challenge
 }
 
-export function dayNumberFor(date: Date, startISO: string, totalDays: number): number | null {
-  const start = new Date(startISO + 'T00:00:00Z')
-  const day = Math.floor((date.getTime() - start.getTime()) / 86_400_000) + 1
-  if (day < 1 || day > totalDays) return null
-  return day
-}
+export {
+  dayNumberFor,
+  CHALLENGE_TIMEZONE,
+  CHALLENGE_TZ_LABEL,
+  CHALLENGE_TZ_SHORT,
+} from './challenge-day'

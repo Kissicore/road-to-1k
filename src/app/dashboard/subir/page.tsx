@@ -1,5 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
-import { getChallenge, dayNumberFor } from '@/lib/utils/challenge'
+import { getChallenge, dayNumberFor, CHALLENGE_TZ_LABEL } from '@/lib/utils/challenge'
 import { redirect } from 'next/navigation'
 import { SubirForm } from './subir-form'
 import { PageHeader } from '@/components/ui'
@@ -51,7 +51,18 @@ export default async function SubirPage({
         }
       />
       {dayNumber ? (
-        <SubirForm dayNumber={dayNumber} existing={existing ?? null} isLate={isLate} />
+        <>
+          <div className="rounded-2xl bg-[var(--color-bg-2)] border border-[var(--color-border)] px-4 py-3 text-xs text-[var(--color-ink-3)] flex items-start gap-2">
+            <span className="text-base leading-none mt-0.5">🕒</span>
+            <span>
+              El día del reto cuenta hasta las{' '}
+              <strong className="text-[var(--color-ink-2)]">23:59 {CHALLENGE_TZ_LABEL}</strong>{' '}
+              (UTC-5). Después de esa hora el sistema pasa al día siguiente para todas las alumnas,
+              estés donde estés.
+            </span>
+          </div>
+          <SubirForm dayNumber={dayNumber} existing={existing ?? null} isLate={isLate} />
+        </>
       ) : (
         <p className="text-muted">Vuelve el {challenge.start_date}.</p>
       )}
