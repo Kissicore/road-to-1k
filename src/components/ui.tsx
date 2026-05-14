@@ -134,8 +134,9 @@ export function DayBadge({
     href && 'hover:scale-110 hover:opacity-100 cursor-pointer',
   )
   if (href) {
+    const action = state === 'done' ? 'corregir' : 'registrar'
     return (
-      <Link href={href} className={className} title={`Día ${day} — registrar`}>
+      <Link href={href} className={className} title={`Día ${day} — ${action}`}>
         {day}
       </Link>
     )

@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { getChallenge, dayNumberFor } from '@/lib/utils/challenge'
+import Link from 'next/link'
 import {
   PageHeader, PopLink, StatTile, DayBadge, StreakFlame, GradientCard, StatusPill,
 } from '@/components/ui'
@@ -139,8 +140,11 @@ export default async function DashboardHome() {
                 : d < todayDay
                 ? 'missed'
                 : 'upcoming'
-              // Días pasados sin reel quedan clickeables para subida tardía.
-              const href = state === 'missed' ? `/dashboard/subir?day=${d}` : undefined
+              // Días pasados sin reel: subida tardía. Días ya válidos: corrección.
+              const href =
+                state === 'missed' || state === 'done'
+                  ? `/dashboard/subir?day=${d}`
+                  : undefined
               return <DayBadge key={d} day={d} state={state} href={href} />
             })}
           </div>
@@ -159,12 +163,18 @@ export default async function DashboardHome() {
             </div>
           ) : (
             (subs ?? []).slice(-7).reverse().map((s) => (
-              <div key={s.day_number} className="flex items-center justify-between py-3 px-5 text-sm">
+              <Link
+                key={s.day_number}
+                href={`/dashboard/subir?day=${s.day_number}`}
+                className="flex items-center justify-between py-3 px-5 text-sm hover:bg-[var(--color-bg-2)] transition-colors"
+                title={`Día ${s.day_number} — corregir link`}
+              >
                 <span className="font-display font-black text-[var(--color-ink)]">Día {s.day_number}</span>
                 <div className="flex items-center gap-2">
                   <StatusPill state={s.status === 'valid' ? 'success' : s.status === 'pending_review' ? 'warn' : 'danger'} label={s.status} />
+                  <span className="text-xs text-[var(--color-ink-4)]">✏️</span>
                 </div>
-              </div>
+              </Link>
             ))
           )}
         </div>
