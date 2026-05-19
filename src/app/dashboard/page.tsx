@@ -4,6 +4,9 @@ import Link from 'next/link'
 import {
   PageHeader, PopLink, StatTile, DayBadge, StreakFlame, GradientCard, StatusPill,
 } from '@/components/ui'
+import { CheckpointMascot } from '@/components/checkpoint-mascot'
+
+const CHECKPOINT_DAYS = new Set([14, 28, 42])
 
 export default async function DashboardHome() {
   const supabase = await createClient()
@@ -128,6 +131,7 @@ export default async function DashboardHome() {
             <span className="text-xs font-bold text-[var(--color-ink-3)]">Hoy: día {todayDay}</span>
           )}
         </div>
+        <CheckpointMascot todayDay={todayDay} />
         <div className="card-pop p-5">
           <div className="flex flex-wrap gap-2">
             {Array.from({ length: challenge.total_days }, (_, i) => i + 1).map((d) => {
@@ -145,7 +149,15 @@ export default async function DashboardHome() {
                 state === 'missed' || state === 'done'
                   ? `/dashboard/subir?day=${d}`
                   : undefined
-              return <DayBadge key={d} day={d} state={state} href={href} />
+              return (
+                <DayBadge
+                  key={d}
+                  day={d}
+                  state={state}
+                  href={href}
+                  checkpoint={CHECKPOINT_DAYS.has(d)}
+                />
+              )
             })}
           </div>
         </div>

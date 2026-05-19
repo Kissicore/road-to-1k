@@ -117,10 +117,12 @@ export function DayBadge({
   day,
   state = 'upcoming',
   href,
+  checkpoint = false,
 }: {
   day: number
   state?: 'done' | 'today' | 'upcoming' | 'missed'
   href?: string
+  checkpoint?: boolean
 }) {
   const styles: Record<string, string> = {
     done: 'bg-[var(--color-success)] text-[var(--color-bg)] border-[#9bc83a]',
@@ -129,21 +131,34 @@ export function DayBadge({
     missed: 'bg-[var(--color-danger)] text-white border-[#cc3636] opacity-80',
   } as const
   const className = cn(
-    'w-9 h-9 rounded-lg border-2 flex items-center justify-center text-xs font-black font-display transition-all',
+    'relative w-9 h-9 rounded-lg border-2 flex items-center justify-center text-xs font-black font-display transition-all',
     styles[state],
+    checkpoint &&
+      '!border-[var(--color-warning)] shadow-[0_0_14px_rgba(255,210,63,0.55)]',
     href && 'hover:scale-110 hover:opacity-100 cursor-pointer',
   )
+  const cpFlag = checkpoint ? (
+    <span
+      aria-hidden
+      className="absolute -top-2 -right-1.5 text-[10px] leading-none drop-shadow-[0_0_4px_rgba(255,210,63,0.8)]"
+    >
+      🚩
+    </span>
+  ) : null
+  const cpTitle = checkpoint ? ` · Checkpoint` : ''
   if (href) {
     const action = state === 'done' ? 'corregir' : 'registrar'
     return (
-      <Link href={href} className={className} title={`Día ${day} — ${action}`}>
+      <Link href={href} className={className} title={`Día ${day}${cpTitle} — ${action}`}>
         {day}
+        {cpFlag}
       </Link>
     )
   }
   return (
-    <div className={className} title={`Día ${day}`}>
+    <div className={className} title={`Día ${day}${cpTitle}`}>
       {day}
+      {cpFlag}
     </div>
   )
 }
