@@ -104,17 +104,25 @@ export default async function DashboardLayout({
             )}
           </div>
 
-          <span className="hidden sm:block text-xs font-mono text-[var(--color-ink-4)]">
+          <Link
+            href="/dashboard/perfil"
+            className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono text-[var(--color-ink-4)] hover:text-[var(--color-ink)] transition-colors"
+            title="Editar mi perfil"
+          >
             @{me?.instagram_handle}
-          </span>
+            <span aria-hidden>⚙️</span>
+          </Link>
         </div>
       </nav>
 
       {/* ── Needs-review banner (priority over pending) ── */}
       {needsReview ? (
-        <div className="bg-[var(--color-danger)]/10 border-b-2 border-[var(--color-danger)]/30 text-[var(--color-danger)] text-xs font-bold px-6 py-2 text-center">
-          ⚠️ Tu inscripción está incompleta — Andrea va a contactarte para completar tu nombre y @IG. Mientras tanto podés subir tus Reels.
-        </div>
+        <Link
+          href="/dashboard/perfil"
+          className="block bg-[var(--color-danger)]/10 hover:bg-[var(--color-danger)]/15 border-b-2 border-[var(--color-danger)]/30 text-[var(--color-danger)] text-xs font-bold px-6 py-2 text-center transition-colors"
+        >
+          ⚠️ Tu inscripción está incompleta — corrige tu nombre y @IG aquí. Mientras tanto puedes subir tus Reels.
+        </Link>
       ) : me?.state === 'pending' && (
         <div className="bg-[var(--color-warning)]/10 border-b-2 border-[var(--color-warning)]/30 text-[var(--color-warning)] text-xs font-bold px-6 py-2 text-center">
           ⏳ Tu inscripción está pendiente de aprobación. Te activamos antes del 10 de mayo.
@@ -125,12 +133,13 @@ export default async function DashboardLayout({
 
       {/* ── Mobile bottom nav ── */}
       <nav className="sm:hidden fixed bottom-0 left-0 right-0 z-50 border-t-2 border-[var(--color-border)] bg-[var(--color-surface)]/95 backdrop-blur-md">
-        <div className="flex items-center justify-around px-2 py-2">
+        <div className="flex items-center justify-around px-1 py-2">
           <MobileNav href="/dashboard" emoji="🏠" label="Inicio" />
           <MobileNav href="/dashboard/subir" emoji="🎬" label="Subir" />
           <MobileNav href="/dashboard/checkpoint" emoji="📊" label="CP" />
           <MobileNav href="/dashboard/venta" emoji="💰" label="Ventas" />
           <MobileNav href="/ranking" emoji="🏆" label="Ranking" />
+          <MobileNav href="/dashboard/perfil" emoji="👤" label="Perfil" />
         </div>
       </nav>
     </div>
@@ -155,7 +164,7 @@ function MobileNav({ href, emoji, label }: { href: string; emoji: string; label:
   return (
     <Link
       href={href}
-      className="flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg text-[var(--color-ink-4)] hover:text-[var(--color-ink)] transition-colors"
+      className="flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg text-[var(--color-ink-4)] hover:text-[var(--color-ink)] transition-colors"
     >
       <span className="text-lg" aria-hidden>{emoji}</span>
       <span className="text-[10px] font-bold">{label}</span>
