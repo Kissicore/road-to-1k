@@ -120,7 +120,9 @@ export default async function DashboardHome() {
       <section className="grid sm:grid-cols-3 gap-4">
         <StatTile label="Días registrados" value={`${validDays}/${challenge.total_days}`} accent="primary" />
         <StatTile label="Posición ranking" value={lb?.position ? `#${lb.position}` : '—'} accent="accent" />
-        <StatTile label="Seguidores ganados" value={lb?.followers_gained?.toString() ?? '—'} accent="success" />
+        <Link href="/dashboard/seguidores" className="block transition-transform hover:-translate-y-0.5" title="Registrar seguidores + captura">
+          <StatTile label="Seguidores ganados ↗" value={lb?.followers_gained?.toString() ?? '—'} accent="success" />
+        </Link>
       </section>
 
       {/* Calendar */}

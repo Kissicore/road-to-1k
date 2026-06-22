@@ -96,6 +96,7 @@ export default async function DashboardLayout({
           {/* Desktop nav */}
           <div className="hidden sm:flex items-center gap-1">
             <NavLink href="/dashboard/subir" emoji="🎬" label="Subir Reel" />
+            <NavLink href="/dashboard/seguidores" emoji="📈" label="Seguidores" />
             <NavLink href="/dashboard/checkpoint" emoji="📊" label="Checkpoints" />
             <NavLink href="/dashboard/venta" emoji="💰" label="Ventas" />
             <NavLink href="/ranking" emoji="🏆" label="Ranking" />
@@ -136,6 +137,7 @@ export default async function DashboardLayout({
         <div className="flex items-center justify-around px-1 py-2">
           <MobileNav href="/dashboard" emoji="🏠" label="Inicio" />
           <MobileNav href="/dashboard/subir" emoji="🎬" label="Subir" />
+          <MobileNav href="/dashboard/seguidores" emoji="📈" label="Seguid." />
           <MobileNav href="/dashboard/checkpoint" emoji="📊" label="CP" />
           <MobileNav href="/dashboard/venta" emoji="💰" label="Ventas" />
           <MobileNav href="/ranking" emoji="🏆" label="Ranking" />

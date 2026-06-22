@@ -12,6 +12,9 @@ type Row = {
   rubro: string | null
   followers_initial: number
   followers_final: number | null
+  followers_evidence_path: string | null
+  followers_updated_at: string | null
+  evidence_url: string | null
   role: 'participant' | 'admin'
   state: 'pending' | 'approved' | 'rejected'
   created_at: string
@@ -65,7 +68,7 @@ export function ParticipantsTable({ initial }: { initial: Row[] }) {
       <table className="w-full text-sm">
         <thead className="border-b border-border">
           <tr>
-            {['Nombre', '@IG', 'Email', 'Rubro', 'Inicio', 'Final', 'Estado', 'Rol', ''].map((h) => (
+            {['Nombre', '@IG', 'Email', 'Rubro', 'Inicio', 'Final', 'Evidencia', 'Estado', 'Rol', ''].map((h) => (
               <th key={h} className="px-3 py-3 text-left text-xs font-bold uppercase tracking-wider text-muted whitespace-nowrap">
                 {h}
               </th>
@@ -95,6 +98,21 @@ export function ParticipantsTable({ initial }: { initial: Row[] }) {
                   value={r.followers_final}
                   onSave={(v) => patch(r.id, { followers_final: v })}
                 />
+              </td>
+              <td className="px-3 py-2 text-center">
+                {r.evidence_url ? (
+                  <a
+                    href={r.evidence_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-primary hover:underline"
+                    title={r.followers_updated_at ? `Actualizado ${new Date(r.followers_updated_at).toLocaleString('es')}` : 'Ver captura'}
+                  >
+                    📷 Ver
+                  </a>
+                ) : (
+                  <span className="text-xs text-muted">—</span>
+                )}
               </td>
               <td className="px-3 py-3">
                 <select
