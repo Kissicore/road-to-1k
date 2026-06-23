@@ -7,8 +7,8 @@
 :root{--b900:#0c4a6e;--b800:#075985;--b700:#0369a1;--sky:#0ea5e9;--cyan:#06b6d4;--ink:#0f172a;--mut:#64748b;--line:#e2e8f0;--bg:#f8fafc}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
 .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
-.hero{background:linear-gradient(135deg,var(--b900),var(--b700) 45%,var(--sky) 85%,var(--cyan));color:#fff;padding:64px 0 72px;position:relative;overflow:hidden}
-.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(255,255,255,.18),transparent 40%)}
+.hero{background:linear-gradient(120deg,rgba(8,47,73,.94),rgba(3,105,161,.80) 50%,rgba(14,165,233,.55) 85%,rgba(6,182,212,.45)),url('recursos-reto/portada.jpg');background-size:cover;background-position:center;color:#fff;padding:84px 0 92px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 78% 18%,rgba(255,255,255,.16),transparent 42%)}
 .hero .wrap{position:relative}
 .kick{font-size:13px;letter-spacing:3px;text-transform:uppercase;opacity:.85;font-weight:700}
 .hero h1{font-size:54px;line-height:1.02;margin:10px 0 14px;font-weight:850;letter-spacing:-1.5px}
@@ -17,6 +17,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;co
 section{padding:54px 0}
 h2{font-size:30px;font-weight:800;letter-spacing:-.5px;margin-bottom:6px}
 .sub{color:var(--mut);margin-bottom:26px;font-size:15px}
+.banner{height:190px;border-radius:18px;background-size:cover;background-position:center;margin-bottom:26px;position:relative;box-shadow:0 8px 28px rgba(8,47,73,.18);overflow:hidden}
+.banner:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,47,73,.55),transparent 55%)}
+.banner .bcap{position:absolute;left:24px;bottom:18px;color:#fff;font-weight:800;font-size:18px;text-shadow:0 2px 12px rgba(0,0,0,.5);z-index:1}
+@media(max-width:860px){.banner{height:130px}}
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .kpi{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 1px 3px rgba(15,23,42,.04)}
 .kpi b{display:block;font-size:34px;font-weight:850;color:var(--b700);letter-spacing:-1px;line-height:1}
@@ -125,6 +129,7 @@ footer b{color:#fff}
 <section style="padding-top:0"><div class="wrap">
   <h2>Estadísticas e hitos del reto</h2>
   <p class="sub">Los grandes hitos de la cohorte — qué porcentaje llegó hasta dónde, y los récords que se rompieron.</p>
+  <div class="banner" style="background-image:url('recursos-reto/crecimiento.jpg')"><span class="bcap">Crecimiento real, medido día a día</span></div>
   <div class="hitos"><div class="hito"><div class="hi-ic">🎯</div><div class="hi-big">16 de 22</div><div class="hi-desc">de las que registraron su conteo final cerraron con <b>+1,000 seguidores</b> — cumplieron el objetivo del reto</div></div><div class="hito"><div class="hi-ic">🚀</div><div class="hi-big">+73 020</div><div class="hi-desc">seguidores netos sumados entre las participantes con data de cierre</div></div><div class="hito"><div class="hi-ic">👁</div><div class="hi-big">6 creadoras</div><div class="hi-desc">superaron <b>1,000,000 de alcance</b> individual; 17 pasaron de 100K</div></div><div class="hito"><div class="hi-ic">🔥</div><div class="hi-big">9.0%</div><div class="hi-desc">de engagement global de la cohorte (interacciones ÷ alcance) — muy por encima del promedio de IG</div></div><div class="hito"><div class="hi-ic">💰</div><div class="hi-big">$29,584</div><div class="hi-desc">facturados por 21 creadoras; ticket promedio $370 y mayor venta $3,790</div></div><div class="hito"><div class="hi-ic">📈</div><div class="hi-big">791 372</div><div class="hi-desc">de alcance promedio por creadora activa durante los 42 días</div></div></div>
   <h3 style="font-size:21px;font-weight:800;margin:38px 0 4px;letter-spacing:-.3px">Embudo de participación</h3>
   <p class="sub">De cada 235 aprobadas, cuántas avanzaron en cada etapa del reto. Aquí se ve la mortandad clásica de un reto largo — y por qué terminar vale oro.</p>
@@ -135,6 +140,7 @@ footer b{color:#fff}
 <section style="padding-top:0"><div class="wrap">
   <h2>🏆 El podio</h2>
   <p class="sub">Ranking oficial por puntaje compuesto (crecimiento + alcance + interacción + ventas).</p>
+  <div class="banner" style="background-image:url('recursos-reto/trofeo.jpg')"><span class="bcap">Las que se la jugaron 42 días seguidos</span></div>
   <div class="podium">
     <div class="pod g1">
       <div class="med">🥇</div>
@@ -267,6 +273,7 @@ footer b{color:#fff}
 <section style="padding-top:0"><div class="wrap">
   <h2>Qué hicieron diferente</h2>
   <p class="sub">Estudio de contenido real de los 5 perfiles ganadores (scraping vía Apify, 23 jun 2026). Estos son los ganchos que dispararon su alcance y los 7 patrones que se repiten en todos.</p>
+  <div class="banner" style="background-image:url('recursos-reto/viral.jpg')"><span class="bcap">Los ganchos que dispararon el alcance</span></div>
 
   <div class="virals">
     <div class="viral"><div class="vh">"¿Tu hijo se arquea hacia atrás cuando llora o hace berrinche?"</div><div class="vm"><b>361,099</b> reproducciones · 357 comentarios</div><a class="va" href="https://instagram.com/alecuevasegura" target="_blank">@alecuevasegura · gancho-síntoma hiper-específico</a></div>
