@@ -1,0 +1,3136 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Road to 1K · Resumen del Reto · FÓRMULA 100K</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--b900:#0c4a6e;--b800:#075985;--b700:#0369a1;--sky:#0ea5e9;--cyan:#06b6d4;--ink:#0f172a;--mut:#64748b;--line:#e2e8f0;--bg:#f8fafc}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.hero{background:linear-gradient(135deg,var(--b900),var(--b700) 45%,var(--sky) 85%,var(--cyan));color:#fff;padding:64px 0 72px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(255,255,255,.18),transparent 40%)}
+.hero .wrap{position:relative}
+.kick{font-size:13px;letter-spacing:3px;text-transform:uppercase;opacity:.85;font-weight:700}
+.hero h1{font-size:54px;line-height:1.02;margin:10px 0 14px;font-weight:850;letter-spacing:-1.5px}
+.hero p{font-size:18px;opacity:.92;max-width:680px}
+.badge{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);padding:6px 14px;border-radius:99px;font-size:13px;font-weight:600;margin-top:18px}
+section{padding:54px 0}
+h2{font-size:30px;font-weight:800;letter-spacing:-.5px;margin-bottom:6px}
+.sub{color:var(--mut);margin-bottom:26px;font-size:15px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 1px 3px rgba(15,23,42,.04)}
+.kpi b{display:block;font-size:34px;font-weight:850;color:var(--b700);letter-spacing:-1px;line-height:1}
+.kpi span{display:block;color:var(--mut);font-size:13.5px;margin-top:8px;font-weight:500}
+.podium{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:16px;align-items:end;margin-top:8px}
+.pod{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 20px;text-align:center;box-shadow:0 4px 18px rgba(15,23,42,.06)}
+.pod.g1{border:2px solid #eab308;transform:translateY(-12px);background:linear-gradient(180deg,#fffbeb,#fff)}
+.pod .med{font-size:40px}
+.pod .pn{font-weight:800;font-size:19px;margin-top:6px}
+.pod .pig{color:var(--sky);font-size:14px;text-decoration:none;font-weight:600}
+.pod .pr{color:var(--mut);font-size:12.5px;margin:8px 0 14px}
+.pod .pp{font-size:30px;font-weight:850;color:var(--b800)}
+.pod .ppl{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--mut)}
+.pod ul{list-style:none;text-align:left;margin-top:14px;font-size:13px}
+.pod ul li{padding:4px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between}
+.pod ul li span{color:var(--mut)}
+.cat{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.catc{background:linear-gradient(160deg,#fff,#f0f9ff);border:1px solid var(--line);border-radius:16px;padding:20px}
+.catc .t{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--mut);font-weight:700}
+.catc .v{font-size:26px;font-weight:850;color:var(--b700);margin:6px 0}
+.catc a{color:var(--sky);text-decoration:none;font-weight:600;font-size:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:0 1px 3px rgba(15,23,42,.04)}
+.chart{width:100%;height:auto}
+.chart .ax{font-size:11px;fill:var(--mut)} .chart .lg{font-size:11px;fill:var(--ink);font-weight:600}
+.cbar{display:grid;grid-template-columns:150px 1fr 40px;align-items:center;gap:12px;margin:10px 0}
+.clab{font-size:13.5px;color:var(--mut);font-weight:600}
+.ctrack{background:#eff6ff;border-radius:99px;height:22px;overflow:hidden}
+.cfill{display:block;height:100%;border-radius:99px}
+.cval{font-weight:800;color:var(--b700);text-align:right}
+.wgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.wcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 1px 3px rgba(15,23,42,.04)}
+.wc-head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.wc-pos{background:var(--b700);color:#fff;font-weight:850;font-size:18px;width:46px;height:46px;border-radius:12px;display:grid;place-items:center}
+.wc-ig{display:block;font-weight:800;color:var(--ink);text-decoration:none;font-size:17px}
+.wc-rubro{color:var(--mut);font-size:13px}
+.wc-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.wc-stats div{background:#f0f9ff;border-radius:10px;padding:10px 8px;text-align:center}
+.wc-stats b{display:block;font-size:17px;color:var(--b800);font-weight:850}
+.wc-stats span{font-size:10.5px;color:var(--mut)}
+.wc-blurb{font-size:14px;color:#334155}
+.wc-cp{font-size:12.5px;color:var(--mut);margin-top:10px;background:#f8fafc;padding:8px 10px;border-radius:8px}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;font-size:13.5px;box-shadow:0 1px 3px rgba(15,23,42,.05)}
+thead th{background:var(--b800);color:#fff;padding:12px 10px;text-align:left;font-weight:700;font-size:12px;cursor:pointer;user-select:none;white-space:nowrap}
+thead th.num{text-align:right}
+tbody td{padding:11px 10px;border-top:1px solid var(--line)}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+td.c-pos{font-weight:800;color:var(--b700);white-space:nowrap}
+td.c-name .nm{display:block;font-weight:700}
+td.c-name .ig{color:var(--sky);font-size:12px;text-decoration:none}
+td.c-rubro{color:var(--mut);font-size:12.5px;max-width:180px}
+td.pct{color:#059669;font-weight:700} td.pts{font-weight:800;color:var(--b800)}
+tr.tr-top3{background:#fffbeb}
+.searchbar{margin-bottom:14px}
+.searchbar input{width:100%;max-width:340px;padding:11px 16px;border:1px solid var(--line);border-radius:12px;font-size:14px}
+.tablewrap{overflow-x:auto}
+.patterns{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pat{background:#fff;border:1px solid var(--line);border-left:4px solid var(--sky);border-radius:12px;padding:18px 20px}
+.pat h4{font-size:16px;margin-bottom:6px;color:var(--b800)}
+.pat p{font-size:14px;color:#475569}
+.virals{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:24px}
+.viral{background:linear-gradient(160deg,#0c4a6e,#0369a1);color:#fff;border-radius:16px;padding:20px 22px}
+.viral .vh{font-size:16px;font-weight:700;line-height:1.35;font-style:italic}
+.viral .vm{font-size:13px;opacity:.85;margin:10px 0 8px} .viral .vm b{font-size:20px;opacity:1}
+.viral .va{display:block;color:#7dd3fc;text-decoration:none;font-size:12.5px;font-weight:600}
+.note{background:#eff6ff;border:1px solid #bae6fd;border-radius:14px;padding:18px 22px;font-size:14px;color:#0c4a6e}
+.note b{color:var(--b900)}
+footer{background:var(--ink);color:#cbd5e1;padding:40px 0;text-align:center;font-size:13px}
+footer b{color:#fff}
+.scoring{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.sc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.sc b{display:block;font-size:24px;color:var(--b700);font-weight:850}
+.sc span{font-size:12px;color:var(--mut)}
+@media(max-width:860px){.kpis,.cat,.scoring{grid-template-columns:repeat(2,1fr)}.podium,.wgrid,.patterns,.virals{grid-template-columns:1fr}.pod.g1{transform:none}.hero h1{font-size:38px}}
+</style></head>
+<body>
+
+<div class="hero"><div class="wrap">
+  <div class="kick">FÓRMULA 100K · Reto de contenido</div>
+  <h1>Road to 1K<br>Resumen del Reto</h1>
+  <p>42 días. 235 creadoras inscritas. 2 329 reels publicados. Esto es lo que pasó cuando un grupo de creadoras se comprometió a publicar todos los días — y la data real de quiénes lo lograron.</p>
+  <span class="badge">Edición 11 may – 21 jun 2026 · Data oficial de Supabase</span>
+</div></div>
+
+<section><div class="wrap">
+  <h2>El reto en números</h2>
+  <p class="sub">Totales agregados de toda la cohorte, medidos sobre evidencia subida a la plataforma.</p>
+  <div class="kpis">
+    <div class="kpi"><b>41 151 355</b><span>Alcance total generado por la cohorte</span></div>
+    <div class="kpi"><b>3 697 307</b><span>Interacciones acumuladas</span></div>
+    <div class="kpi"><b>$29,584</b><span>Facturado por las participantes durante el reto</span></div>
+    <div class="kpi"><b>2 329</b><span>Reels válidos publicados en 42 días</span></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <h2>🏆 El podio</h2>
+  <p class="sub">Ranking oficial por puntaje compuesto (crecimiento + alcance + interacción + ventas).</p>
+  <div class="podium">
+    <div class="pod g1">
+      <div class="med">🥇</div>
+      <div class="pn">Frans Guerrero</div>
+      <a class="pig" href="https://instagram.com/frans.guerrero" target="_blank">@frans.guerrero</a>
+      <div class="pr">Relaciones</div>
+      <div class="pp">640.18</div><div class="ppl">puntos</div>
+      <ul>
+        <li><span>Seguidores</span><b>+11 321</b></li>
+        <li><span>Alcance</span><b>9 684 681</b></li>
+        <li><span>Interacciones</span><b>1 389 493</b></li>
+        <li><span>Días publicados</span><b>42/42</b></li>
+      </ul>
+    </div><div class="pod ">
+      <div class="med">🥈</div>
+      <div class="pn">Alessandra Segura Yauri</div>
+      <a class="pig" href="https://instagram.com/alecuevasegura" target="_blank">@alecuevasegura</a>
+      <div class="pr">Maternidad y gestión emocional </div>
+      <div class="pp">623.79</div><div class="ppl">puntos</div>
+      <ul>
+        <li><span>Seguidores</span><b>+17 820</b></li>
+        <li><span>Alcance</span><b>5 279 053</b></li>
+        <li><span>Interacciones</span><b>562 189</b></li>
+        <li><span>Días publicados</span><b>42/42</b></li>
+      </ul>
+    </div><div class="pod ">
+      <div class="med">🥉</div>
+      <div class="pn">Sandra Castro Pérez</div>
+      <a class="pig" href="https://instagram.com/sandracastro.pm" target="_blank">@sandracastro.pm</a>
+      <div class="pr">Gestion de proyectos de construccion</div>
+      <div class="pp">552.42</div><div class="ppl">puntos</div>
+      <ul>
+        <li><span>Seguidores</span><b>+6 884</b></li>
+        <li><span>Alcance</span><b>14 221 405</b></li>
+        <li><span>Interacciones</span><b>727 948</b></li>
+        <li><span>Días publicados</span><b>41/42</b></li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <h2>Líderes por categoría</h2>
+  <p class="sub">Quién dominó cada métrica individual del reto.</p>
+  <div class="cat">
+    <div class="catc"><div class="t">📈 Más crecimiento</div><div class="v">+17 820</div><a href="https://instagram.com/alecuevasegura" target="_blank">@alecuevasegura</a></div>
+    <div class="catc"><div class="t">👁 Más alcance</div><div class="v">14 221 405</div><a href="https://instagram.com/sandracastro.pm" target="_blank">@sandracastro.pm</a></div>
+    <div class="catc"><div class="t">❤️ Más interacción</div><div class="v">1 389 493</div><a href="https://instagram.com/frans.guerrero" target="_blank">@frans.guerrero</a></div>
+    <div class="catc"><div class="t">💰 Más ventas</div><div class="v">$9,659</div><a href="https://instagram.com/sobrecargoshq" target="_blank">@sobrecargoshq</a></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <h2>Cómo crecieron: la curva de alcance</h2>
+  <p class="sub">Alcance reportado en cada checkpoint (CP1 ≈ día 14, CP2 ≈ día 28, CP3 ≈ día 42) de las top 6. El crecimiento NO fue lineal: despegó cuando encontraron su formato ganador.</p>
+  <div class="card"><svg viewBox="0 0 760 340" class="chart"><line x1="60" y1="24" x2="60" y2="294" stroke="#e2e8f0"/><text x="60" y="312" text-anchor="middle" class="ax">CP1</text><line x1="400" y1="24" x2="400" y2="294" stroke="#e2e8f0"/><text x="400" y="312" text-anchor="middle" class="ax">CP2</text><line x1="740" y1="24" x2="740" y2="294" stroke="#e2e8f0"/><text x="740" y="312" text-anchor="middle" class="ax">CP3</text><line x1="60" y1="294" x2="740" y2="294" stroke="#f1f5f9"/><text x="52" y="298" text-anchor="end" class="ax">0</text><line x1="60" y1="159" x2="740" y2="159" stroke="#f1f5f9"/><text x="52" y="163" text-anchor="end" class="ax">2 790 641</text><line x1="60" y1="24" x2="740" y2="24" stroke="#f1f5f9"/><text x="52" y="28" text-anchor="end" class="ax">5 581 282</text><path d="M60.0,169.7 L400.0,109.5 L740.0,134.3" fill="none" stroke="#0ea5e9" stroke-width="2.5" opacity="0.92"/><path d="M60.0,281.7 L400.0,184.8 L740.0,160.1" fill="none" stroke="#06b6d4" stroke-width="2.5" opacity="0.92"/><path d="M60.0,47.8 L400.0,24.0 L740.0,122.3" fill="none" stroke="#3b82f6" stroke-width="2.5" opacity="0.92"/><path d="M60.0,275.6 L400.0,241.8 L740.0,142.5" fill="none" stroke="#8b5cf6" stroke-width="2.5" opacity="0.92"/><path d="M60.0,275.9 L400.0,254.6 L740.0,257.7" fill="none" stroke="#f59e0b" stroke-width="2.5" opacity="0.92"/><path d="M60.0,291.4 L400.0,290.8 L740.0,281.7" fill="none" stroke="#10b981" stroke-width="2.5" opacity="0.92"/><circle cx="60.0" cy="169.7" r="3.5" fill="#0ea5e9"/><circle cx="400.0" cy="109.5" r="3.5" fill="#0ea5e9"/><circle cx="740.0" cy="134.3" r="3.5" fill="#0ea5e9"/><circle cx="60.0" cy="281.7" r="3.5" fill="#06b6d4"/><circle cx="400.0" cy="184.8" r="3.5" fill="#06b6d4"/><circle cx="740.0" cy="160.1" r="3.5" fill="#06b6d4"/><circle cx="60.0" cy="47.8" r="3.5" fill="#3b82f6"/><circle cx="400.0" cy="24.0" r="3.5" fill="#3b82f6"/><circle cx="740.0" cy="122.3" r="3.5" fill="#3b82f6"/><circle cx="60.0" cy="275.6" r="3.5" fill="#8b5cf6"/><circle cx="400.0" cy="241.8" r="3.5" fill="#8b5cf6"/><circle cx="740.0" cy="142.5" r="3.5" fill="#8b5cf6"/><circle cx="60.0" cy="275.9" r="3.5" fill="#f59e0b"/><circle cx="400.0" cy="254.6" r="3.5" fill="#f59e0b"/><circle cx="740.0" cy="257.7" r="3.5" fill="#f59e0b"/><circle cx="60.0" cy="291.4" r="3.5" fill="#10b981"/><circle cx="400.0" cy="290.8" r="3.5" fill="#10b981"/><circle cx="740.0" cy="281.7" r="3.5" fill="#10b981"/><rect x="60" y="324" width="11" height="11" rx="2" fill="#0ea5e9"/><text x="76" y="334" class="lg">@frans.guerrero</text><rect x="290" y="324" width="11" height="11" rx="2" fill="#06b6d4"/><text x="306" y="334" class="lg">@alecuevasegura</text><rect x="520" y="324" width="11" height="11" rx="2" fill="#3b82f6"/><text x="536" y="334" class="lg">@sandracastro.pm</text><rect x="60" y="324" width="11" height="11" rx="2" fill="#8b5cf6"/><text x="76" y="334" class="lg">@socialfunnelmusic</text><rect x="290" y="324" width="11" height="11" rx="2" fill="#f59e0b"/><text x="306" y="334" class="lg">@sobrecargoshq</text><rect x="520" y="324" width="11" height="11" rx="2" fill="#10b981"/><text x="536" y="334" class="lg">@vinculosdevida</text></svg></div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <h2>Radiografía de las ganadoras</h2>
+  <p class="sub">Qué hizo destacar a cada una — con su data real.</p>
+  <div class="wgrid"><div class="wcard">
+  <div class="wc-head"><span class="wc-pos">#1</span><div><a class="wc-ig" href="https://instagram.com/frans.guerrero" target="_blank">@frans.guerrero</a><span class="wc-rubro">Relaciones</span></div></div>
+  <div class="wc-stats">
+    <div><b>+11 321</b><span>seguidores ganados</span></div>
+    <div><b>9 684 681</b><span>alcance</span></div>
+    <div><b>1 389 493</b><span>interacciones</span></div>
+    <div><b>—</b><span>ventas</span></div>
+  </div>
+  <p class="wc-blurb">Constancia perfecta (42/42) + volumen de interacción brutal: lideró el reto con <b>1.39M de interacciones</b> y 9.6M de alcance. Su contenido de relaciones genera debate → comentarios masivos.</p>
+  <p class="wc-cp">📈 Alcance por checkpoint — CP1: 2 568 960 · CP2: 3 814 246 · CP3: 3 301 475</p>
+</div>
+<div class="wcard">
+  <div class="wc-head"><span class="wc-pos">#2</span><div><a class="wc-ig" href="https://instagram.com/alecuevasegura" target="_blank">@alecuevasegura</a><span class="wc-rubro">Maternidad y gestión emocional</span></div></div>
+  <div class="wc-stats">
+    <div><b>+17 820</b><span>seguidores ganados</span></div>
+    <div><b>5 279 053</b><span>alcance</span></div>
+    <div><b>562 189</b><span>interacciones</span></div>
+    <div><b>$168</b><span>ventas</span></div>
+  </div>
+  <p class="wc-blurb">El <b>mayor salto de crecimiento absoluto</b> de toda la cohorte: de 990 a 18,810 seguidores (×18). Curva explosiva entre CP1 y CP2 — encontró su formato ganador y lo escaló.</p>
+  <p class="wc-cp">📈 Alcance por checkpoint — CP1: 253 732 · CP2: 2 256 519 · CP3: 2 768 802</p>
+</div>
+<div class="wcard">
+  <div class="wc-head"><span class="wc-pos">#3</span><div><a class="wc-ig" href="https://instagram.com/sandracastro.pm" target="_blank">@sandracastro.pm</a><span class="wc-rubro">Gestión de proyectos de construcción</span></div></div>
+  <div class="wc-stats">
+    <div><b>+6 884</b><span>seguidores ganados</span></div>
+    <div><b>14 221 405</b><span>alcance</span></div>
+    <div><b>727 948</b><span>interacciones</span></div>
+    <div><b>—</b><span>ventas</span></div>
+  </div>
+  <p class="wc-blurb"><b>Mayor alcance del reto: 14.2M</b>. Nicho B2B 'aburrido' convertido en máquina de alcance — prueba de que el método funciona en cualquier vertical.</p>
+  <p class="wc-cp">📈 Alcance por checkpoint — CP1: 5 090 045 · CP2: 5 581 282 · CP3: 3 550 078</p>
+</div>
+<div class="wcard">
+  <div class="wc-head"><span class="wc-pos">#4</span><div><a class="wc-ig" href="https://instagram.com/socialfunnelmusic" target="_blank">@socialfunnelmusic</a><span class="wc-rubro">Marketing Musical</span></div></div>
+  <div class="wc-stats">
+    <div><b>+7 039</b><span>seguidores ganados</span></div>
+    <div><b>4 591 735</b><span>alcance</span></div>
+    <div><b>369 241</b><span>interacciones</span></div>
+    <div><b>$7,973</b><span>ventas</span></div>
+  </div>
+  <p class="wc-blurb">Crecimiento sostenido (alcance ×8 entre CP1 y CP3) + <b>monetizó en paralelo: $7,973 en ventas</b>. Creció audiencia Y facturó al mismo tiempo.</p>
+  <p class="wc-cp">📈 Alcance por checkpoint — CP1: 379 642 · CP2: 1 079 825 · CP3: 3 132 268</p>
+</div>
+<div class="wcard">
+  <div class="wc-head"><span class="wc-pos">#5</span><div><a class="wc-ig" href="https://instagram.com/sobrecargoshq" target="_blank">@sobrecargoshq</a><span class="wc-rubro">Sobrecargos de aviación</span></div></div>
+  <div class="wc-stats">
+    <div><b>+4 321</b><span>seguidores ganados</span></div>
+    <div><b>1 937 905</b><span>alcance</span></div>
+    <div><b>143 211</b><span>interacciones</span></div>
+    <div><b>$9,659</b><span>ventas</span></div>
+  </div>
+  <p class="wc-blurb">Nicho ultra-específico, comunidad fiel. Constancia 42/42 y <b>$9,659 en ventas</b> (top de facturación). Audiencia pequeña pero altísima conversión.</p>
+  <p class="wc-cp">📈 Alcance por checkpoint — CP1: 373 595 · CP2: 813 883 · CP3: 750 427</p>
+</div>
+<div class="wcard">
+  <div class="wc-head"><span class="wc-pos">#6</span><div><a class="wc-ig" href="https://instagram.com/vinculosdevida" target="_blank">@vinculosdevida</a><span class="wc-rubro">Amor no correspondido</span></div></div>
+  <div class="wc-stats">
+    <div><b>+6 040</b><span>seguidores ganados</span></div>
+    <div><b>372 404</b><span>alcance</span></div>
+    <div><b>32 404</b><span>interacciones</span></div>
+    <div><b>—</b><span>ventas</span></div>
+  </div>
+  <p class="wc-blurb">De 4,160 a 10,200 seguidores (+145%) con un nicho emocional. Triplicó su alcance en la recta final (CP2→CP3) — la constancia compuso.</p>
+  <p class="wc-cp">📈 Alcance por checkpoint — CP1: 53 048 · CP2: 65 793 · CP3: 253 563</p>
+</div></div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <h2>Qué hicieron diferente</h2>
+  <p class="sub">Estudio de contenido real de los 5 perfiles ganadores (scraping vía Apify, 23 jun 2026). Estos son los ganchos que dispararon su alcance y los 7 patrones que se repiten en todos.</p>
+
+  <div class="virals">
+    <div class="viral"><div class="vh">"¿Tu hijo se arquea hacia atrás cuando llora o hace berrinche?"</div><div class="vm"><b>361,099</b> reproducciones · 357 comentarios</div><a class="va" href="https://instagram.com/alecuevasegura" target="_blank">@alecuevasegura · gancho-síntoma hiper-específico</a></div>
+    <div class="viral"><div class="vh">"El error no es solo no registrar tu música. También es dejarlo en manos ajenas…"</div><div class="vm"><b>826,267</b> reproducciones · 1,727 comentarios</div><a class="va" href="https://instagram.com/socialfunnelmusic" target="_blank">@socialfunnelmusic · newsjacking de famosos + miedo a perder dinero</a></div>
+    <div class="viral"><div class="vh">"Estas son las preguntas de CRM que más preguntan en aerolíneas…"</div><div class="vm"><b>114,572</b> reproducciones · "prepara tus screenshots"</div><a class="va" href="https://instagram.com/sobrecargoshq" target="_blank">@sobrecargoshq · recurso accionable + convocatorias reales de empleo</a></div>
+    <div class="viral"><div class="vh">"No eres víctima de tu relación… pero puedes estar actuando como si lo fueras"</div><div class="vm"><b>22,008</b> reproducciones · 1,389,493 interacciones totales en el reto</div><a class="va" href="https://instagram.com/frans.guerrero" target="_blank">@frans.guerrero · fórmula MITO → VERDAD → pregunta</a></div>
+  </div>
+
+  <div class="patterns">
+    <div class="pat"><h4>1. El gancho ataca una creencia o un síntoma, no un tema</h4><p>Tres fórmulas se repiten en los 5: <b>MITO→VERDAD</b> ("crees que… pero la realidad es…"), <b>síntoma hiper-específico</b> que el avatar reconoce al instante (el "¿tu hijo se arquea?" de Alessandra hizo 361K), y <b>advertencia de pérdida</b> ("estás regalando tu trabajo", "te cuesta utilidad").</p></div>
+    <div class="pat"><h4>2. CTA por palabra-clave a comentarios/DM (nunca link directo)</h4><p>Todos usan una palabra ligada al reel: <i>Relación · CALMA/MAPA/PIZZA · UTILIDAD/PROTOCOLO · CORE/REGALÍAS · VOLARIS/CLUB</i>. Convierten alcance en conversación 1-a-1 y alimentan automatizaciones de DM.</p></div>
+    <div class="pat"><h4>3. Talking-head con audio original es el formato rey</h4><p>4 de 5 viven del talking-head; los virales más grandes (826K, 361K, 114K) son todos talking-head con audio propio. Los carruseles se reservan para posts de venta fijados o piezas "A vs B" de guardado.</p></div>
+    <div class="pat"><h4>4. El caption es el guion ampliado del reel</h4><p>@frans.guerrero y @socialfunnelmusic escriben el caption como transcripción extendida del audio → doble alcance: el video retiene y el texto indexa y se lee como mini-post.</p></div>
+    <div class="pat"><h4>5. Un viral ancla el perfil + base consistente</h4><p>Cada cuenta tiene 1-2 piezas fijadas que superan masivamente al resto (826K, 361K, 114K). La excepción reveladora es Sandra (B2B): ganó por <b>alcance acumulado en nicho de alto ticket</b>, no por viralidad — el reto premia alcance/crecimiento, no likes.</p></div>
+    <div class="pat"><h4>6. Cadencia alta y sostenida: ~1 pieza diaria</h4><p>Los 12 posts recientes de cada perfil caben en ~7–12 días. Sumado al 42/42 del reto, el volumen constante es condición común de los cinco.</p></div>
+    <div class="pat"><h4>7. Embudo y oferta madura detrás del contenido</h4><p>Los 5 tienen producto nombrado (<i>Relaciones Conscientes · Arquitectura Emocional® · Sistema 14D™ · SFM CORE · SHQ Club $9/mes</i>) + lead magnet o entrada barata + prueba social cuantificada ("+380 contratados", "recupera 20%"). El contenido es tope de embudo deliberado, no entretenimiento suelto. Recurso recurrente: <b>pop culture</b> (Kung Fu Panda, Matilda, Ángela Aguilar, Serrat, Jeff Bezos) para volver viral un tema árido.</p></div>
+  </div>
+  <div class="note" style="margin-top:18px">🔎 Conteos de seguidores en esta sección = <b>live al 23 jun 2026</b> (Apify), no el snapshot del reto, por eso difieren ligeramente del ranking. El perfil de Sandra Castro se estudió en <b>@sandracastro.rentabilidad</b> (el handle <i>sandracastro.pm</i> del registro no existe en vivo; bio y nicho coinciden — conviene confirmar con el equipo).</div>
+</div></section>
+
+
+<section style="padding-top:0"><div class="wrap">
+  <h2>La constancia separó a las ganadoras</h2>
+  <p class="sub">Distribución de participantes por días publicados. De 235 inscritas, solo <b>19</b> completaron los 42 días — y casi todas están en el top del ranking. El promedio fue 17.0 días.</p>
+  <div class="card"><div class="cbar"><span class="clab">42 días completos</span><span class="ctrack"><span class="cfill" style="width:38%;background:#0ea5e9"></span></span><span class="cval">19</span></div><div class="cbar"><span class="clab">35–41 días</span><span class="ctrack"><span class="cfill" style="width:16%;background:#22b8e6"></span></span><span class="cval">8</span></div><div class="cbar"><span class="clab">21–34 días</span><span class="ctrack"><span class="cfill" style="width:40%;background:#38bdf8"></span></span><span class="cval">20</span></div><div class="cbar"><span class="clab">7–20 días</span><span class="ctrack"><span class="cfill" style="width:80%;background:#7dd3fc"></span></span><span class="cval">40</span></div><div class="cbar"><span class="clab">1–6 días</span><span class="ctrack"><span class="cfill" style="width:100%;background:#bae6fd"></span></span><span class="cval">50</span></div></div>
+  <div class="note" style="margin-top:18px">💡 <b>El patrón #1 del reto:</b> las 6 primeras del ranking publicaron <b>42/42 días</b> (salvo una con 41). La constancia no fue una variable más — fue <b>la</b> variable. Quien sostuvo el ritmo, compuso alcance; quien lo soltó, se estancó.</div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <h2>Ranking completo</h2>
+  <p class="sub">Las 235 participantes aprobadas, ordenadas por puntaje. Haz clic en los encabezados para reordenar.</p>
+  <div class="searchbar"><input id="q" placeholder="🔎 Busca por nombre, @usuario o rubro…"></div>
+  <div class="tablewrap"><table id="rk">
+    <thead><tr>
+      <th data-k="pos" data-n="1">#</th><th>Creadora</th><th>Rubro</th>
+      <th class="num" data-k="gain" data-n="1">Seguidores</th><th class="num">% crec.</th>
+      <th class="num" data-k="reach" data-n="1">Alcance</th><th class="num" data-k="inter" data-n="1">Interac.</th>
+      <th class="num" data-k="sales" data-n="1">Ventas</th><th class="num" data-k="dias" data-n="1">Días</th>
+      <th class="num" data-k="pts" data-n="1">Puntos</th>
+    </tr></thead>
+    <tbody><tr class="tr-top3" data-pos="1" data-gain="11321" data-reach="9684681" data-inter="1389493" data-sales="0" data-pts="640.18" data-dias="42">
+<td class="c-pos">🥇 1</td>
+<td class="c-name"><span class="nm">Frans Guerrero</span><a class="ig" href="https://instagram.com/frans.guerrero" target="_blank">@frans.guerrero</a></td>
+<td class="c-rubro">Relaciones</td>
+<td class="num">+11 321</td>
+<td class="num pct">+805%</td>
+<td class="num">9 684 681</td>
+<td class="num">1 389 493</td>
+<td class="num">—</td>
+<td class="num">42</td>
+<td class="num pts">640.18</td>
+</tr>
+<tr class="tr-top3" data-pos="2" data-gain="17820" data-reach="5279053" data-inter="562189" data-sales="168.0" data-pts="623.79" data-dias="42">
+<td class="c-pos">🥈 2</td>
+<td class="c-name"><span class="nm">Alessandra Segura Yauri</span><a class="ig" href="https://instagram.com/alecuevasegura" target="_blank">@alecuevasegura</a></td>
+<td class="c-rubro">Maternidad y gestión emocional </td>
+<td class="num">+17 820</td>
+<td class="num pct">+1800%</td>
+<td class="num">5 279 053</td>
+<td class="num">562 189</td>
+<td class="num">$168</td>
+<td class="num">42</td>
+<td class="num pts">623.79</td>
+</tr>
+<tr class="tr-top3" data-pos="3" data-gain="6884" data-reach="14221405" data-inter="727948" data-sales="0" data-pts="552.42" data-dias="41">
+<td class="c-pos">🥉 3</td>
+<td class="c-name"><span class="nm">Sandra Castro Pérez</span><a class="ig" href="https://instagram.com/sandracastro.pm" target="_blank">@sandracastro.pm</a></td>
+<td class="c-rubro">Gestion de proyectos de construccion</td>
+<td class="num">+6 884</td>
+<td class="num pct">+51%</td>
+<td class="num">14 221 405</td>
+<td class="num">727 948</td>
+<td class="num">—</td>
+<td class="num">41</td>
+<td class="num pts">552.42</td>
+</tr>
+<tr class="" data-pos="4" data-gain="7039" data-reach="4591735" data-inter="369241" data-sales="7973.21" data-pts="397.02" data-dias="42">
+<td class="c-pos"> 4</td>
+<td class="c-name"><span class="nm">Yojanna Cardona</span><a class="ig" href="https://instagram.com/socialfunnelmusic" target="_blank">@socialfunnelmusic</a></td>
+<td class="c-rubro">Marketing Musical</td>
+<td class="num">+7 039</td>
+<td class="num pct">+75%</td>
+<td class="num">4 591 735</td>
+<td class="num">369 241</td>
+<td class="num">$7,973</td>
+<td class="num">42</td>
+<td class="num pts">397.02</td>
+</tr>
+<tr class="" data-pos="5" data-gain="4321" data-reach="1937905" data-inter="143211" data-sales="9658.92" data-pts="265.46" data-dias="42">
+<td class="c-pos"> 5</td>
+<td class="c-name"><span class="nm">Andrea Recillas</span><a class="ig" href="https://instagram.com/sobrecargoshq" target="_blank">@sobrecargoshq</a></td>
+<td class="c-rubro">Sobrecargos de aviación  </td>
+<td class="num">+4 321</td>
+<td class="num pct">+23%</td>
+<td class="num">1 937 905</td>
+<td class="num">143 211</td>
+<td class="num">$9,659</td>
+<td class="num">42</td>
+<td class="num pts">265.46</td>
+</tr>
+<tr class="" data-pos="6" data-gain="6040" data-reach="372404" data-inter="32404" data-sales="0" data-pts="163.88" data-dias="42">
+<td class="c-pos"> 6</td>
+<td class="c-name"><span class="nm">Diego Sena </span><a class="ig" href="https://instagram.com/vinculosdevida" target="_blank">@vinculosdevida</a></td>
+<td class="c-rubro">Amor no correspondido </td>
+<td class="num">+6 040</td>
+<td class="num pct">+145%</td>
+<td class="num">372 404</td>
+<td class="num">32 404</td>
+<td class="num">—</td>
+<td class="num">42</td>
+<td class="num pts">163.88</td>
+</tr>
+<tr class="" data-pos="7" data-gain="5182" data-reach="617989" data-inter="117099" data-sales="78.0" data-pts="157.34" data-dias="42">
+<td class="c-pos"> 7</td>
+<td class="c-name"><span class="nm">Yaír Espíndola</span><a class="ig" href="https://instagram.com/duoespindola_pianoduo" target="_blank">@duoespindola_pianoduo</a></td>
+<td class="c-rubro">Divulgación musical</td>
+<td class="num">+5 182</td>
+<td class="num pct">+8%</td>
+<td class="num">617 989</td>
+<td class="num">117 099</td>
+<td class="num">$78</td>
+<td class="num">42</td>
+<td class="num pts">157.34</td>
+</tr>
+<tr class="" data-pos="8" data-gain="4144" data-reach="604506" data-inter="90745" data-sales="2072.83" data-pts="148.65" data-dias="42">
+<td class="c-pos"> 8</td>
+<td class="c-name"><span class="nm">Armando Rivera</span><a class="ig" href="https://instagram.com/neural_beat.mx" target="_blank">@neural_beat.mx</a></td>
+<td class="c-rubro">Guitarra</td>
+<td class="num">+4 144</td>
+<td class="num pct">+134%</td>
+<td class="num">604 506</td>
+<td class="num">90 745</td>
+<td class="num">$2,073</td>
+<td class="num">42</td>
+<td class="num pts">148.65</td>
+</tr>
+<tr class="" data-pos="9" data-gain="3293" data-reach="172689" data-inter="23146" data-sales="1756.0" data-pts="107.48" data-dias="40">
+<td class="c-pos"> 9</td>
+<td class="c-name"><span class="nm">Guivenson Joachim</span><a class="ig" href="https://instagram.com/guivenson_estratega" target="_blank">@guivenson_estratega</a></td>
+<td class="c-rubro">Creación de Contenido estratégico </td>
+<td class="num">+3 293</td>
+<td class="num pct">+21953%</td>
+<td class="num">172 689</td>
+<td class="num">23 146</td>
+<td class="num">$1,756</td>
+<td class="num">40</td>
+<td class="num pts">107.48</td>
+</tr>
+<tr class="" data-pos="10" data-gain="1709" data-reach="259471" data-inter="6151" data-sales="2229.42" data-pts="72.38" data-dias="42">
+<td class="c-pos"> 10</td>
+<td class="c-name"><span class="nm">Mariana Kairôs</span><a class="ig" href="https://instagram.com/soymarianakairos" target="_blank">@soymarianakairos</a></td>
+<td class="c-rubro">Psicología/Manifestación</td>
+<td class="num">+1 709</td>
+<td class="num pct">+27%</td>
+<td class="num">259 471</td>
+<td class="num">6 151</td>
+<td class="num">$2,229</td>
+<td class="num">42</td>
+<td class="num pts">72.38</td>
+</tr>
+<tr class="" data-pos="11" data-gain="1057" data-reach="1350036" data-inter="35820" data-sales="600.0" data-pts="65.25" data-dias="42">
+<td class="c-pos"> 11</td>
+<td class="c-name"><span class="nm">María Fernanda Rojas Vargas</span><a class="ig" href="https://instagram.com/cambamberaporelmundo" target="_blank">@cambamberaporelmundo</a></td>
+<td class="c-rubro">Marca personal</td>
+<td class="num">+1 057</td>
+<td class="num pct">+411%</td>
+<td class="num">1 350 036</td>
+<td class="num">35 820</td>
+<td class="num">$600</td>
+<td class="num">42</td>
+<td class="num pts">65.25</td>
+</tr>
+<tr class="" data-pos="12" data-gain="1796" data-reach="99494" data-inter="8070" data-sales="0" data-pts="48.32" data-dias="42">
+<td class="c-pos"> 12</td>
+<td class="c-name"><span class="nm">Francisco Gonzalez del Riego</span><a class="ig" href="https://instagram.com/biohealth.project" target="_blank">@biohealth.project</a></td>
+<td class="c-rubro">Nutrición</td>
+<td class="num">+1 796</td>
+<td class="num pct">+179600%</td>
+<td class="num">99 494</td>
+<td class="num">8 070</td>
+<td class="num">—</td>
+<td class="num">42</td>
+<td class="num pts">48.32</td>
+</tr>
+<tr class="" data-pos="13" data-gain="1075" data-reach="0" data-inter="0" data-sales="170.0" data-pts="28.91" data-dias="28">
+<td class="c-pos"> 13</td>
+<td class="c-name"><span class="nm">Nacho Jimenez</span><a class="ig" href="https://instagram.com/nachojmenez" target="_blank">@nachojmenez</a></td>
+<td class="c-rubro">—</td>
+<td class="num">+1 075</td>
+<td class="num pct">+107500%</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">$170</td>
+<td class="num">28</td>
+<td class="num pts">28.91</td>
+</tr>
+<tr class="" data-pos="14" data-gain="0" data-reach="578040" data-inter="49565" data-sales="993.0" data-pts="27.83" data-dias="28">
+<td class="c-pos"> 14</td>
+<td class="c-name"><span class="nm">Jose Maximiliano Taboada Bardi</span><a class="ig" href="https://instagram.com/violintoptips" target="_blank">@violintoptips</a></td>
+<td class="c-rubro">música</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">578 040</td>
+<td class="num">49 565</td>
+<td class="num">$993</td>
+<td class="num">28</td>
+<td class="num pts">27.83</td>
+</tr>
+<tr class="" data-pos="15" data-gain="297" data-reach="106816" data-inter="11641" data-sales="500.0" data-pts="16.19" data-dias="34">
+<td class="c-pos"> 15</td>
+<td class="c-name"><span class="nm">Emilio Mendez</span><a class="ig" href="https://instagram.com/viajaconemilio" target="_blank">@viajaconemilio</a></td>
+<td class="c-rubro">viajes y educacion</td>
+<td class="num">+297</td>
+<td class="num pct">+6%</td>
+<td class="num">106 816</td>
+<td class="num">11 641</td>
+<td class="num">$500</td>
+<td class="num">34</td>
+<td class="num pts">16.19</td>
+</tr>
+<tr class="" data-pos="16" data-gain="469" data-reach="27670" data-inter="2200" data-sales="0" data-pts="12.66" data-dias="42">
+<td class="c-pos"> 16</td>
+<td class="c-name"><span class="nm">Pompeya Causarano</span><a class="ig" href="https://instagram.com/nakuadademy" target="_blank">@nakuadademy</a></td>
+<td class="c-rubro">—</td>
+<td class="num">+469</td>
+<td class="num pct">—</td>
+<td class="num">27 670</td>
+<td class="num">2 200</td>
+<td class="num">—</td>
+<td class="num">42</td>
+<td class="num pts">12.66</td>
+</tr>
+<tr class="" data-pos="17" data-gain="259" data-reach="223587" data-inter="9807" data-sales="0" data-pts="12.32" data-dias="40">
+<td class="c-pos"> 17</td>
+<td class="c-name"><span class="nm">Juan Homer López Vidal</span><a class="ig" href="https://instagram.com/napster.dev" target="_blank">@napster.dev</a></td>
+<td class="c-rubro">Tecnologia / IA</td>
+<td class="num">+259</td>
+<td class="num pct">+32%</td>
+<td class="num">223 587</td>
+<td class="num">9 807</td>
+<td class="num">—</td>
+<td class="num">40</td>
+<td class="num pts">12.32</td>
+</tr>
+<tr class="" data-pos="18" data-gain="31" data-reach="21991" data-inter="552" data-sales="800.0" data-pts="9.59" data-dias="42">
+<td class="c-pos"> 18</td>
+<td class="c-name"><span class="nm">Fernando Di Fazio</span><a class="ig" href="https://instagram.com/fernando.di.fazio" target="_blank">@fernando.di.fazio</a></td>
+<td class="c-rubro">Coaching</td>
+<td class="num">+31</td>
+<td class="num pct">+1%</td>
+<td class="num">21 991</td>
+<td class="num">552</td>
+<td class="num">$800</td>
+<td class="num">42</td>
+<td class="num pts">9.59</td>
+</tr>
+<tr class="" data-pos="19" data-gain="0" data-reach="237586" data-inter="26559" data-sales="0" data-pts="7.88" data-dias="31">
+<td class="c-pos"> 19</td>
+<td class="c-name"><span class="nm">Katy evangelista Vega</span><a class="ig" href="https://instagram.com/evavegamarketing" target="_blank">@evavegamarketing</a></td>
+<td class="c-rubro">Marketing digital - ebooks con ia</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">237 586</td>
+<td class="num">26 559</td>
+<td class="num">—</td>
+<td class="num">31</td>
+<td class="num pts">7.88</td>
+</tr>
+<tr class="" data-pos="20" data-gain="0" data-reach="223840" data-inter="17893" data-sales="0" data-pts="6.65" data-dias="14">
+<td class="c-pos"> 20</td>
+<td class="c-name"><span class="nm">Maria Laura Evdemon</span><a class="ig" href="https://instagram.com/mle.portugues" target="_blank">@mle.portugues</a></td>
+<td class="c-rubro">Portugués para extranjeros</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">223 840</td>
+<td class="num">17 893</td>
+<td class="num">—</td>
+<td class="num">14</td>
+<td class="num pts">6.65</td>
+</tr>
+<tr class="" data-pos="21" data-gain="0" data-reach="25300" data-inter="506" data-sales="585.0" data-pts="6.64" data-dias="35">
+<td class="c-pos"> 21</td>
+<td class="c-name"><span class="nm">Johana Tula</span><a class="ig" href="https://instagram.com/legalmentehablando.tula" target="_blank">@legalmentehablando.tula</a></td>
+<td class="c-rubro">Estudio Juridico</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">25 300</td>
+<td class="num">506</td>
+<td class="num">$585</td>
+<td class="num">35</td>
+<td class="num pts">6.64</td>
+</tr>
+<tr class="" data-pos="22" data-gain="0" data-reach="0" data-inter="0" data-sales="583.0" data-pts="6.04" data-dias="16">
+<td class="c-pos"> 22</td>
+<td class="c-name"><span class="nm">Florina Felicia Taranu</span><a class="ig" href="https://instagram.com/felicia.taranu" target="_blank">@felicia.taranu</a></td>
+<td class="c-rubro">Markeing</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">$583</td>
+<td class="num">16</td>
+<td class="num pts">6.04</td>
+</tr>
+<tr class="" data-pos="23" data-gain="0" data-reach="33899" data-inter="7834" data-sales="363.0" data-pts="5.32" data-dias="42">
+<td class="c-pos"> 23</td>
+<td class="c-name"><span class="nm">Rodrigo Villegas Villa</span><a class="ig" href="https://instagram.com/villegasvrodrigo" target="_blank">@villegasvrodrigo</a></td>
+<td class="c-rubro">Desarrollo personal / Coaching</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">33 899</td>
+<td class="num">7 834</td>
+<td class="num">$363</td>
+<td class="num">42</td>
+<td class="num pts">5.32</td>
+</tr>
+<tr class="" data-pos="24" data-gain="137" data-reach="78932" data-inter="707" data-sales="0" data-pts="5.2" data-dias="37">
+<td class="c-pos"> 24</td>
+<td class="c-name"><span class="nm">Elvia Vargas</span><a class="ig" href="https://instagram.com/dra.elviavargas" target="_blank">@dra.elviavargas</a></td>
+<td class="c-rubro">Medicina/salud</td>
+<td class="num">+137</td>
+<td class="num pct">+60%</td>
+<td class="num">78 932</td>
+<td class="num">707</td>
+<td class="num">—</td>
+<td class="num">37</td>
+<td class="num pts">5.2</td>
+</tr>
+<tr class="" data-pos="25" data-gain="0" data-reach="74121" data-inter="5995" data-sales="190.0" data-pts="4.18" data-dias="30">
+<td class="c-pos"> 25</td>
+<td class="c-name"><span class="nm">Maicol Morillo</span><a class="ig" href="https://instagram.com/maovisual_" target="_blank">@maovisual_</a></td>
+<td class="c-rubro">Diseño Grafico </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">74 121</td>
+<td class="num">5 995</td>
+<td class="num">$190</td>
+<td class="num">30</td>
+<td class="num pts">4.18</td>
+</tr>
+<tr class="" data-pos="26" data-gain="0" data-reach="0" data-inter="38113" data-sales="0" data-pts="4.11" data-dias="36">
+<td class="c-pos"> 26</td>
+<td class="c-name"><span class="nm">Sisa Sosuke</span><a class="ig" href="https://instagram.com/sisa.economista.souke" target="_blank">@sisa.economista.souke</a></td>
+<td class="c-rubro">Finanzas</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">38 113</td>
+<td class="num">—</td>
+<td class="num">36</td>
+<td class="num pts">4.11</td>
+</tr>
+<tr class="" data-pos="27" data-gain="-1" data-reach="2585" data-inter="1431" data-sales="360.0" data-pts="3.94" data-dias="42">
+<td class="c-pos"> 27</td>
+<td class="c-name"><span class="nm">Damaris Fraga García</span><a class="ig" href="https://instagram.com/damaris.intestino" target="_blank">@damaris.intestino</a></td>
+<td class="c-rubro">Nutrición </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">2 585</td>
+<td class="num">1 431</td>
+<td class="num">$360</td>
+<td class="num">42</td>
+<td class="num pts">3.94</td>
+</tr>
+<tr class="" data-pos="28" data-gain="50" data-reach="38916" data-inter="2432" data-sales="0" data-pts="2.35" data-dias="31">
+<td class="c-pos"> 28</td>
+<td class="c-name"><span class="nm">EVA URBANOS</span><a class="ig" href="https://instagram.com/evaurbanos" target="_blank">@evaurbanos</a></td>
+<td class="c-rubro">Marketing digital y marca personal</td>
+<td class="num">+50</td>
+<td class="num pct">+9%</td>
+<td class="num">38 916</td>
+<td class="num">2 432</td>
+<td class="num">—</td>
+<td class="num">31</td>
+<td class="num pts">2.35</td>
+</tr>
+<tr class="" data-pos="29" data-gain="0" data-reach="104877" data-inter="1111" data-sales="0" data-pts="2.33" data-dias="1">
+<td class="c-pos"> 29</td>
+<td class="c-name"><span class="nm">Carlos Hermosillo</span><a class="ig" href="https://instagram.com/carlosh_conferencista" target="_blank">@carlosh_conferencista</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">104 877</td>
+<td class="num">1 111</td>
+<td class="num">—</td>
+<td class="num">1</td>
+<td class="num pts">2.33</td>
+</tr>
+<tr class="" data-pos="30" data-gain="76" data-reach="10726" data-inter="442" data-sales="0" data-pts="2.19" data-dias="42">
+<td class="c-pos"> 30</td>
+<td class="c-name"><span class="nm">Ana María </span><a class="ig" href="https://instagram.com/anagarzon.co" target="_blank">@anagarzon.co</a></td>
+<td class="c-rubro">Marketing digital - Redes sociales</td>
+<td class="num">+76</td>
+<td class="num pct">+67%</td>
+<td class="num">10 726</td>
+<td class="num">442</td>
+<td class="num">—</td>
+<td class="num">42</td>
+<td class="num pts">2.19</td>
+</tr>
+<tr class="" data-pos="31" data-gain="21" data-reach="17223" data-inter="1083" data-sales="106.0" data-pts="2.11" data-dias="42">
+<td class="c-pos"> 31</td>
+<td class="c-name"><span class="nm">Brenda Marcela Magaña Baez</span><a class="ig" href="https://instagram.com/mr.austral" target="_blank">@mr.austral</a></td>
+<td class="c-rubro">Astrología mágica</td>
+<td class="num">+21</td>
+<td class="num pct">+3%</td>
+<td class="num">17 223</td>
+<td class="num">1 083</td>
+<td class="num">$106</td>
+<td class="num">42</td>
+<td class="num pts">2.11</td>
+</tr>
+<tr class="" data-pos="32" data-gain="0" data-reach="0" data-inter="0" data-sales="202.0" data-pts="2.09" data-dias="42">
+<td class="c-pos"> 32</td>
+<td class="c-name"><span class="nm">Andrea Figueroa</span><a class="ig" href="https://instagram.com/yosoyandreafigueroa" target="_blank">@yosoyandreafigueroa</a></td>
+<td class="c-rubro">Neurociencia y biomagnetismo</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">$202</td>
+<td class="num">42</td>
+<td class="num pts">2.09</td>
+</tr>
+<tr class="" data-pos="33" data-gain="0" data-reach="68142" data-inter="2639" data-sales="0" data-pts="1.72" data-dias="37">
+<td class="c-pos"> 33</td>
+<td class="c-name"><span class="nm">JAZMIN MINERVA REYES TOLEDANO</span><a class="ig" href="https://instagram.com/https://www.instagram.com/reytol.mx" target="_blank">@https://www.instagram.com/reytol.mx</a></td>
+<td class="c-rubro">Diseño de Modas</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">68 142</td>
+<td class="num">2 639</td>
+<td class="num">—</td>
+<td class="num">37</td>
+<td class="num pts">1.72</td>
+</tr>
+<tr class="" data-pos="34" data-gain="0" data-reach="5724" data-inter="303" data-sales="131.0" data-pts="1.51" data-dias="42">
+<td class="c-pos"> 34</td>
+<td class="c-name"><span class="nm">Lisbeth S</span><a class="ig" href="https://instagram.com/lisbethsuhu_" target="_blank">@lisbethsuhu_</a></td>
+<td class="c-rubro">Marketing Redes Sociales</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">5 724</td>
+<td class="num">303</td>
+<td class="num">$131</td>
+<td class="num">42</td>
+<td class="num pts">1.51</td>
+</tr>
+<tr class="" data-pos="35" data-gain="0" data-reach="12059" data-inter="929" data-sales="64.9" data-pts="1.03" data-dias="28">
+<td class="c-pos"> 35</td>
+<td class="c-name"><span class="nm">Rafael Armendariz </span><a class="ig" href="https://instagram.com/rafasinfiltros" target="_blank">@rafasinfiltros</a></td>
+<td class="c-rubro">Espiritualidad</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">12 059</td>
+<td class="num">929</td>
+<td class="num">$65</td>
+<td class="num">28</td>
+<td class="num pts">1.03</td>
+</tr>
+<tr class="" data-pos="36" data-gain="0" data-reach="4703" data-inter="3260" data-sales="0" data-pts="0.45" data-dias="42">
+<td class="c-pos"> 36</td>
+<td class="c-name"><span class="nm">Novak Hunt</span><a class="ig" href="https://instagram.com/novakhunt" target="_blank">@novakhunt</a></td>
+<td class="c-rubro">Idiomas</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">4 703</td>
+<td class="num">3 260</td>
+<td class="num">—</td>
+<td class="num">42</td>
+<td class="num pts">0.45</td>
+</tr>
+<tr class="" data-pos="37" data-gain="0" data-reach="39" data-inter="3845" data-sales="0" data-pts="0.42" data-dias="25">
+<td class="c-pos"> 37</td>
+<td class="c-name"><span class="nm">Víctor Hugo Henríquez Carabantes </span><a class="ig" href="https://instagram.com/victordigitalmp" target="_blank">@victordigitalmp</a></td>
+<td class="c-rubro">Marketing Digital </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">39</td>
+<td class="num">3 845</td>
+<td class="num">—</td>
+<td class="num">25</td>
+<td class="num pts">0.42</td>
+</tr>
+<tr class="" data-pos="38" data-gain="0" data-reach="13184" data-inter="576" data-sales="0" data-pts="0.34" data-dias="18">
+<td class="c-pos"> 38</td>
+<td class="c-name"><span class="nm">Jhonn Vesga</span><a class="ig" href="https://instagram.com/jhonnvesga" target="_blank">@jhonnvesga</a></td>
+<td class="c-rubro">Public Speaking </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">13 184</td>
+<td class="num">576</td>
+<td class="num">—</td>
+<td class="num">18</td>
+<td class="num pts">0.34</td>
+</tr>
+<tr class="" data-pos="39" data-gain="0" data-reach="8976" data-inter="341" data-sales="0" data-pts="0.23" data-dias="30">
+<td class="c-pos"> 39</td>
+<td class="c-name"><span class="nm">Adrian Gonzalo Farfan Lopez</span><a class="ig" href="https://instagram.com/adrianfarfan_" target="_blank">@adrianfarfan_</a></td>
+<td class="c-rubro">Creación de contenido con IA</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">8 976</td>
+<td class="num">341</td>
+<td class="num">—</td>
+<td class="num">30</td>
+<td class="num pts">0.23</td>
+</tr>
+<tr class="" data-pos="40" data-gain="0" data-reach="9472" data-inter="314" data-sales="0" data-pts="0.23" data-dias="18">
+<td class="c-pos"> 40</td>
+<td class="c-name"><span class="nm">Richard De los Santos</span><a class="ig" href="https://instagram.com/lichademiguel" target="_blank">@lichademiguel</a></td>
+<td class="c-rubro">negocios</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">9 472</td>
+<td class="num">314</td>
+<td class="num">—</td>
+<td class="num">18</td>
+<td class="num pts">0.23</td>
+</tr>
+<tr class="" data-pos="41" data-gain="0" data-reach="6167" data-inter="208" data-sales="0" data-pts="0.15" data-dias="15">
+<td class="c-pos"> 41</td>
+<td class="c-name"><span class="nm">Pendiente · anatwoloski</span><a class="ig" href="https://instagram.com/pending-4ae2fd50" target="_blank">@pending-4ae2fd50</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">6 167</td>
+<td class="num">208</td>
+<td class="num">—</td>
+<td class="num">15</td>
+<td class="num pts">0.15</td>
+</tr>
+<tr class="" data-pos="42" data-gain="0" data-reach="3980" data-inter="258" data-sales="0" data-pts="0.11" data-dias="32">
+<td class="c-pos"> 42</td>
+<td class="c-name"><span class="nm">Judith Morales López</span><a class="ig" href="https://instagram.com/somoscosmictribe" target="_blank">@somoscosmictribe</a></td>
+<td class="c-rubro">desarrollo personal </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">3 980</td>
+<td class="num">258</td>
+<td class="num">—</td>
+<td class="num">32</td>
+<td class="num pts">0.11</td>
+</tr>
+<tr class="" data-pos="43" data-gain="0" data-reach="3116" data-inter="127" data-sales="0" data-pts="0.08" data-dias="15">
+<td class="c-pos"> 43</td>
+<td class="c-name"><span class="nm">Beatriz Andrea Lara García </span><a class="ig" href="https://instagram.com/laga.digital" target="_blank">@laga.digital</a></td>
+<td class="c-rubro">Marketing médico </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">3 116</td>
+<td class="num">127</td>
+<td class="num">—</td>
+<td class="num">15</td>
+<td class="num pts">0.08</td>
+</tr>
+<tr class="" data-pos="44" data-gain="0" data-reach="2408" data-inter="282" data-sales="0" data-pts="0.08" data-dias="25">
+<td class="c-pos"> 44</td>
+<td class="c-name"><span class="nm">Rogelio Morales</span><a class="ig" href="https://instagram.com/nut.roger" target="_blank">@nut.roger</a></td>
+<td class="c-rubro">Nutrición</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">2 408</td>
+<td class="num">282</td>
+<td class="num">—</td>
+<td class="num">25</td>
+<td class="num pts">0.08</td>
+</tr>
+<tr class="" data-pos="45" data-gain="0" data-reach="3339" data-inter="49" data-sales="0" data-pts="0.08" data-dias="38">
+<td class="c-pos"> 45</td>
+<td class="c-name"><span class="nm">David Cevallos </span><a class="ig" href="https://instagram.com/davidcevallos_marketing" target="_blank">@davidcevallos_marketing</a></td>
+<td class="c-rubro">marketing para emprendedores</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">3 339</td>
+<td class="num">49</td>
+<td class="num">—</td>
+<td class="num">38</td>
+<td class="num pts">0.08</td>
+</tr>
+<tr class="" data-pos="46" data-gain="0" data-reach="2000" data-inter="209" data-sales="0" data-pts="0.06" data-dias="1">
+<td class="c-pos"> 46</td>
+<td class="c-name"><span class="nm">Andrea Vega Bocanegra</span><a class="ig" href="https://instagram.com/andreavegabocanegra" target="_blank">@andreavegabocanegra</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">2 000</td>
+<td class="num">209</td>
+<td class="num">—</td>
+<td class="num">1</td>
+<td class="num pts">0.06</td>
+</tr>
+<tr class="" data-pos="47" data-gain="0" data-reach="2131" data-inter="109" data-sales="0" data-pts="0.06" data-dias="19">
+<td class="c-pos"> 47</td>
+<td class="c-name"><span class="nm">Maria Paula Calderon Castillo</span><a class="ig" href="https://instagram.com/pau_negociosdigitales" target="_blank">@pau_negociosdigitales</a></td>
+<td class="c-rubro">Negocios digitales</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">2 131</td>
+<td class="num">109</td>
+<td class="num">—</td>
+<td class="num">19</td>
+<td class="num pts">0.06</td>
+</tr>
+<tr class="" data-pos="48" data-gain="0" data-reach="1980" data-inter="81" data-sales="0" data-pts="0.05" data-dias="18">
+<td class="c-pos"> 48</td>
+<td class="c-name"><span class="nm">SANDRA PAOLA TORRES LOPEZ</span><a class="ig" href="https://instagram.com/dolorconsandra" target="_blank">@dolorconsandra</a></td>
+<td class="c-rubro">Producto de Salud</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">1 980</td>
+<td class="num">81</td>
+<td class="num">—</td>
+<td class="num">18</td>
+<td class="num pts">0.05</td>
+</tr>
+<tr class="" data-pos="49" data-gain="0" data-reach="2207" data-inter="57" data-sales="0" data-pts="0.05" data-dias="19">
+<td class="c-pos"> 49</td>
+<td class="c-name"><span class="nm">César Octavio Hernández Mosqueda</span><a class="ig" href="https://instagram.com/vidagrade" target="_blank">@vidagrade</a></td>
+<td class="c-rubro">Desarrollo personal </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">2 207</td>
+<td class="num">57</td>
+<td class="num">—</td>
+<td class="num">19</td>
+<td class="num pts">0.05</td>
+</tr>
+<tr class="" data-pos="50" data-gain="0" data-reach="1100" data-inter="91" data-sales="0" data-pts="0.03" data-dias="11">
+<td class="c-pos"> 50</td>
+<td class="c-name"><span class="nm">Carlos Escobar </span><a class="ig" href="https://instagram.com/creare_marketing" target="_blank">@creare_marketing</a></td>
+<td class="c-rubro">Marketing digital</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">1 100</td>
+<td class="num">91</td>
+<td class="num">—</td>
+<td class="num">11</td>
+<td class="num pts">0.03</td>
+</tr>
+<tr class="" data-pos="51" data-gain="0" data-reach="1045" data-inter="32" data-sales="0" data-pts="0.03" data-dias="19">
+<td class="c-pos"> 51</td>
+<td class="c-name"><span class="nm">Sophie Medina Bonilla</span><a class="ig" href="https://instagram.com/cellequitevalorise" target="_blank">@cellequitevalorise</a></td>
+<td class="c-rubro">Personal Branding </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">1 045</td>
+<td class="num">32</td>
+<td class="num">—</td>
+<td class="num">19</td>
+<td class="num pts">0.03</td>
+</tr>
+<tr class="" data-pos="52" data-gain="0" data-reach="788" data-inter="34" data-sales="0" data-pts="0.02" data-dias="22">
+<td class="c-pos"> 52</td>
+<td class="c-name"><span class="nm">Eliana Ruth Blanco Moya</span><a class="ig" href="https://instagram.com/thelab.linkedin" target="_blank">@thelab.linkedin</a></td>
+<td class="c-rubro">Marketing y dinero</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">788</td>
+<td class="num">34</td>
+<td class="num">—</td>
+<td class="num">22</td>
+<td class="num pts">0.02</td>
+</tr>
+<tr class="" data-pos="53" data-gain="0" data-reach="217" data-inter="143" data-sales="0" data-pts="0.02" data-dias="32">
+<td class="c-pos"> 53</td>
+<td class="c-name"><span class="nm">Arnold Francisco Almanzar Joseph</span><a class="ig" href="https://instagram.com/arnold.datosclaves" target="_blank">@arnold.datosclaves</a></td>
+<td class="c-rubro">analisis de datos para empresas medianas</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">217</td>
+<td class="num">143</td>
+<td class="num">—</td>
+<td class="num">32</td>
+<td class="num pts">0.02</td>
+</tr>
+<tr class="" data-pos="54" data-gain="0" data-reach="1010" data-inter="10" data-sales="0" data-pts="0.02" data-dias="25">
+<td class="c-pos"> 54</td>
+<td class="c-name"><span class="nm">WASHIGNTON ALEX QUISPE CCALLO</span><a class="ig" href="https://instagram.com/moraa_901" target="_blank">@moraa_901</a></td>
+<td class="c-rubro">MARKETING</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">1 010</td>
+<td class="num">10</td>
+<td class="num">—</td>
+<td class="num">25</td>
+<td class="num pts">0.02</td>
+</tr>
+<tr class="" data-pos="55" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="6">
+<td class="c-pos"> 55</td>
+<td class="c-name"><span class="nm">Reyna Bazaldua </span><a class="ig" href="https://instagram.com/hracademymx" target="_blank">@hracademymx</a></td>
+<td class="c-rubro">Info productos </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">6</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="56" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 56</td>
+<td class="c-name"><span class="nm">Nahiroby Mijares</span><a class="ig" href="https://instagram.com/dramijares" target="_blank">@dramijares</a></td>
+<td class="c-rubro">medicina estetica</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="57" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 57</td>
+<td class="c-name"><span class="nm">Irving Baylon</span><a class="ig" href="https://instagram.com/iberbaylon" target="_blank">@iberbaylon</a></td>
+<td class="c-rubro">IA & Marketing</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="58" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 58</td>
+<td class="c-name"><span class="nm">Sisa Sosuke</span><a class="ig" href="https://instagram.com/sisasosuke.beatmaker" target="_blank">@sisasosuke.beatmaker</a></td>
+<td class="c-rubro">beatmakers</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="59" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 59</td>
+<td class="c-name"><span class="nm">Manuela Martinez</span><a class="ig" href="https://instagram.com/pending-5e0e37c5" target="_blank">@pending-5e0e37c5</a></td>
+<td class="c-rubro">Negocios y marca personal</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="60" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 60</td>
+<td class="c-name"><span class="nm">Claudia Nina</span><a class="ig" href="https://instagram.com/psicologiaparaemprender" target="_blank">@psicologiaparaemprender</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="61" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 61</td>
+<td class="c-name"><span class="nm">Roberto Concepcion</span><a class="ig" href="https://instagram.com/robertoconcepcion.oficial" target="_blank">@robertoconcepcion.oficial</a></td>
+<td class="c-rubro">emprendimiento / negocios</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="62" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 62</td>
+<td class="c-name"><span class="nm">Pendiente · josefabian520</span><a class="ig" href="https://instagram.com/pending-61b03103" target="_blank">@pending-61b03103</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="63" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="22">
+<td class="c-pos"> 63</td>
+<td class="c-name"><span class="nm">Maria Pilar Pizarro</span><a class="ig" href="https://instagram.com/pili.pizarro86" target="_blank">@pili.pizarro86</a></td>
+<td class="c-rubro">Desarrollo Personal</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">22</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="64" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="6">
+<td class="c-pos"> 64</td>
+<td class="c-name"><span class="nm">Yael Omar Lopez Alvizuri</span><a class="ig" href="https://instagram.com/yael.ux" target="_blank">@yael.ux</a></td>
+<td class="c-rubro">Empleabilidad tech (ux designers)</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">6</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="65" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="1">
+<td class="c-pos"> 65</td>
+<td class="c-name"><span class="nm">Zuly Campos Fernández</span><a class="ig" href="https://instagram.com/zulyglam.pe" target="_blank">@zulyglam.pe</a></td>
+<td class="c-rubro">Servicios de Maquillaje</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">1</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="66" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="14">
+<td class="c-pos"> 66</td>
+<td class="c-name"><span class="nm">Leandra Araujo</span><a class="ig" href="https://instagram.com/madefor.leandra" target="_blank">@madefor.leandra</a></td>
+<td class="c-rubro">Creación de contenido con IA</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">14</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="67" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 67</td>
+<td class="c-name"><span class="nm">Khamyla Lutfi </span><a class="ig" href="https://instagram.com/merkhamedia" target="_blank">@merkhamedia</a></td>
+<td class="c-rubro">Social media marketing para negocios locales</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="68" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="1">
+<td class="c-pos"> 68</td>
+<td class="c-name"><span class="nm">Luis Alberto Coronado Esquivel </span><a class="ig" href="https://instagram.com/cg.capital.asesores.segurosppr" target="_blank">@cg.capital.asesores.segurosppr</a></td>
+<td class="c-rubro">Seguros </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">1</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="69" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="2">
+<td class="c-pos"> 69</td>
+<td class="c-name"><span class="nm">Pendiente · sergiocasillas634</span><a class="ig" href="https://instagram.com/pending-67a6a917" target="_blank">@pending-67a6a917</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">2</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="70" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 70</td>
+<td class="c-name"><span class="nm">Daniel Fernando Ruiz Ruiz</span><a class="ig" href="https://instagram.com/soydanyrivers" target="_blank">@soydanyrivers</a></td>
+<td class="c-rubro">Planes de Retiro/Seguros</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="71" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="1">
+<td class="c-pos"> 71</td>
+<td class="c-name"><span class="nm">sebastián flores</span><a class="ig" href="https://instagram.com/chevacuba" target="_blank">@chevacuba</a></td>
+<td class="c-rubro">marketing</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">1</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="72" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="1">
+<td class="c-pos"> 72</td>
+<td class="c-name"><span class="nm">German Moisés Corzo Gerardo</span><a class="ig" href="https://instagram.com/farmaventas360" target="_blank">@farmaventas360</a></td>
+<td class="c-rubro">Ventas en Farmacias</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">1</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="73" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 73</td>
+<td class="c-name"><span class="nm">Sergio Joaquín Amaro Casillas</span><a class="ig" href="https://instagram.com/sergio.elestoico" target="_blank">@sergio.elestoico</a></td>
+<td class="c-rubro">Espiritualidad/Desarrollo personal</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="74" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 74</td>
+<td class="c-name"><span class="nm">Natalia Manzo</span><a class="ig" href="https://instagram.com/amoryalma.cl" target="_blank">@amoryalma.cl</a></td>
+<td class="c-rubro">Terapias complementarias, bienestar</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="75" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 75</td>
+<td class="c-name"><span class="nm">Brenda Jordi</span><a class="ig" href="https://instagram.com/jordi_brenda" target="_blank">@jordi_brenda</a></td>
+<td class="c-rubro">Motivacion </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="76" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="8">
+<td class="c-pos"> 76</td>
+<td class="c-name"><span class="nm">ana carolina jimenez jimenez</span><a class="ig" href="https://instagram.com/anacarolinajj" target="_blank">@anacarolinajj</a></td>
+<td class="c-rubro">ciberseguridad</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">8</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="77" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 77</td>
+<td class="c-name"><span class="nm">Pendiente · liliomendez08</span><a class="ig" href="https://instagram.com/pending-753e07eb" target="_blank">@pending-753e07eb</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="78" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 78</td>
+<td class="c-name"><span class="nm">Andrea Shameipsen</span><a class="ig" href="https://instagram.com/shameipsenn" target="_blank">@shameipsenn</a></td>
+<td class="c-rubro">Negocios Online</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="79" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="8">
+<td class="c-pos"> 79</td>
+<td class="c-name"><span class="nm">Brenda Rosas</span><a class="ig" href="https://instagram.com/brenda.medium" target="_blank">@brenda.medium</a></td>
+<td class="c-rubro">Bienestar </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">8</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="80" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 80</td>
+<td class="c-name"><span class="nm">Diana Cardoza</span><a class="ig" href="https://instagram.com/dianacardozaa" target="_blank">@dianacardozaa</a></td>
+<td class="c-rubro">Emprendimiento digital + transformación personal con Network Marketing</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="81" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="8">
+<td class="c-pos"> 81</td>
+<td class="c-name"><span class="nm">victoria</span><a class="ig" href="https://instagram.com/victoriafischerokk" target="_blank">@victoriafischerokk</a></td>
+<td class="c-rubro">ventas y multinivel</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">8</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="82" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="3">
+<td class="c-pos"> 82</td>
+<td class="c-name"><span class="nm">Fernanda Gallardo </span><a class="ig" href="https://instagram.com/ferzgallardo" target="_blank">@ferzgallardo</a></td>
+<td class="c-rubro">Publicidad UGC</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">3</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="83" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="6">
+<td class="c-pos"> 83</td>
+<td class="c-name"><span class="nm">FRANCISCO YSRAEL LOVELY CRUCES</span><a class="ig" href="https://instagram.com/https://www.instagram.com/asesorpacolovely/" target="_blank">@https://www.instagram.com/asesorpacolovely/</a></td>
+<td class="c-rubro">seguros</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">6</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="84" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 84</td>
+<td class="c-name"><span class="nm">Pendiente · pepegorgorito</span><a class="ig" href="https://instagram.com/pending-7bed845c" target="_blank">@pending-7bed845c</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="85" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 85</td>
+<td class="c-name"><span class="nm">Abelardo José Gómez Marcano</span><a class="ig" href="https://instagram.com/finalyfox" target="_blank">@finalyfox</a></td>
+<td class="c-rubro">lifestyle</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="86" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="8">
+<td class="c-pos"> 86</td>
+<td class="c-name"><span class="nm">Astrid Torres</span><a class="ig" href="https://instagram.com/astridgtorres97" target="_blank">@astridgtorres97</a></td>
+<td class="c-rubro">Maternidad</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">8</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="87" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 87</td>
+<td class="c-name"><span class="nm">Franco Digiano</span><a class="ig" href="https://instagram.com/digiano.asesores" target="_blank">@digiano.asesores</a></td>
+<td class="c-rubro">seguros</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="88" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 88</td>
+<td class="c-name"><span class="nm">Anat woloski</span><a class="ig" href="https://instagram.com/awtentica.studio" target="_blank">@awtentica.studio</a></td>
+<td class="c-rubro">Agencia marketing </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="89" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 89</td>
+<td class="c-name"><span class="nm">Pendiente · zionvibesllc</span><a class="ig" href="https://instagram.com/pending-84504955" target="_blank">@pending-84504955</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="90" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 90</td>
+<td class="c-name"><span class="nm">Pendiente · eduardoasvz</span><a class="ig" href="https://instagram.com/pending-847d3b49" target="_blank">@pending-847d3b49</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="91" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="1">
+<td class="c-pos"> 91</td>
+<td class="c-name"><span class="nm">John Betts</span><a class="ig" href="https://instagram.com/pending-870b7f58" target="_blank">@pending-870b7f58</a></td>
+<td class="c-rubro">Automatización con IA</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">1</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="92" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="1">
+<td class="c-pos"> 92</td>
+<td class="c-name"><span class="nm">Citlali Ramirez </span><a class="ig" href="https://instagram.com/citlaliramirez92" target="_blank">@citlaliramirez92</a></td>
+<td class="c-rubro">Tecnología  y moda /personaje virtual IA</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">1</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="93" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="1">
+<td class="c-pos"> 93</td>
+<td class="c-name"><span class="nm">Mario Alfonso Martínez Palma</span><a class="ig" href="https://instagram.com/mariomartinezplm" target="_blank">@mariomartinezplm</a></td>
+<td class="c-rubro">Creación de contenido para profesionales de la salud </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">1</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="94" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 94</td>
+<td class="c-name"><span class="nm">Alfredo Navarro Moreno</span><a class="ig" href="https://instagram.com/nutrienonosconalfredo" target="_blank">@nutrienonosconalfredo</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="95" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 95</td>
+<td class="c-name"><span class="nm">Richard Mauricio Salinas Benavides</span><a class="ig" href="https://instagram.com/richmedexam" target="_blank">@richmedexam</a></td>
+<td class="c-rubro">Educación Medicina</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="96" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 96</td>
+<td class="c-name"><span class="nm">Elena v</span><a class="ig" href="https://instagram.com/byelenavazquez" target="_blank">@byelenavazquez</a></td>
+<td class="c-rubro">Mujeres emprenedoras</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="97" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 97</td>
+<td class="c-name"><span class="nm">John Betts</span><a class="ig" href="https://instagram.com/thebettsai" target="_blank">@thebettsai</a></td>
+<td class="c-rubro">Educación en automatización de procesos usando IA</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="98" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 98</td>
+<td class="c-name"><span class="nm">Edith Clara Quecaño Alvarez</span><a class="ig" href="https://instagram.com/edith.realstate" target="_blank">@edith.realstate</a></td>
+<td class="c-rubro">REAL STATE</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="99" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="3">
+<td class="c-pos"> 99</td>
+<td class="c-name"><span class="nm">tany martinez</span><a class="ig" href="https://instagram.com/tanymartinez.ads" target="_blank">@tanymartinez.ads</a></td>
+<td class="c-rubro">Meta Ads </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">3</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="100" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 100</td>
+<td class="c-name"><span class="nm">Juan Andres Latin Dayne </span><a class="ig" href="https://instagram.com/tennisconjuan" target="_blank">@tennisconjuan</a></td>
+<td class="c-rubro">Profesor de tenis </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="101" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 101</td>
+<td class="c-name"><span class="nm">Liss Mondragón </span><a class="ig" href="https://instagram.com/mujer.asertiva" target="_blank">@mujer.asertiva</a></td>
+<td class="c-rubro">Coach de Pymes y empresas familiares </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="102" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="3">
+<td class="c-pos"> 102</td>
+<td class="c-name"><span class="nm">Maria</span><a class="ig" href="https://instagram.com/viajeroscanallas" target="_blank">@viajeroscanallas</a></td>
+<td class="c-rubro">Viajes</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">3</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="103" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 103</td>
+<td class="c-name"><span class="nm">Daniela Novoa </span><a class="ig" href="https://instagram.com/danielanovoas" target="_blank">@danielanovoas</a></td>
+<td class="c-rubro">Ángeles / espiritualidad </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="104" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 104</td>
+<td class="c-name"><span class="nm">Didree coelho</span><a class="ig" href="https://instagram.com/hey.didree" target="_blank">@hey.didree</a></td>
+<td class="c-rubro">Desarrollo personal</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="105" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 105</td>
+<td class="c-name"><span class="nm">Yerson Santos</span><a class="ig" href="https://instagram.com/yerson.san" target="_blank">@yerson.san</a></td>
+<td class="c-rubro">Espiritualidad</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="106" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="7">
+<td class="c-pos"> 106</td>
+<td class="c-name"><span class="nm">Rene tiznado </span><a class="ig" href="https://instagram.com/rene_tiznadomkt" target="_blank">@rene_tiznadomkt</a></td>
+<td class="c-rubro">marketing</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">7</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="107" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="23">
+<td class="c-pos"> 107</td>
+<td class="c-name"><span class="nm">Dayan Cecilia Vilchez Nina</span><a class="ig" href="https://instagram.com/sr.bigotespetsgrooming" target="_blank">@sr.bigotespetsgrooming</a></td>
+<td class="c-rubro">Peluquería canina y enseñanza </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">23</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="108" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 108</td>
+<td class="c-name"><span class="nm">Maidelmi Hernández </span><a class="ig" href="https://instagram.com/maaiemprende" target="_blank">@maaiemprende</a></td>
+<td class="c-rubro">Emprendimiento e IA </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="109" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="16">
+<td class="c-pos"> 109</td>
+<td class="c-name"><span class="nm">Karla Pena</span><a class="ig" href="https://instagram.com/karla.hausone" target="_blank">@karla.hausone</a></td>
+<td class="c-rubro">Marketing</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">16</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="110" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 110</td>
+<td class="c-name"><span class="nm">Jhosanna Pacheco</span><a class="ig" href="https://instagram.com/jhosanna_pacheco" target="_blank">@jhosanna_pacheco</a></td>
+<td class="c-rubro">coach e infoproductores sobre los 10K</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="111" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 111</td>
+<td class="c-name"><span class="nm">Laura Cedano Hartmann</span><a class="ig" href="https://instagram.com/lauhartmann" target="_blank">@lauhartmann</a></td>
+<td class="c-rubro">nicho dinero</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="112" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="4">
+<td class="c-pos"> 112</td>
+<td class="c-name"><span class="nm">Majo Torrejón</span><a class="ig" href="https://instagram.com/mariajose.youtube" target="_blank">@mariajose.youtube</a></td>
+<td class="c-rubro">YouTube </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">4</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="113" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 113</td>
+<td class="c-name"><span class="nm">Tania Hernández Arzaluz</span><a class="ig" href="https://instagram.com/elartesivende" target="_blank">@elartesivende</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="114" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="23">
+<td class="c-pos"> 114</td>
+<td class="c-name"><span class="nm">Noel Nicaragua</span><a class="ig" href="https://instagram.com/noelpost_" target="_blank">@noelpost_</a></td>
+<td class="c-rubro">Musica Religiosa</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">23</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="115" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="3">
+<td class="c-pos"> 115</td>
+<td class="c-name"><span class="nm">Oscar Ricardo Valles Ramos</span><a class="ig" href="https://instagram.com/cirujanoactivo" target="_blank">@cirujanoactivo</a></td>
+<td class="c-rubro">Cirujano Fitness</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">3</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="116" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 116</td>
+<td class="c-name"><span class="nm">Pendiente · alexandra.abdulhadi</span><a class="ig" href="https://instagram.com/pending-a448640c" target="_blank">@pending-a448640c</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="117" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="2">
+<td class="c-pos"> 117</td>
+<td class="c-name"><span class="nm">Monica Lenz</span><a class="ig" href="https://instagram.com/monicalenzcoach" target="_blank">@monicalenzcoach</a></td>
+<td class="c-rubro">coaching personal</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">2</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="118" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="3">
+<td class="c-pos"> 118</td>
+<td class="c-name"><span class="nm">Claudia Mendoza Hernández</span><a class="ig" href="https://instagram.com/claudiamendoza.alkimista" target="_blank">@claudiamendoza.alkimista</a></td>
+<td class="c-rubro">Manifestacion de Negocios y Dinero</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">3</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="119" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 119</td>
+<td class="c-name"><span class="nm">Pendiente · anatwoloski</span><a class="ig" href="https://instagram.com/pending-a7803ebe" target="_blank">@pending-a7803ebe</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="120" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="2">
+<td class="c-pos"> 120</td>
+<td class="c-name"><span class="nm">José Salgado</span><a class="ig" href="https://instagram.com/kuna_app" target="_blank">@kuna_app</a></td>
+<td class="c-rubro">psicología / sistemas para psicólogos</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">2</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="121" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="9">
+<td class="c-pos"> 121</td>
+<td class="c-name"><span class="nm">Kamilo Borja Escobar</span><a class="ig" href="https://instagram.com/kamilovisual" target="_blank">@kamilovisual</a></td>
+<td class="c-rubro">Marketing</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">9</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="122" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="13">
+<td class="c-pos"> 122</td>
+<td class="c-name"><span class="nm">Kevin Trejo</span><a class="ig" href="https://instagram.com/soyunheroedigital" target="_blank">@soyunheroedigital</a></td>
+<td class="c-rubro">Expertos y Emprendedores Digitales</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">13</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="123" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="21">
+<td class="c-pos"> 123</td>
+<td class="c-name"><span class="nm">Yusimy Maqueira </span><a class="ig" href="https://instagram.com/crececonyusimy" target="_blank">@crececonyusimy</a></td>
+<td class="c-rubro">Inteligencia artificial </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">21</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="124" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="14">
+<td class="c-pos"> 124</td>
+<td class="c-name"><span class="nm">Adriana Margarita Medina Neyra</span><a class="ig" href="https://instagram.com/riesgosclarosconadry" target="_blank">@riesgosclarosconadry</a></td>
+<td class="c-rubro">Riesgos/Financieros y no financieros</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">14</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="125" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 125</td>
+<td class="c-name"><span class="nm">Jessica</span><a class="ig" href="https://instagram.com/jessicasilvam123" target="_blank">@jessicasilvam123</a></td>
+<td class="c-rubro">Trabajar remoto enseñando español a extranjeros </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="126" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="7">
+<td class="c-pos"> 126</td>
+<td class="c-name"><span class="nm">carlos pun santos</span><a class="ig" href="https://instagram.com/carlospunart" target="_blank">@carlospunart</a></td>
+<td class="c-rubro">arte</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">7</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="127" data-gain="0" data-reach="67" data-inter="22" data-sales="0" data-pts="0.0" data-dias="33">
+<td class="c-pos"> 127</td>
+<td class="c-name"><span class="nm">Ale Lapeyre</span><a class="ig" href="https://instagram.com/soma4.u" target="_blank">@soma4.u</a></td>
+<td class="c-rubro">Nutraceuticos</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">67</td>
+<td class="num">22</td>
+<td class="num">—</td>
+<td class="num">33</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="128" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 128</td>
+<td class="c-name"><span class="nm">Yisel Sofia Moreno Muñoz</span><a class="ig" href="https://instagram.com/yissofimore" target="_blank">@yissofimore</a></td>
+<td class="c-rubro">Contenido de Edificación Cristiana y Estilo de Vida</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="129" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 129</td>
+<td class="c-name"><span class="nm">Romy Huerta Flores</span><a class="ig" href="https://instagram.com/romy.englishcoach" target="_blank">@romy.englishcoach</a></td>
+<td class="c-rubro">IDIOMAS- INGLES</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="130" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 130</td>
+<td class="c-name"><span class="nm">Germán Moisés Corzo Gerardo</span><a class="ig" href="https://instagram.com/avilachile" target="_blank">@avilachile</a></td>
+<td class="c-rubro">Suplementos Naturales</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="131" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 131</td>
+<td class="c-name"><span class="nm">Freyeiri Cheremo</span><a class="ig" href="https://instagram.com/freyeiri" target="_blank">@freyeiri</a></td>
+<td class="c-rubro">Trading Network Marketing</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="132" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="10">
+<td class="c-pos"> 132</td>
+<td class="c-name"><span class="nm">Grecia Ortega</span><a class="ig" href="https://instagram.com/greciacoral_" target="_blank">@greciacoral_</a></td>
+<td class="c-rubro">Creadora UGC</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">10</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="133" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 133</td>
+<td class="c-name"><span class="nm">Cintia</span><a class="ig" href="https://instagram.com/campopsirecursos" target="_blank">@campopsirecursos</a></td>
+<td class="c-rubro">psicologia</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="134" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="2">
+<td class="c-pos"> 134</td>
+<td class="c-name"><span class="nm">Eymard</span><a class="ig" href="https://instagram.com/eymardg_" target="_blank">@eymardg_</a></td>
+<td class="c-rubro">Servicios Legales</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">2</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="135" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 135</td>
+<td class="c-name"><span class="nm">Astrid Carolina Medina Gomez</span><a class="ig" href="https://instagram.com/calita.ia" target="_blank">@calita.ia</a></td>
+<td class="c-rubro">Emprendimiento / creacion de contenido con Ia</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="136" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 136</td>
+<td class="c-name"><span class="nm">Alejandra Calderas</span><a class="ig" href="https://instagram.com/flautasbien" target="_blank">@flautasbien</a></td>
+<td class="c-rubro">Comida</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="137" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="4">
+<td class="c-pos"> 137</td>
+<td class="c-name"><span class="nm">Erick Mathias Loli</span><a class="ig" href="https://instagram.com/erickmathiasl" target="_blank">@erickmathiasl</a></td>
+<td class="c-rubro">Ayudo a empresas de servicio a automatizar sus procesos con IA</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">4</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="138" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 138</td>
+<td class="c-name"><span class="nm">Pendiente · johannasantana1955</span><a class="ig" href="https://instagram.com/pending-c058e8fc" target="_blank">@pending-c058e8fc</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="139" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 139</td>
+<td class="c-name"><span class="nm">Jeremy Flores</span><a class="ig" href="https://instagram.com/jeremyflores.med" target="_blank">@jeremyflores.med</a></td>
+<td class="c-rubro">Medicina</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="140" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 140</td>
+<td class="c-name"><span class="nm">ricardo soraide</span><a class="ig" href="https://instagram.com/mundoresinabol" target="_blank">@mundoresinabol</a></td>
+<td class="c-rubro">venta de resina epoxica</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="141" data-gain="0" data-reach="25" data-inter="0" data-sales="0" data-pts="0.0" data-dias="4">
+<td class="c-pos"> 141</td>
+<td class="c-name"><span class="nm">ISABEL MÁRQUEZ MONTIEL</span><a class="ig" href="https://instagram.com/elevadigitalagencia" target="_blank">@elevadigitalagencia</a></td>
+<td class="c-rubro">marketing digital </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">25</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">4</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="142" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 142</td>
+<td class="c-name"><span class="nm">Issa</span><a class="ig" href="https://instagram.com/issa_monetizadigital" target="_blank">@issa_monetizadigital</a></td>
+<td class="c-rubro">monetizar digitalmente</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="143" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="5">
+<td class="c-pos"> 143</td>
+<td class="c-name"><span class="nm">Javier lastarria</span><a class="ig" href="https://instagram.com/javiercoachventas" target="_blank">@javiercoachventas</a></td>
+<td class="c-rubro">CoachingCierres high ticket </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">5</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="144" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 144</td>
+<td class="c-name"><span class="nm">Pendiente · yersonsantoskaizen</span><a class="ig" href="https://instagram.com/pending-caab6fca" target="_blank">@pending-caab6fca</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="145" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="3">
+<td class="c-pos"> 145</td>
+<td class="c-name"><span class="nm">Carlos Eduardo Coello</span><a class="ig" href="https://instagram.com/figura.obj" target="_blank">@figura.obj</a></td>
+<td class="c-rubro">impresión 3D</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">3</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="146" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="7">
+<td class="c-pos"> 146</td>
+<td class="c-name"><span class="nm">Yorgelis Ponce Benavides </span><a class="ig" href="https://instagram.com/yorgelisponc" target="_blank">@yorgelisponc</a></td>
+<td class="c-rubro">Marketing Digital y Ventas para marcas personales</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">7</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="147" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="19">
+<td class="c-pos"> 147</td>
+<td class="c-name"><span class="nm">Francesca</span><a class="ig" href="https://instagram.com/francesca.poderia" target="_blank">@francesca.poderia</a></td>
+<td class="c-rubro">Marca personal y mentalidad</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">19</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="148" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 148</td>
+<td class="c-name"><span class="nm">Manuela Martinez </span><a class="ig" href="https://instagram.com/lamanager.do" target="_blank">@lamanager.do</a></td>
+<td class="c-rubro">Marca personal y negocios </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="149" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="1">
+<td class="c-pos"> 149</td>
+<td class="c-name"><span class="nm">Blanca Elizabeth Cámara López</span><a class="ig" href="https://instagram.com/soyelizabethcamara" target="_blank">@soyelizabethcamara</a></td>
+<td class="c-rubro">piano profesional para jóvenes talentos (Pianista Genio)</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">1</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="150" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 150</td>
+<td class="c-name"><span class="nm">Pendiente · kmyborja2000</span><a class="ig" href="https://instagram.com/pending-cfaf3518" target="_blank">@pending-cfaf3518</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="151" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 151</td>
+<td class="c-name"><span class="nm">Yedana Marquez Zuñiga</span><a class="ig" href="https://instagram.com/yedana_marketing_multinivel" target="_blank">@yedana_marketing_multinivel</a></td>
+<td class="c-rubro">Networking </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="152" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="2">
+<td class="c-pos"> 152</td>
+<td class="c-name"><span class="nm">Juan Francisco Ceccarellli Calle</span><a class="ig" href="https://instagram.com/dr.juanceccarelli" target="_blank">@dr.juanceccarelli</a></td>
+<td class="c-rubro">Odontología/Encías, mal aliento, implantes dentales</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">2</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="153" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="3">
+<td class="c-pos"> 153</td>
+<td class="c-name"><span class="nm">Sara Manuela Zuluaga Arbeláez</span><a class="ig" href="https://instagram.com/elsakuradejuanse" target="_blank">@elsakuradejuanse</a></td>
+<td class="c-rubro">Autismo</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">3</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="154" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="10">
+<td class="c-pos"> 154</td>
+<td class="c-name"><span class="nm">Cindy Jessica Hinojosa Cayo</span><a class="ig" href="https://instagram.com/jessicahinojosacayo" target="_blank">@jessicahinojosacayo</a></td>
+<td class="c-rubro">Ahorra Tiempo con IA</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">10</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="155" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 155</td>
+<td class="c-name"><span class="nm">LUIS ANGEL</span><a class="ig" href="https://instagram.com/musicparadise.pe" target="_blank">@musicparadise.pe</a></td>
+<td class="c-rubro">venta de productos</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="156" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 156</td>
+<td class="c-name"><span class="nm">Andrés Hurtado </span><a class="ig" href="https://instagram.com/hurtado_andres04" target="_blank">@hurtado_andres04</a></td>
+<td class="c-rubro">Networker</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="157" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 157</td>
+<td class="c-name"><span class="nm">Jorge Luis Palacios Castillon</span><a class="ig" href="https://instagram.com/jorgeemprendedor.rebelde" target="_blank">@jorgeemprendedor.rebelde</a></td>
+<td class="c-rubro">Marketing y Emprendimiento</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="158" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="6">
+<td class="c-pos"> 158</td>
+<td class="c-name"><span class="nm">Mauri Gabriel Cuadra</span><a class="ig" href="https://instagram.com/maurimarketingc3" target="_blank">@maurimarketingc3</a></td>
+<td class="c-rubro">Marketing</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">6</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="159" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 159</td>
+<td class="c-name"><span class="nm">Erick Balderas</span><a class="ig" href="https://instagram.com/chipoktlieu" target="_blank">@chipoktlieu</a></td>
+<td class="c-rubro">Producto físico alimentos</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="160" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="1">
+<td class="c-pos"> 160</td>
+<td class="c-name"><span class="nm">Jeniffer Monzon</span><a class="ig" href="https://instagram.com/jeniffer_monzon" target="_blank">@jeniffer_monzon</a></td>
+<td class="c-rubro">Creación de contenido con Gemela IA para creadoras</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">1</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="161" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 161</td>
+<td class="c-name"><span class="nm">Jocelin Bolivar</span><a class="ig" href="https://instagram.com/jocebolivarc" target="_blank">@jocebolivarc</a></td>
+<td class="c-rubro">Desarollo personal </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="162" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 162</td>
+<td class="c-name"><span class="nm">Pendiente · jorgepalaciocastillon</span><a class="ig" href="https://instagram.com/pending-e4f1ca7c" target="_blank">@pending-e4f1ca7c</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="163" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 163</td>
+<td class="c-name"><span class="nm">Ameris Sánchez López</span><a class="ig" href="https://instagram.com/ameris.real.state" target="_blank">@ameris.real.state</a></td>
+<td class="c-rubro">Inmobiliaria </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="164" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="4">
+<td class="c-pos"> 164</td>
+<td class="c-name"><span class="nm">Isis García</span><a class="ig" href="https://instagram.com/isisconvelo" target="_blank">@isisconvelo</a></td>
+<td class="c-rubro">comunicación</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">4</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="165" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 165</td>
+<td class="c-name"><span class="nm">Qori Gatita</span><a class="ig" href="https://instagram.com/andreaestratega" target="_blank">@andreaestratega</a></td>
+<td class="c-rubro">marketing</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="166" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 166</td>
+<td class="c-name"><span class="nm">Lizet Barcelo Galindo</span><a class="ig" href="https://instagram.com/guillermobaeza_" target="_blank">@guillermobaeza_</a></td>
+<td class="c-rubro">bienes raices </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="167" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 167</td>
+<td class="c-name"><span class="nm">sisa sosuke</span><a class="ig" href="https://instagram.com/sisa.seonomista.sosuke" target="_blank">@sisa.seonomista.sosuke</a></td>
+<td class="c-rubro">finanzas</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="168" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="3">
+<td class="c-pos"> 168</td>
+<td class="c-name"><span class="nm">Ana Luisa Guzmán</span><a class="ig" href="https://instagram.com/vidadulce.paradiabeticos" target="_blank">@vidadulce.paradiabeticos</a></td>
+<td class="c-rubro">alimentacion/ Recetas para diabeticos </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">3</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="169" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 169</td>
+<td class="c-name"><span class="nm">José Fabián</span><a class="ig" href="https://instagram.com/aún no tengo pero la creare, empezaré de cero literalmente." target="_blank">@aún no tengo pero la creare, empezaré de cero literalmente.</a></td>
+<td class="c-rubro">Emprendimiento</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="170" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="13">
+<td class="c-pos"> 170</td>
+<td class="c-name"><span class="nm">Diana Karen Cholula Valdez</span><a class="ig" href="https://instagram.com/diana.disneatuviaje" target="_blank">@diana.disneatuviaje</a></td>
+<td class="c-rubro">Agente de viajes</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">13</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="171" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="2">
+<td class="c-pos"> 171</td>
+<td class="c-name"><span class="nm">Andrea P. Bohórquez</span><a class="ig" href="https://instagram.com/andreapbohorquezcoach" target="_blank">@andreapbohorquezcoach</a></td>
+<td class="c-rubro">Hablar en Público </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">2</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="172" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 172</td>
+<td class="c-name"><span class="nm">jota</span><a class="ig" href="https://instagram.com/jotamoyamartin" target="_blank">@jotamoyamartin</a></td>
+<td class="c-rubro">marketing</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="173" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 173</td>
+<td class="c-name"><span class="nm">Juan Carlos Monsalve Gómez</span><a class="ig" href="https://instagram.com/soytraderconsciente" target="_blank">@soytraderconsciente</a></td>
+<td class="c-rubro">Educación en trading algorítmico / Empleados profesionales (o autoempleados estables) de 25–45 años en Latinoamérica que tienen capacidad de ahorro mensual, pero no saben cómo hacer crecer su dinero sin depender de más tiempo</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="174" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 174</td>
+<td class="c-name"><span class="nm">Amina Rivera</span><a class="ig" href="https://instagram.com/fitness.con.proposito" target="_blank">@fitness.con.proposito</a></td>
+<td class="c-rubro">Weightloss and Fitness coach</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="175" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="20">
+<td class="c-pos"> 175</td>
+<td class="c-name"><span class="nm">Daniel Silva Ávila </span><a class="ig" href="https://instagram.com/danielhealthcoach" target="_blank">@danielhealthcoach</a></td>
+<td class="c-rubro">Salud y bienestar </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">20</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="176" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="1">
+<td class="c-pos"> 176</td>
+<td class="c-name"><span class="nm">María Reneé Montesinos Segura</span><a class="ig" href="https://instagram.com/dra.mariarenee" target="_blank">@dra.mariarenee</a></td>
+<td class="c-rubro">Cardiologia</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">1</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="177" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="18">
+<td class="c-pos"> 177</td>
+<td class="c-name"><span class="nm">Marlon Marin Umaña</span><a class="ig" href="https://instagram.com/marlon.marin_" target="_blank">@marlon.marin_</a></td>
+<td class="c-rubro">Productividad</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">18</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="178" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 178</td>
+<td class="c-name"><span class="nm">David Hernández Estrada</span><a class="ig" href="https://instagram.com/david.aqui.content" target="_blank">@david.aqui.content</a></td>
+<td class="c-rubro">Comunidad</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="179" data-gain="0" data-reach="-1" data-inter="0" data-sales="0" data-pts="0.0" data-dias="20">
+<td class="c-pos"> 179</td>
+<td class="c-name"><span class="nm">Valentina Amador</span><a class="ig" href="https://instagram.com/tinasmedia" target="_blank">@tinasmedia</a></td>
+<td class="c-rubro">Marketing para constructores</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">-1</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">20</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="180" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="3">
+<td class="c-pos"> 180</td>
+<td class="c-name"><span class="nm">Franz Jose Velasco Campos</span><a class="ig" href="https://instagram.com/franzvelascocampos" target="_blank">@franzvelascocampos</a></td>
+<td class="c-rubro">mentor / enfoque</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">3</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="181" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="9">
+<td class="c-pos"> 181</td>
+<td class="c-name"><span class="nm">Claudia Iglesias Alfonso</span><a class="ig" href="https://instagram.com/claudiacvlinkedin" target="_blank">@claudiacvlinkedin</a></td>
+<td class="c-rubro">Empleo</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">9</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="182" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="5">
+<td class="c-pos"> 182</td>
+<td class="c-name"><span class="nm">Johanna Andrea León Pinilla</span><a class="ig" href="https://instagram.com/johannaleoncrea" target="_blank">@johannaleoncrea</a></td>
+<td class="c-rubro">Marketing digital</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">5</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="183" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="28">
+<td class="c-pos"> 183</td>
+<td class="c-name"><span class="nm">Karen Beleda</span><a class="ig" href="https://instagram.com/karencosmeticauy" target="_blank">@karencosmeticauy</a></td>
+<td class="c-rubro">cosmetica</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">28</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="184" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="12">
+<td class="c-pos"> 184</td>
+<td class="c-name"><span class="nm">luisa smith</span><a class="ig" href="https://instagram.com/smith_luisa_neuropsic" target="_blank">@smith_luisa_neuropsic</a></td>
+<td class="c-rubro">terapia psicologia </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">12</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="185" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 185</td>
+<td class="c-name"><span class="nm">jesus arcos</span><a class="ig" href="https://instagram.com/jarcosdigital" target="_blank">@jarcosdigital</a></td>
+<td class="c-rubro">marketing</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="186" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="5">
+<td class="c-pos"> 186</td>
+<td class="c-name"><span class="nm">Jamir Huamani </span><a class="ig" href="https://instagram.com/conscienciamprendedora" target="_blank">@conscienciamprendedora</a></td>
+<td class="c-rubro">Consciencia</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">5</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="187" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 187</td>
+<td class="c-name"><span class="nm">DARIO ALBERTO IBARRA OLGUIN</span><a class="ig" href="https://instagram.com/docentescon_ia" target="_blank">@docentescon_ia</a></td>
+<td class="c-rubro">Educacion (maestras y maestros educacion basica)</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="188" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="7">
+<td class="c-pos"> 188</td>
+<td class="c-name"><span class="nm">ERICK DANIEL RAMIREZ MENDEZ</span><a class="ig" href="https://instagram.com/erickramirez_digital" target="_blank">@erickramirez_digital</a></td>
+<td class="c-rubro">Multinivel-educacion</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">7</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="189" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 189</td>
+<td class="c-name"><span class="nm">Norma Patricia García Monroy</span><a class="ig" href="https://instagram.com/normagarcia.rr" target="_blank">@normagarcia.rr</a></td>
+<td class="c-rubro">Desarrollo Humano y Transformación Personal.</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="190" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="6">
+<td class="c-pos"> 190</td>
+<td class="c-name"><span class="nm">Paola Tellez</span><a class="ig" href="https://instagram.com/paolatellez.mind" target="_blank">@paolatellez.mind</a></td>
+<td class="c-rubro">Desarrollo personal / psicología</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">6</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="191" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="2">
+<td class="c-pos"> 191</td>
+<td class="c-name"><span class="nm">Pendiente · sisa.economista.sosuke</span><a class="ig" href="https://instagram.com/pending-164639bb" target="_blank">@pending-164639bb</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">2</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="192" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 192</td>
+<td class="c-name"><span class="nm">Claudia Ortiz</span><a class="ig" href="https://instagram.com/luceri_travel" target="_blank">@luceri_travel</a></td>
+<td class="c-rubro">Agencia de viajes</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="193" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="4">
+<td class="c-pos"> 193</td>
+<td class="c-name"><span class="nm">anzony duran</span><a class="ig" href="https://instagram.com/anzonynexus" target="_blank">@anzonynexus</a></td>
+<td class="c-rubro">desarrolo personal espiritualidad</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">4</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="194" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 194</td>
+<td class="c-name"><span class="nm">Jimmy Alexander Gordon Morillo</span><a class="ig" href="https://instagram.com/https://www.instagram.com/jgordon.mkt/" target="_blank">@https://www.instagram.com/jgordon.mkt/</a></td>
+<td class="c-rubro">DINERO/ MARKETING DIGITAL</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="195" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="4">
+<td class="c-pos"> 195</td>
+<td class="c-name"><span class="nm">Gonzalo Barrera</span><a class="ig" href="https://instagram.com/soygonzalobarrera" target="_blank">@soygonzalobarrera</a></td>
+<td class="c-rubro">Espiritualidad</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">4</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="196" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 196</td>
+<td class="c-name"><span class="nm">Ricardo Arámbula Velasco</span><a class="ig" href="https://instagram.com/ricardoarambula.sht" target="_blank">@ricardoarambula.sht</a></td>
+<td class="c-rubro">“Ayudo a personas que dejaron de creer en sí mismas a recuperar dirección, disciplina y propósito.”</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="197" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 197</td>
+<td class="c-name"><span class="nm">Martin E</span><a class="ig" href="https://instagram.com/martinappsec" target="_blank">@martinappsec</a></td>
+<td class="c-rubro">    Tech Education</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="198" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 198</td>
+<td class="c-name"><span class="nm">Marilyn Gomez</span><a class="ig" href="https://instagram.com/oscaraavendano" target="_blank">@oscaraavendano</a></td>
+<td class="c-rubro">Marketing digital y conversión de leads para instituciones educativas y empresas B2B.</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="199" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="19">
+<td class="c-pos"> 199</td>
+<td class="c-name"><span class="nm">Yeymi Carolina Padilla Funes</span><a class="ig" href="https://instagram.com/carolina marketing digital" target="_blank">@carolina marketing digital</a></td>
+<td class="c-rubro">Marketing digital </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">19</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="200" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="11">
+<td class="c-pos"> 200</td>
+<td class="c-name"><span class="nm">Grisell Lorena Ureña Aguiñaga</span><a class="ig" href="https://instagram.com/lorenaurena.coach" target="_blank">@lorenaurena.coach</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">11</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="201" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="1">
+<td class="c-pos"> 201</td>
+<td class="c-name"><span class="nm">Diego Pajuelo</span><a class="ig" href="https://instagram.com/spaconsultores.sst" target="_blank">@spaconsultores.sst</a></td>
+<td class="c-rubro">Seguridad y salud en el Trabajo</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">1</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="202" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 202</td>
+<td class="c-name"><span class="nm">Pendiente · yojanna-716</span><a class="ig" href="https://instagram.com/pending-224ff69f" target="_blank">@pending-224ff69f</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="203" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="3">
+<td class="c-pos"> 203</td>
+<td class="c-name"><span class="nm">Itzel Olarte</span><a class="ig" href="https://instagram.com/mediakavod" target="_blank">@mediakavod</a></td>
+<td class="c-rubro">marketing y marca personal</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">3</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="204" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 204</td>
+<td class="c-name"><span class="nm">Diana Cardoza</span><a class="ig" href="https://instagram.com/pending-25d24d74" target="_blank">@pending-25d24d74</a></td>
+<td class="c-rubro">network marketing</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="205" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 205</td>
+<td class="c-name"><span class="nm">Yoan Rincon</span><a class="ig" href="https://instagram.com/yoanrincon" target="_blank">@yoanrincon</a></td>
+<td class="c-rubro">Marketing Digital</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="206" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="4">
+<td class="c-pos"> 206</td>
+<td class="c-name"><span class="nm">Leonardo Hernández Bolaños</span><a class="ig" href="https://instagram.com/leohdz_coach" target="_blank">@leohdz_coach</a></td>
+<td class="c-rubro">Fitness</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">4</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="207" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="3">
+<td class="c-pos"> 207</td>
+<td class="c-name"><span class="nm">Danilo Angulo Cuenca</span><a class="ig" href="https://instagram.com/danilocuencadental" target="_blank">@danilocuencadental</a></td>
+<td class="c-rubro">Odontología </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">3</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="208" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 208</td>
+<td class="c-name"><span class="nm">Benjamin Torres</span><a class="ig" href="https://instagram.com/paesly.paes" target="_blank">@paesly.paes</a></td>
+<td class="c-rubro">educacion</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="209" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 209</td>
+<td class="c-name"><span class="nm">Sisa Sosuke</span><a class="ig" href="https://instagram.com/sisa.economista.soyke" target="_blank">@sisa.economista.soyke</a></td>
+<td class="c-rubro">Finanzas</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="210" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 210</td>
+<td class="c-name"><span class="nm">Cristhian Limber Mori</span><a class="ig" href="https://instagram.com/soycristhianmori" target="_blank">@soycristhianmori</a></td>
+<td class="c-rubro">infoproducto</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="211" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 211</td>
+<td class="c-name"><span class="nm">Pompeya Causarano</span><a class="ig" href="https://instagram.com/nakuacademy" target="_blank">@nakuacademy</a></td>
+<td class="c-rubro">Diseño Gráfico para infoproductores</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="212" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 212</td>
+<td class="c-name"><span class="nm">Nahuel Salto</span><a class="ig" href="https://instagram.com/nahuelenchina" target="_blank">@nahuelenchina</a></td>
+<td class="c-rubro">importaciones</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="213" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 213</td>
+<td class="c-name"><span class="nm">Luis Leonardo Tijerina Castro</span><a class="ig" href="https://instagram.com/luis_tijerina_castro" target="_blank">@luis_tijerina_castro</a></td>
+<td class="c-rubro">Bienes raíces </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="214" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="19">
+<td class="c-pos"> 214</td>
+<td class="c-name"><span class="nm">alejandro benitez</span><a class="ig" href="https://instagram.com/alejandro_benitezm" target="_blank">@alejandro_benitezm</a></td>
+<td class="c-rubro">liderazgo y management</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">19</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="215" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 215</td>
+<td class="c-name"><span class="nm">ERIKA LORENA PINZON ARIAS</span><a class="ig" href="https://instagram.com/by.eloren" target="_blank">@by.eloren</a></td>
+<td class="c-rubro">CREATIVIDAD</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="216" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 216</td>
+<td class="c-name"><span class="nm">Pendiente · john</span><a class="ig" href="https://instagram.com/pending-3c9c7ff1" target="_blank">@pending-3c9c7ff1</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="217" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="1">
+<td class="c-pos"> 217</td>
+<td class="c-name"><span class="nm">Renán Ignacio Candia Meneses</span><a class="ig" href="https://instagram.com/rcdigitalcl" target="_blank">@rcdigitalcl</a></td>
+<td class="c-rubro">Sistema de Ventas para dueños de servicios tecnicos</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">1</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="218" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 218</td>
+<td class="c-name"><span class="nm">Alejandra Campos Murillo</span><a class="ig" href="https://instagram.com/alecamposimagen" target="_blank">@alecamposimagen</a></td>
+<td class="c-rubro">Consultoría en imagen </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="219" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 219</td>
+<td class="c-name"><span class="nm">Pendiente · novakhunt01</span><a class="ig" href="https://instagram.com/pending-401dfc67" target="_blank">@pending-401dfc67</a></td>
+<td class="c-rubro">—</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="220" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 220</td>
+<td class="c-name"><span class="nm">Jacobo Martinez</span><a class="ig" href="https://instagram.com/jacobo_nutricion" target="_blank">@jacobo_nutricion</a></td>
+<td class="c-rubro">Salud/nutricion</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="221" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 221</td>
+<td class="c-name"><span class="nm">López Vega Franco Sael</span><a class="ig" href="https://instagram.com/arq.franco_vega" target="_blank">@arq.franco_vega</a></td>
+<td class="c-rubro">arquitectura</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="222" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 222</td>
+<td class="c-name"><span class="nm">Katherine Bolanos</span><a class="ig" href="https://instagram.com/katherinebolanosh" target="_blank">@katherinebolanosh</a></td>
+<td class="c-rubro">Gestión empresarial</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="223" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="12">
+<td class="c-pos"> 223</td>
+<td class="c-name"><span class="nm">Heppner brenda</span><a class="ig" href="https://instagram.com/brennheppner.coach" target="_blank">@brennheppner.coach</a></td>
+<td class="c-rubro">Coaching </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">12</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="224" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 224</td>
+<td class="c-name"><span class="nm">Herick Perez</span><a class="ig" href="https://instagram.com/herick.perez_" target="_blank">@herick.perez_</a></td>
+<td class="c-rubro">Arquietctura</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="225" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="7">
+<td class="c-pos"> 225</td>
+<td class="c-name"><span class="nm">Paula Valentina Rodríguez Alvarado </span><a class="ig" href="https://instagram.com/doctormatch_" target="_blank">@doctormatch_</a></td>
+<td class="c-rubro">Cirugía plástica </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">7</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="226" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 226</td>
+<td class="c-name"><span class="nm">Antonio García Becerra</span><a class="ig" href="https://instagram.com/antoniogbtrainer" target="_blank">@antoniogbtrainer</a></td>
+<td class="c-rubro">Fitness</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="227" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="11">
+<td class="c-pos"> 227</td>
+<td class="c-name"><span class="nm">Aron</span><a class="ig" href="https://instagram.com/sinbaofstore" target="_blank">@sinbaofstore</a></td>
+<td class="c-rubro">Ropa fitneess</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">11</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="228" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 228</td>
+<td class="c-name"><span class="nm">Neyer pulido </span><a class="ig" href="https://instagram.com/neyerex" target="_blank">@neyerex</a></td>
+<td class="c-rubro">IA, edición y creación de contenido </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="229" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="1">
+<td class="c-pos"> 229</td>
+<td class="c-name"><span class="nm">Cinthia</span><a class="ig" href="https://instagram.com/cinthia.crisalida" target="_blank">@cinthia.crisalida</a></td>
+<td class="c-rubro">Estratega digital para mujeres que quieren crear un negocio liviano</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">1</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="230" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 230</td>
+<td class="c-name"><span class="nm">Gustavo Molina</span><a class="ig" href="https://instagram.com/gusmolinaphoto" target="_blank">@gusmolinaphoto</a></td>
+<td class="c-rubro">fotografia</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="231" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 231</td>
+<td class="c-name"><span class="nm">Damian Silva</span><a class="ig" href="https://instagram.com/capitandelmarketing" target="_blank">@capitandelmarketing</a></td>
+<td class="c-rubro">Marketing Inmobiliario para Realtors</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="232" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="4">
+<td class="c-pos"> 232</td>
+<td class="c-name"><span class="nm">Karina vegas</span><a class="ig" href="https://instagram.com/ecosyoga" target="_blank">@ecosyoga</a></td>
+<td class="c-rubro">Bienestar</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">4</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="233" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="18">
+<td class="c-pos"> 233</td>
+<td class="c-name"><span class="nm">Leila Andrea Sarapura </span><a class="ig" href="https://instagram.com/leidigital.lab" target="_blank">@leidigital.lab</a></td>
+<td class="c-rubro">Marketing</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">18</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="234" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 234</td>
+<td class="c-name"><span class="nm">Maicol Fernandez </span><a class="ig" href="https://instagram.com/wellnessbymaicol" target="_blank">@wellnessbymaicol</a></td>
+<td class="c-rubro">Masajista</td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr>
+<tr class="" data-pos="235" data-gain="0" data-reach="0" data-inter="0" data-sales="0" data-pts="0.0" data-dias="0">
+<td class="c-pos"> 235</td>
+<td class="c-name"><span class="nm">Rodrigo Javier Osorio Rosado</span><a class="ig" href="https://instagram.com/rodjosorio" target="_blank">@rodjosorio</a></td>
+<td class="c-rubro">Liderazgo Para Equipos </td>
+<td class="num">—</td>
+<td class="num pct">—</td>
+<td class="num">0</td>
+<td class="num">0</td>
+<td class="num">—</td>
+<td class="num">0</td>
+<td class="num pts">0.0</td>
+</tr></tbody>
+  </table></div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <h2>Cómo se calculó el ranking</h2>
+  <p class="sub">Puntaje compuesto: cada participante recibe puntos proporcionales al máximo de la cohorte en cada categoría.</p>
+  <div class="scoring">
+    <div class="sc"><b>450</b><span>pts máx · Crecimiento de seguidores</span></div>
+    <div class="sc"><b>300</b><span>pts máx · Alcance acumulado</span></div>
+    <div class="sc"><b>150</b><span>pts máx · Interacciones</span></div>
+    <div class="sc"><b>100</b><span>pts máx · Bonus por ventas</span></div>
+  </div>
+  <div class="note" style="margin-top:20px">📋 <b>Nota de transparencia sobre la data.</b> El registro de seguidores finales (página de evidencia) se habilitó en la recta final del reto: <b>22 de 235</b> participantes registraron su conteo final, por eso la columna "% crecimiento" solo aparece en quienes lo subieron. En cambio, <b>137</b> subieron al menos un reel, <b>80</b> registraron checkpoints de alcance y <b>21</b> reportaron ventas. Todas las cifras de este resumen provienen directamente de la base de datos del reto — ninguna fue estimada.</div>
+</div></section>
+
+<footer><div class="wrap">
+  <b>Road to 1K · FÓRMULA 100K</b><br>
+  Resumen generado a partir de la data oficial del reto · Edición 11 may – 21 jun 2026<br>
+  <span style="opacity:.6">235 participantes · 2 329 reels · 41 151 355 de alcance · $29,584 facturados</span>
+</div></footer>
+
+<script>
+const q=document.getElementById('q'),tb=document.querySelector('#rk tbody');
+const rows=[...tb.rows];
+q.addEventListener('input',()=>{const t=q.value.toLowerCase();rows.forEach(r=>{r.style.display=r.textContent.toLowerCase().includes(t)?'':'none'})});
+document.querySelectorAll('#rk th[data-k]').forEach(th=>{let asc=th.dataset.k==='pos';th.addEventListener('click',()=>{const k=th.dataset.k;asc=!asc;const s=[...tb.rows].sort((a,b)=>{const x=+a.dataset[k]||0,y=+b.dataset[k]||0;return asc?x-y:y-x});s.forEach(r=>tb.appendChild(r))})});
+</script>
+</body></html>
