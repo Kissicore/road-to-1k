@@ -76,6 +76,17 @@ tr.tr-top3{background:#fffbeb}
 .pat{background:#fff;border:1px solid var(--line);border-left:4px solid var(--sky);border-radius:12px;padding:18px 20px}
 .pat h4{font-size:16px;margin-bottom:6px;color:var(--b800)}
 .pat p{font-size:14px;color:#475569}
+.frow{display:grid;grid-template-columns:230px 1fr 50px;align-items:center;gap:14px;margin:11px 0}
+.flab{font-size:13.5px;color:var(--mut);font-weight:600;text-align:right}
+.ftrack{background:#eff6ff;border-radius:10px;height:34px;overflow:hidden}
+.ffill{display:flex;align-items:center;height:100%;border-radius:10px;min-width:36px;transition:width .4s}
+.ffill b{color:#fff;font-size:14px;padding-left:12px;font-weight:800}
+.fpct{font-weight:850;color:var(--b700);text-align:right;font-size:15px}
+.hitos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+.hito{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 1px 3px rgba(15,23,42,.04)}
+.hi-ic{font-size:26px}
+.hi-big{font-size:30px;font-weight:850;color:var(--b700);letter-spacing:-1px;margin:6px 0 8px;line-height:1.05}
+.hi-desc{font-size:13.5px;color:#475569}
 .virals{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:24px}
 .viral{background:linear-gradient(160deg,#0c4a6e,#0369a1);color:#fff;border-radius:16px;padding:20px 22px}
 .viral .vh{font-size:16px;font-weight:700;line-height:1.35;font-style:italic}
@@ -89,7 +100,7 @@ footer b{color:#fff}
 .sc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
 .sc b{display:block;font-size:24px;color:var(--b700);font-weight:850}
 .sc span{font-size:12px;color:var(--mut)}
-@media(max-width:860px){.kpis,.cat,.scoring{grid-template-columns:repeat(2,1fr)}.podium,.wgrid,.patterns,.virals{grid-template-columns:1fr}.pod.g1{transform:none}.hero h1{font-size:38px}}
+@media(max-width:860px){.kpis,.cat,.scoring,.hitos{grid-template-columns:repeat(2,1fr)}.podium,.wgrid,.patterns,.virals{grid-template-columns:1fr}.pod.g1{transform:none}.hero h1{font-size:38px}.frow{grid-template-columns:1fr 64px;gap:6px}.frow .ftrack{grid-column:1/3;order:3}.flab{text-align:left}}
 </style></head>
 <body>
 
@@ -109,6 +120,16 @@ footer b{color:#fff}
     <div class="kpi"><b>$29,584</b><span>Facturado por las participantes durante el reto</span></div>
     <div class="kpi"><b>2 329</b><span>Reels válidos publicados en 42 días</span></div>
   </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <h2>Estadísticas e hitos del reto</h2>
+  <p class="sub">Los grandes hitos de la cohorte — qué porcentaje llegó hasta dónde, y los récords que se rompieron.</p>
+  <div class="hitos"><div class="hito"><div class="hi-ic">🎯</div><div class="hi-big">16 de 22</div><div class="hi-desc">de las que registraron su conteo final cerraron con <b>+1,000 seguidores</b> — cumplieron el objetivo del reto</div></div><div class="hito"><div class="hi-ic">🚀</div><div class="hi-big">+73 020</div><div class="hi-desc">seguidores netos sumados entre las participantes con data de cierre</div></div><div class="hito"><div class="hi-ic">👁</div><div class="hi-big">6 creadoras</div><div class="hi-desc">superaron <b>1,000,000 de alcance</b> individual; 17 pasaron de 100K</div></div><div class="hito"><div class="hi-ic">🔥</div><div class="hi-big">9.0%</div><div class="hi-desc">de engagement global de la cohorte (interacciones ÷ alcance) — muy por encima del promedio de IG</div></div><div class="hito"><div class="hi-ic">💰</div><div class="hi-big">$29,584</div><div class="hi-desc">facturados por 21 creadoras; ticket promedio $370 y mayor venta $3,790</div></div><div class="hito"><div class="hi-ic">📈</div><div class="hi-big">791 372</div><div class="hi-desc">de alcance promedio por creadora activa durante los 42 días</div></div></div>
+  <h3 style="font-size:21px;font-weight:800;margin:38px 0 4px;letter-spacing:-.3px">Embudo de participación</h3>
+  <p class="sub">De cada 235 aprobadas, cuántas avanzaron en cada etapa del reto. Aquí se ve la mortandad clásica de un reto largo — y por qué terminar vale oro.</p>
+  <div class="card"><div class="frow"><span class="flab">Inscritas en el reto</span><span class="ftrack"><span class="ffill" style="width:100%;background:#0c4a6e"><b>238</b></span></span><span class="fpct">100%</span></div><div class="frow"><span class="flab">Aprobadas y activas</span><span class="ftrack"><span class="ffill" style="width:99%;background:#075985"><b>235</b></span></span><span class="fpct">99%</span></div><div class="frow"><span class="flab">Subieron al menos 1 reel</span><span class="ftrack"><span class="ffill" style="width:58%;background:#0369a1"><b>137</b></span></span><span class="fpct">58%</span></div><div class="frow"><span class="flab">Llegaron a la mitad (21+ días)</span><span class="ftrack"><span class="ffill" style="width:20%;background:#0ea5e9"><b>47</b></span></span><span class="fpct">20%</span></div><div class="frow"><span class="flab">Completaron los 42 días</span><span class="ftrack"><span class="ffill" style="width:8%;background:#38bdf8"><b>19</b></span></span><span class="fpct">8%</span></div></div>
+  <div class="note" style="margin-top:18px">📌 <b>El gran titular:</b> solo el <b>8%</b> completó los 42 días, pero ese grupo concentra a casi todo el podio. Y de quienes registraron su conteo final, <b>73%</b> cerró con más de 1,000 seguidores: el reto cumplió su promesa para quienes lo terminaron.</div>
 </div></section>
 
 <section style="padding-top:0"><div class="wrap">
